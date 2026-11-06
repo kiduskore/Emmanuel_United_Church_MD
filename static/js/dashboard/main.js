@@ -1,0 +1,1298 @@
+import { apiClient } from '/static/js/dashboard/apiClient.js';
+
+    const { createApp, ref, computed, onMounted, watch, nextTick } = Vue;
+
+    createApp({
+        setup() {
+            const userPermissions = window.USER_PERMISSIONS || [];
+            const hasPermission = (p) => userPermissions.includes(p);
+
+            const customConfirm = (msg) => {
+                return new Promise((resolve) => {
+                    const overlay = document.createElement('div');
+                    overlay.style.position = 'fixed';
+                    overlay.style.inset = '0';
+                    overlay.style.backgroundColor = 'rgba(0,0,0,0.8)';
+                    overlay.style.zIndex = '9999';
+                    overlay.style.display = 'flex';
+                    overlay.style.alignItems = 'center';
+                    overlay.style.justifyContent = 'center';
+                    
+                    const dialog = document.createElement('div');
+                    dialog.style.backgroundColor = '#1E293B';
+                    dialog.style.padding = '24px';
+                    dialog.style.borderRadius = '16px';
+                    dialog.style.border = '1px solid rgba(255,255,255,0.1)';
+                    dialog.style.color = 'white';
+                    dialog.style.maxWidth = '400px';
+                    dialog.style.width = '90%';
+                    dialog.style.textAlign = 'center';
+                    
+                    const text = document.createElement('p');
+                    text.innerText = msg;
+                    text.style.marginBottom = '24px';
+                    
+                    const btnContainer = document.createElement('div');
+                    btnContainer.style.display = 'flex';
+                    btnContainer.style.gap = '12px';
+                    btnContainer.style.justifyContent = 'center';
+                    
+                    const btnCancel = document.createElement('button');
+                    btnCancel.innerText = 'Cancel';
+                    btnCancel.style.padding = '8px 16px';
+                    btnCancel.style.borderRadius = '8px';
+                    btnCancel.style.backgroundColor = 'rgba(255,255,255,0.1)';
+                    btnCancel.onclick = () => { document.body.removeChild(overlay); resolve(false); };
+                    
+                    const btnOk = document.createElement('button');
+                    btnOk.innerText = 'Confirm';
+                    btnOk.style.padding = '8px 16px';
+                    btnOk.style.borderRadius = '8px';
+                    btnOk.style.backgroundColor = '#ef4444';
+                    btnOk.onclick = () => { document.body.removeChild(overlay); resolve(true); };
+                    
+                    btnContainer.appendChild(btnCancel);
+                    btnContainer.appendChild(btnOk);
+                    dialog.appendChild(text);
+                    dialog.appendChild(btnContainer);
+                    overlay.appendChild(dialog);
+                    document.body.appendChild(overlay);
+                });
+            };
+            
+            const customPrompt = (msg) => {
+                return new Promise((resolve) => {
+                    const overlay = document.createElement('div');
+                    overlay.style.position = 'fixed';
+                    overlay.style.inset = '0';
+                    overlay.style.backgroundColor = 'rgba(0,0,0,0.8)';
+                    overlay.style.zIndex = '9999';
+                    overlay.style.display = 'flex';
+                    overlay.style.alignItems = 'center';
+                    overlay.style.justifyContent = 'center';
+                    
+                    const dialog = document.createElement('div');
+                    dialog.style.backgroundColor = '#1E293B';
+                    dialog.style.padding = '24px';
+                    dialog.style.borderRadius = '16px';
+                    dialog.style.border = '1px solid rgba(255,255,255,0.1)';
+                    dialog.style.color = 'white';
+                    dialog.style.maxWidth = '400px';
+                    dialog.style.width = '90%';
+                    
+                    const text = document.createElement('p');
+                    text.innerText = msg;
+                    text.style.marginBottom = '16px';
+                    
+                    const input = document.createElement('input');
+                    input.style.width = '100%';
+                    input.style.padding = '8px';
+                    input.style.marginBottom = '24px';
+                    input.style.backgroundColor = 'rgba(255,255,255,0.1)';
+                    input.style.border = '1px solid rgba(255,255,255,0.2)';
+                    input.style.borderRadius = '8px';
+                    input.style.color = 'white';
+                    
+                    const btnContainer = document.createElement('div');
+                    btnContainer.style.display = 'flex';
+                    btnContainer.style.gap = '12px';
+                    btnContainer.style.justifyContent = 'flex-end';
+                    
+                    const btnCancel = document.createElement('button');
+                    btnCancel.innerText = 'Cancel';
+                    btnCancel.style.padding = '8px 16px';
+                    btnCancel.style.borderRadius = '8px';
+                    btnCancel.style.backgroundColor = 'rgba(255,255,255,0.1)';
+                    btnCancel.onclick = () => { document.body.removeChild(overlay); resolve(null); };
+                    
+                    const btnOk = document.createElement('button');
+                    btnOk.innerText = 'Submit';
+                    btnOk.style.padding = '8px 16px';
+                    btnOk.style.borderRadius = '8px';
+                    btnOk.style.backgroundColor = '#3b82f6';
+                    btnOk.onclick = () => { document.body.removeChild(overlay); resolve(input.value); };
+                    
+                    btnContainer.appendChild(btnCancel);
+                    btnContainer.appendChild(btnOk);
+                    dialog.appendChild(text);
+                    dialog.appendChild(input);
+                    dialog.appendChild(btnContainer);
+                    overlay.appendChild(dialog);
+                    document.body.appendChild(overlay);
+                    input.focus();
+                });
+            };
+
+            const userEmail = ref(window.USER_EMAIL || "");
+            const userRole = ref(window.USER_ROLE || "");
+            
+            const getInitialView = () => {
+                const hash = (window.location.hash || '').replace('#', '').trim();
+                const validViews = ['overview', 'departments', 'members', 'pods', 'pipeline', 'events', 'planner', 'prayer', 'journey', 'training', 'resources', 'newsletter', 'invites', 'ya_hub', 'ya_groups', 'ya_toolkit', 'ya_reflections', 'upper_room'];
+                if (hash && validViews.includes(hash)) {
+                    return hash;
+                }
+                return 'overview';
+            };
+            const currentView = ref(getInitialView());
+            
+            window.addEventListener('hashchange', () => {
+                const hash = (window.location.hash || '').replace('#', '').trim();
+                const validViews = ['overview', 'departments', 'members', 'pods', 'pipeline', 'events', 'planner', 'prayer', 'journey', 'training', 'resources', 'newsletter', 'invites', 'ya_hub', 'ya_groups', 'ya_toolkit', 'ya_reflections', 'upper_room'];
+                if (hash && validViews.includes(hash)) {
+                    currentView.value = hash;
+                }
+            });
+            const loading = ref(true);
+            const searchQuery = ref('');
+            const showAddMember = ref(false);
+            const prayerTab = ref('active');
+            const resourceCategory = ref('All');
+            const editingMemberId = ref(null);
+            const showAddPrayer = ref(false);
+            const showAddNewcomer = ref(false);
+            const showAddResource = ref(false);
+            const showNotifications = ref(false);
+
+
+            const allNavItems = [
+
+                { id: 'overview', label: 'Overview', icon: '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>' },
+                { id: 'upper_room', label: 'Upper Room', icon: '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>' },
+                { id: 'leadership_essentials', label: 'Leadership Essentials', icon: '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>' },
+                { id: 'departments', label: '7 Departments', icon: '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>' },
+                { id: 'members', label: 'Members', icon: '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>' },
+                { id: 'pods', label: 'DNA Pods', icon: '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>' },
+                { id: 'pipeline', label: 'Pipeline', icon: '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>' },
+                { id: 'events', label: 'Events & Calendar', icon: '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>' },
+                { id: 'planner', label: 'Planner', icon: '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>' },
+                { id: 'prayer', label: 'Prayer Wall', icon: '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>' },
+                { id: 'journey', label: 'Journey', icon: '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>' },
+                { id: 'training', label: 'Vision & Strategy', icon: '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>' },
+                { id: 'resources', label: 'Resources', icon: '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>' },
+                { id: 'newsletter', label: 'Newsletter & Updates', icon: '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>' },
+                { id: 'invites', label: 'Team Invites', icon: '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>' }
+            ];
+            const navItems = computed(() => {
+                return allNavItems.filter(nav => {
+                    if (nav.id === 'members' || nav.id === 'journey') return hasPermission('manage_members');
+                    if (nav.id === 'pods' || nav.id === 'planner') return hasPermission('manage_pods');
+                    if (nav.id === 'training') return hasPermission('manage_users'); // Only Site Admin
+                    if (nav.id === 'invites') return hasPermission('manage_users');
+                    return true;
+                });
+            });
+
+
+            
+            const currentViewTitle = computed(() => {
+                const item = navItems.value.find(n => n.id === currentView.value);
+                if (item) return item.label;
+                const yaTitles = {
+                    'departments': 'Ministry Departments & Leadership Triads',
+                    'ya_hub': 'Young Adult Hub',
+                    'ya_groups': 'YA Small Groups',
+                    'ya_toolkit': 'YA Leadership Toolkit',
+                    'ya_reflections': 'YA Reflections',
+                    'upper_room': 'Upper Room Core Leaders',
+                    'leadership_essentials': 'Leadership Essentials'
+                };
+                return yaTitles[currentView.value] || 'Dashboard';
+            });
+
+            // STATE
+            const departments = ref([]);
+            const activeDeptFilter = ref('all');
+            const showEditDeptModal = ref(false);
+            const deptForm = ref({
+                id: '',
+                name: '',
+                schedule: '',
+                location: '',
+                leader: { name: '', email: '', phone: '', role: 'Department Leader', notes: '' },
+                assistant1: { name: '', email: '', phone: '', role: 'Supportive Leader / Assistant', notes: '' },
+                assistant2: { name: '', email: '', phone: '', role: 'Supportive Leader / Assistant', notes: '' },
+                responsibilities: [],
+                notes: ''
+            });
+            const showAddTaskModal = ref(false);
+            const deptTaskForm = ref({
+                deptId: '',
+                title: '',
+                assignedTo: '',
+                dueDate: ''
+            });
+            const deptStatusMsg = ref('');
+            const stats = ref([]);
+            const rawStats = ref({});
+            const stageDistribution = ref([]);
+            const recentPrayers = ref([]);
+            const allMembers = ref([]);
+            const memberForm = ref({ name: '', email: '', phone: '', join_date: '', role: 'member', spiritual_stage: 'new' });
+            const pods = ref([]);
+            const podForm = ref({ name: '', leader_id: '' });
+            const pipelineCols = ref([
+                { id: 'first_contact', title: 'First Contact', items: [] },
+                { id: 'welcomed', title: 'Welcomed', items: [] },
+                { id: 'invited_to_pod', title: 'Invited to Pod', items: [] },
+                { id: 'integrated', title: 'Integrated', items: [] }
+            ]);
+            const plans = ref([]);
+            const planForm = ref({ pod_id: '', week_date: '', bible_passage: '', discussion_questions: '', spiritual_goals: '' });
+            const prayers = ref({ active: [], answered: [] });
+            const prayerForm = ref({ member_id: '', request_text: '', is_urgent: false });
+            const resources = ref([]);
+            const resourceForm = ref({ title: '', description: '', category: 'Bible Study', file_url: '' });
+            const newcomerForm = ref({ name: '', phone: '', email: '', notes: '' });
+            const journeyStages = ['new', 'saved', 'baptized', 'foundations', 'ready_to_lead', 'leading'];
+
+            // UPPER ROOM CORE LEADERS & SUCCESSION PROTOCOL
+            const defaultUpperRoomRoles = [
+                {
+                    id: 'discipleship',
+                    icon: '📖',
+                    title: 'Discipleship Lead',
+                    currentLead: 'Nahome',
+                    isTemp: false,
+                    leadLabel: 'Current Lead',
+                    coreResponsibilities: 'Facilitate the Tuesday Bible study, curate engaging study materials, foster deep spiritual growth, and cultivate an environment for open biblical discussion. You are responsible for ensuring attendees are growing in their faith and actively applying scriptural principles.',
+                    actionItem: 'Please identify a 2nd and 3rd lead to assist in leading group discussions, stepping in to teach when you are unavailable, and learning how to source and structure study content.',
+                    secondLead: '',
+                    thirdLead: '',
+                    notes: 'Focus on curriculum sourcing, discussion facilitation, and small group spiritual tracking.'
+                },
+                {
+                    id: 'events',
+                    icon: '📋',
+                    title: 'Event Coordinator',
+                    currentLead: 'Fikir',
+                    isTemp: false,
+                    leadLabel: 'Current Lead',
+                    coreResponsibilities: 'Plan, organize, and execute all ministry events from concept to completion. This includes managing logistics, coordinating venue setups, overseeing event budgets, and ensuring all gatherings run on schedule and align with the ministry\'s vision.',
+                    actionItem: 'Please identify a 2nd and 3rd lead to help manage day-of logistics, serve as the primary point of contact if you are absent, and master the event planning workflows.',
+                    secondLead: '',
+                    thirdLead: '',
+                    notes: 'Venue checklists, budget reconciliation, schedule oversight, and vendor coordination.'
+                },
+                {
+                    id: 'production',
+                    icon: '🎥',
+                    title: 'Production Lead',
+                    currentLead: 'Gedi & Kal',
+                    isTemp: false,
+                    leadLabel: 'Current Leads',
+                    coreResponsibilities: 'Oversee all audio, visual, and media operations during services and events. This includes managing live sound mixing, running presentation software, operating cameras, handling live streaming, and ensuring all technical equipment is maintained and properly configured.',
+                    actionItem: 'Please identify a 2nd and 3rd lead (or train up current volunteers) to assist with the tech booth, step in to run sound or media if either of you are absent, and document technical setups for seamless knowledge transfer.',
+                    secondLead: '',
+                    thirdLead: '',
+                    notes: 'Audio mixing guides, ProPresenter presets, cable labeling, and broadcast stream monitoring.'
+                },
+                {
+                    id: 'teaching',
+                    icon: '📚',
+                    title: 'Teaching Lead',
+                    currentLead: 'Biniam',
+                    isTemp: false,
+                    leadLabel: 'Current Lead',
+                    coreResponsibilities: 'Develop and deliver biblically sound, engaging, and relevant teaching series. You are responsible for maintaining theological accuracy, structuring sermon outlines, and effectively communicating the core message to the young adult community.',
+                    actionItem: 'Please identify a 2nd and 3rd lead who can be mentored in teaching, assist in outlining curriculums, and step in to deliver messages during your absence.',
+                    secondLead: '',
+                    thirdLead: '',
+                    notes: 'Sermon manuscript review, theological alignment, and preaching rotation mentorship.'
+                },
+                {
+                    id: 'worship',
+                    icon: '🎤',
+                    title: 'Worship Lead',
+                    currentLead: 'Ela',
+                    isTemp: false,
+                    leadLabel: 'Current Lead',
+                    coreResponsibilities: 'Plan worship setlists, lead band rehearsals, and guide the congregation in musical worship. You are responsible for scheduling musicians, ensuring musical excellence, and fostering a spiritually engaging worship environment.',
+                    actionItem: 'Please identify a 2nd and 3rd lead (such as a co-leader or musical director) to help lead rehearsals, cover worship sets when you are out, and learn how to manage the band schedule.',
+                    secondLead: '',
+                    thirdLead: '',
+                    notes: 'Setlist arrangements, chord charts, vocalist coaching, and rehearsal scheduling.'
+                },
+                {
+                    id: 'prayer',
+                    icon: '🙏',
+                    title: 'Prayer Coordinator',
+                    currentLead: 'Bersi',
+                    isTemp: false,
+                    leadLabel: 'Current Lead',
+                    coreResponsibilities: 'Organize and lead prayer meetings, manage incoming prayer requests, and cultivate a strong culture of intercession within the young adult group. You ensure that the ministry, its leaders, and its members are consistently covered in prayer.',
+                    actionItem: 'Please identify a 2nd and 3rd lead to assist in guiding corporate prayer, managing the distribution of prayer requests, and taking the lead on prayer initiatives when you are absent.',
+                    secondLead: '',
+                    thirdLead: '',
+                    notes: 'Intercessory calendar, prayer wall monitoring, and corporate prayer moderation.'
+                },
+                {
+                    id: 'guest_experience',
+                    icon: '🤝',
+                    title: 'Guest Experience Leads',
+                    currentLead: 'Kidus & Bersi',
+                    isTemp: true,
+                    leadLabel: 'Temp Current Leads',
+                    coreResponsibilities: 'Create a welcoming, hospitable environment for all attendees. This includes overseeing the greeting team, managing the follow-up process for first-time guests, and ensuring new members are successfully integrated into the community and small groups.',
+                    actionItem: 'Please identify a 2nd and 3rd lead to manage the greeting schedule, handle digital follow-up communications, and act as the primary hosts if both of you are unavailable.',
+                    secondLead: '',
+                    thirdLead: '',
+                    notes: 'Welcome desk schedule, newcomer follow-up workflows, and hospitality supplies.'
+                },
+                {
+                    id: 'operations',
+                    icon: '⚙️',
+                    title: 'Lead Operations Facilitator',
+                    currentLead: 'Kidus',
+                    isTemp: false,
+                    leadLabel: 'Current Lead',
+                    coreResponsibilities: 'Architect and manage the ministry\'s digital platform and operational workflows. You serve as the central hub for all teams, providing the technical tools, system infrastructure, and administrative support required for each department to achieve their goals efficiently.',
+                    actionItem: 'Identify and cross-train a 2nd and 3rd admin who can manage backend platform permissions, troubleshoot digital issues, and maintain operational continuity if you are away.',
+                    secondLead: '',
+                    thirdLead: '',
+                    notes: 'Admin access permissions, system failover protocols, and database maintenance.'
+                }
+            ];
+
+            const loadUpperRoomData = () => {
+                try {
+                    const saved = localStorage.getItem('euc_upper_room_roles');
+                    if (saved) {
+                        const parsed = JSON.parse(saved);
+                        return defaultUpperRoomRoles.map(defaultRole => {
+                            const found = parsed.find(p => p.id === defaultRole.id);
+                            return found ? { ...defaultRole, ...found } : defaultRole;
+                        });
+                    }
+                } catch(e) {}
+                return JSON.parse(JSON.stringify(defaultUpperRoomRoles));
+            };
+
+            const upperRoomRoles = ref(loadUpperRoomData());
+            const upperRoomSearch = ref('');
+            const upperRoomSavedMsg = ref('');
+            const upperRoomRoleFilter = ref('all');
+
+            const filteredUpperRoomRoles = computed(() => {
+                let list = upperRoomRoles.value;
+                if (upperRoomRoleFilter.value !== 'all') {
+                    list = list.filter(r => r.id === upperRoomRoleFilter.value);
+                }
+                if (upperRoomSearch.value.trim()) {
+                    const q = upperRoomSearch.value.toLowerCase().trim();
+                    list = list.filter(r => 
+                        r.title.toLowerCase().includes(q) ||
+                        r.currentLead.toLowerCase().includes(q) ||
+                        (r.secondLead && r.secondLead.toLowerCase().includes(q)) ||
+                        (r.thirdLead && r.thirdLead.toLowerCase().includes(q)) ||
+                        r.coreResponsibilities.toLowerCase().includes(q)
+                    );
+                }
+                return list;
+            });
+
+            const saveUpperRoomSuccession = () => {
+                try {
+                    localStorage.setItem('euc_upper_room_roles', JSON.stringify(upperRoomRoles.value));
+                    upperRoomSavedMsg.value = '✓ Succession protocol nominations saved successfully!';
+                    setTimeout(() => { upperRoomSavedMsg.value = ''; }, 3500);
+                } catch(e) {
+                    alert('Could not save to local storage.');
+                }
+            };
+
+            const resetUpperRoomSuccession = async () => {
+                if (!(await customConfirm('Are you sure you want to reset all designated 2nd and 3rd leads to default state?'))) return;
+                upperRoomRoles.value = JSON.parse(JSON.stringify(defaultUpperRoomRoles));
+                localStorage.removeItem('euc_upper_room_roles');
+                upperRoomSavedMsg.value = 'Protocol data reset to default.';
+                setTimeout(() => { upperRoomSavedMsg.value = ''; }, 3000);
+            };
+
+            const copySuccessionSummary = () => {
+                const lines = [
+                    'UPPER ROOM CORE LEADERS · MINISTRY LEADERSHIP ROLES & SUCCESSION PROTOCOL',
+                    '========================================================================',
+                    'Requirement: Identify and train a 2nd and 3rd lead for every ministry.\n'
+                ];
+                upperRoomRoles.value.forEach(r => {
+                    lines.push(`• ${r.title} (${r.leadLabel}: ${r.currentLead})`);
+                    lines.push(`  2nd Lead: ${r.secondLead || '[Pending Designation]'}`);
+                    lines.push(`  3rd Lead: ${r.thirdLead || '[Pending Designation]'}`);
+                    if (r.notes) lines.push(`  Handover Focus: ${r.notes}`);
+                    lines.push('');
+                });
+                navigator.clipboard.writeText(lines.join('\n'));
+                upperRoomSavedMsg.value = '📋 Succession roster copied to clipboard!';
+                setTimeout(() => { upperRoomSavedMsg.value = ''; }, 3500);
+            };
+
+            // DNA PODS (SMALL GROUP DISCIPLESHIP) STATE & PROTOCOL
+            const defaultDnaPods = [
+                {
+                    id: 1,
+                    name: 'DNA Pod 1',
+                    primaryLeads: 'Bercy & Kal',
+                    primaryLeadNames: ['Bercy', 'Kal'],
+                    secondLead: '',
+                    secondLeadPhone: '',
+                    secondLeadEmail: '',
+                    members: ['Bercy', 'Kal', 'Dibora', 'Dula', 'Kaleb', 'Kana', 'Abigiya'],
+                    notes: 'Weekly Tuesday Bible study application and DMV fellowship.'
+                },
+                {
+                    id: 2,
+                    name: 'DNA Pod 2',
+                    primaryLeads: 'Biniyam & Fiker',
+                    primaryLeadNames: ['Biniyam', 'Fiker'],
+                    secondLead: '',
+                    secondLeadPhone: '',
+                    secondLeadEmail: '',
+                    members: ['Biniyam', 'Fiker', 'Tsion', 'Josh', 'Meeraf'],
+                    notes: 'Word study deeper discussions and intentional check-ins.'
+                },
+                {
+                    id: 3,
+                    name: 'DNA Pod 3',
+                    primaryLeads: 'Gedi & Nahom',
+                    primaryLeadNames: ['Gedi', 'Nahom'],
+                    secondLead: '',
+                    secondLeadPhone: '',
+                    secondLeadEmail: '',
+                    members: ['Gedi', 'Nahom', 'Ruth', 'Zetseat', 'Miki'],
+                    notes: 'Spiritual care, discussion facilitation, and leadership multiplication.'
+                },
+                {
+                    id: 4,
+                    name: 'DNA Pod 4',
+                    primaryLeads: 'Ela & Kidus',
+                    primaryLeadNames: ['Ela', 'Kidus'],
+                    secondLead: '',
+                    secondLeadPhone: '',
+                    secondLeadEmail: '',
+                    members: ['Ela', 'Kidus', 'Yezich', 'Eden', 'Miki', 'Regan'],
+                    notes: 'Community connection, welcoming newcomers, and prayer intercession.'
+                }
+            ];
+
+            const loadDnaPodsData = () => {
+                try {
+                    const saved = localStorage.getItem('euc_dna_pods_roster');
+                    if (saved) {
+                        const parsed = JSON.parse(saved);
+                        return defaultDnaPods.map(defaultPod => {
+                            const found = parsed.find(p => p.id === defaultPod.id);
+                            return found ? { ...defaultPod, ...found } : defaultPod;
+                        });
+                    }
+                } catch(e) {}
+                return JSON.parse(JSON.stringify(defaultDnaPods));
+            };
+
+            const dnaPods = ref(loadDnaPodsData());
+            const dnaPodsSearch = ref('');
+            const dnaPodFilter = ref('all');
+            const dnaPodsSavedMsg = ref('');
+            const upperRoomActiveTab = ref('all'); // 'all' | 'ministries' | 'dna_pods'
+            const dnaPodLeaders = ['Bercy', 'Biniyam', 'Gedi', 'Ela', 'Kidus', 'Nahom', 'Fiker', 'Kal'];
+
+            const filteredDnaPods = computed(() => {
+                let list = dnaPods.value;
+                if (dnaPodFilter.value !== 'all') {
+                    list = list.filter(p => p.id === Number(dnaPodFilter.value));
+                }
+                if (dnaPodsSearch.value.trim()) {
+                    const q = dnaPodsSearch.value.toLowerCase().trim();
+                    list = list.filter(p =>
+                        p.name.toLowerCase().includes(q) ||
+                        p.primaryLeads.toLowerCase().includes(q) ||
+                        (p.secondLead && p.secondLead.toLowerCase().includes(q)) ||
+                        p.members.some(m => m.toLowerCase().includes(q)) ||
+                        (p.notes && p.notes.toLowerCase().includes(q))
+                    );
+                }
+                return list;
+            });
+
+            const saveDnaPodsNominations = () => {
+                try {
+                    localStorage.setItem('euc_dna_pods_roster', JSON.stringify(dnaPods.value));
+                    dnaPodsSavedMsg.value = '✓ DNA Pod Co-Facilitator nominations saved successfully!';
+                    setTimeout(() => { dnaPodsSavedMsg.value = ''; }, 3500);
+                } catch(e) {
+                    alert('Could not save to local storage.');
+                }
+            };
+
+            const resetDnaPodsNominations = async () => {
+                if (!(await customConfirm('Are you sure you want to reset all designated DNA Pod 2nd leads to default?'))) return;
+                dnaPods.value = JSON.parse(JSON.stringify(defaultDnaPods));
+                localStorage.removeItem('euc_dna_pods_roster');
+                dnaPodsSavedMsg.value = 'DNA Pod nominations reset to default.';
+                setTimeout(() => { dnaPodsSavedMsg.value = ''; }, 3000);
+            };
+
+            const copyDnaPodsRosters = () => {
+                const lines = [
+                    '🌱 DNA PODS (SMALL GROUP DISCIPLESHIP) · EUC YOUNG ADULTS',
+                    '========================================================',
+                    'Current Pod Leaders: Bercy, Biniyam, Gedi, Ela, Kidus, Nahom, Fiker, and Kal (serving as primary facilitators for their respective groups).\n',
+                    'Core Responsibilities: Facilitate consistent, tight-knit community and spiritual growth within your assigned group. You are responsible for regular check-ins, guiding discussions (applying the Tuesday Bible study and Sunday teachings), offering spiritual care, and ensuring every member feels known and supported. You are also tasked with nurturing your group toward healthy multiplication.\n',
+                    'Action Item: Every DNA Pod must identify a 2nd lead (Co-Facilitator) from within their group. This person will help coordinate meetups, track prayer requests, and step in to lead the pod discussions if the primary leader is absent. This ensures the pod\'s momentum continues without interruption and trains future leaders for when the pods multiply.\n',
+                    'CURRENT DNA POD ROSTERS:\n'
+                ];
+                dnaPods.value.forEach(p => {
+                    lines.push(`• ${p.name}`);
+                    lines.push(`  Primary Facilitators: ${p.primaryLeads}`);
+                    lines.push(`  2nd Lead (Co-Facilitator): ${p.secondLead || '[Pending Designation from within group]'}`);
+                    lines.push(`  Members (${p.members.length}): ${p.members.join(', ')}`);
+                    lines.push('');
+                });
+                navigator.clipboard.writeText(lines.join('\n'));
+                dnaPodsSavedMsg.value = '📋 DNA Pod Rosters copied to clipboard!';
+                setTimeout(() => { dnaPodsSavedMsg.value = ''; }, 3500);
+            };
+
+            const copyLeadershipEssentials = () => {
+                const text = `UPPER ROOM YOUNG ADULTS
+Leadership Essentials
+Welcome to our leadership development journey. Drawing from our recent ministry teachings and the core principles found in Leadership Essentials: Shaping Vision, Multiplying Influence, Defining Character by Greg Ogden and Daniel Meyer, these notes are designed to ground us as we step forward. True leadership is not about a title; it is about multiplying influence and reflecting Christ to our generation.
+
+Overcoming Leadership Deficits
+Stepping into leadership can be daunting. In our ministry gatherings, we identified five common personal and structural barriers that prevent young adults from fully embracing their call to lead:
+• Equipment Shortage: Feeling a lack of the necessary resources, training, or tools to execute the vision effectively.
+• Unclear Descriptions: Operating without a clear job description, leaving roles ambiguous and goals undefined.
+• Toxic Precedents: Carrying a negative image of leadership due to past exposure to unhealthy, domineering, or toxic leadership environments.
+• Mentorship Void: Facing a shortage of mature, available mentors to properly guide and train emerging leaders.
+• Passion Deficit: A fundamental lack of willingness, drive, or passion to step up and serve the community sacrificially.
+
+The Call to Step Up
+Despite these barriers, the Upper Room ministry requires young adults who are willing to bridge the gap. We cannot wait for perfect conditions or flawless mentorship to begin serving. Leadership begins with a simple, passionate willingness to be used by God right where you are.
+
+Core Principles of Christian Leadership
+At the heart of the Upper Room ministry is the belief that Christian leadership is fundamentally defined as Christ-like influence. While the corporate world often views leadership through the lens of power, self-promotion, and upward mobility, the kingdom of God views it through the lens of downward mobility and service. Christ Himself modeled this, showing that true authority comes from laying down one's life for others.
+
+Shaping Vision
+A leader without a vision is merely managing the status quo. Vision is the clear, challenging picture of the future of our ministry as it can and must be. Compelling vision must be rooted in God's character and purposes, rather than our own ambition. It requires us to look beyond immediate obstacles and articulate a hope-filled future that inspires the entire community to action.
+
+"The most essential value for any Christian leader is not administrative skill, but deep intimacy with God. A genuine passion for Christ must precede and sustain all ministry efforts."
+
+Intimacy as the Foundation
+A genuine passion for Christ—who our teachings describe as the treasure of all knowledge and wisdom—is the engine of endurance. Without this foundational intimacy, leadership becomes mechanical, exhausting, and prone to burnout. We cannot lead others to a place we have not been ourselves; our public influence will only ever be as strong as our private devotion.
+
+Multiplying Influence
+True kingdom leadership is never solitary (2 Timothy 2:2). Our task is not merely to do the work of ministry, but to equip and empower others. Every lead trains a 2nd and 3rd, and every DNA Pod develops co-facilitators to nurture sustainable community.
+
+Defining Character
+Skill and charisma may open doors, but character sustains leadership. Integrity, humility, emotional resilience, and servanthood are non-negotiable for anyone carrying responsibility in God's house.
+
+Practical Steps for Upper Room Leaders
+1. Prioritize Secret-Place Intimacy: Ground every ministry initiative in prayer and quiet seeking of the Lord.
+2. Build Intentional Relationships: Connect relationally with co-leads and volunteers beyond scheduled tasks.
+3. Train with Open Hands: Freely share knowledge, authority, and workflows with designated 2nd and 3rd leads.
+4. Protect Unity and Honor: Guard love, vulnerability, and mutual encouragement across all pods and teams.`;
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(text);
+                }
+                upperRoomSavedMsg.value = '📋 Leadership Essentials publication copied to clipboard!';
+                setTimeout(() => { upperRoomSavedMsg.value = ''; }, 3500);
+            };
+
+            // DATA FETCHERS
+            const fetchStats = async () => {
+                const data = await apiClient('/api/stats');
+                if (!data) return;
+                rawStats.value = data;
+                stats.value = [
+                    { label: 'Total Members', value: data.total_members, icon: '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>' },
+                    { label: 'DNA Pods', value: data.total_pods, icon: '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>' },
+                    { label: 'Leaders', value: data.total_leaders, icon: '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg>' },
+                    { label: 'Attendance Rate', value: data.attendance_rate + '%', icon: '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>' }
+                ];
+                const dist = data.stage_distribution || {};
+                const total = data.total_members || 1;
+                stageDistribution.value = Object.entries(dist).map(([k, v]) => ({
+                    name: formatStage(k), count: v, percent: (v / total) * 100
+                }));
+            };
+
+            const fetchMembers = async () => {
+                const data = await apiClient('/api/members');
+                if (data) allMembers.value = data;
+            };
+
+            const fetchPods = async () => {
+                const data = await apiClient('/api/pods');
+                if (data) pods.value = data;
+            };
+
+            const fetchPipeline = async () => {
+                const data = await apiClient('/api/pipeline');
+                if (!data) return;
+                const stages = ['first_contact', 'welcomed', 'invited_to_pod', 'integrated'];
+                const titles = ['First Contact', 'Welcomed', 'Invited to Pod', 'Integrated'];
+                pipelineCols.value = stages.map((s, i) => ({
+                    id: s, title: titles[i],
+                    items: data.filter(d => d.stage === s)
+                }));
+            };
+
+            const fetchPlans = async () => {
+                const data = await apiClient('/api/weekly-plans');
+                if (!data) return;
+                plans.value = data.map(p => ({
+                    ...p,
+                    questions: p.discussion_questions ? (typeof p.discussion_questions === 'string' ? JSON.parse(p.discussion_questions) : p.discussion_questions) : [],
+                    goals: p.spiritual_goals ? (typeof p.spiritual_goals === 'string' ? JSON.parse(p.spiritual_goals) : p.spiritual_goals) : [],
+                    report: p.post_meeting_notes
+                }));
+            };
+
+            const fetchPrayers = async () => {
+                const active = await apiClient('/api/prayer?status=active');
+                const answered = await apiClient('/api/prayer?status=answered');
+                prayers.value = {
+                    active: (active || []).map(p => ({ ...p, name: p.member_name || p.requester_name || 'Anonymous', time: p.created_at, text: p.request_text, urgent: p.is_urgent, prays: p.supporter_count || 0 })),
+                    answered: (answered || []).map(p => ({ ...p, name: p.member_name || p.requester_name || 'Anonymous', text: p.request_text, answeredDate: p.answered_at }))
+                };
+                recentPrayers.value = prayers.value.active.slice(0, 5);
+            };
+
+            const fetchResources = async () => {
+                const data = await apiClient('/api/resources');
+                if (data) resources.value = data;
+            };
+
+            // COMMUNITY EVENTS & CALENDAR MANAGEMENT
+            const eventsList = ref([]);
+            const showAddEvent = ref(false);
+            const showRsvpsModal = ref(false);
+            const activeEventForRsvps = ref(null);
+            const activeRsvpsList = ref([]);
+            const loadingRsvps = ref(false);
+            const eventForm = ref({
+                title: '',
+                description: '',
+                date: '',
+                time: '7:00 PM',
+                location: 'EUC Sanctuary',
+                category: 'gathering',
+                capacity: 60,
+                is_featured: false
+            });
+
+            const fetchEvents = async () => {
+                try {
+                    const data = await apiClient('/api/events');
+                    if (data) eventsList.value = data;
+                } catch (e) {
+                    console.error("fetchEvents failed", e);
+                }
+            };
+
+            const createEvent = async () => {
+                if (!eventForm.value.title || !eventForm.value.date) {
+                    alert("Please provide at least a title and date.");
+                    return;
+                }
+                try {
+                    await apiClient('/api/events', { method: 'POST', body: eventForm.value });
+                    showAddEvent.value = false;
+                    eventForm.value = {
+                        title: '',
+                        description: '',
+                        date: '',
+                        time: '7:00 PM',
+                        location: 'EUC Sanctuary',
+                        category: 'gathering',
+                        capacity: 60,
+                        is_featured: false
+                    };
+                    await fetchEvents();
+                } catch (e) {
+                    alert("Failed to create event: " + e.message);
+                }
+            };
+
+            const deleteEvent = async (id) => {
+                if (!(await customConfirm('Are you sure you want to delete this event? This will also remove all associated attendee registrations.'))) return;
+                try {
+                    await apiClient(`/api/events/${id}`, { method: 'DELETE' });
+                    await fetchEvents();
+                } catch (e) {
+                    alert("Failed to delete event: " + e.message);
+                }
+            };
+
+            const viewEventRsvps = async (evt) => {
+                activeEventForRsvps.value = evt;
+                showRsvpsModal.value = true;
+                loadingRsvps.value = true;
+                try {
+                    const data = await apiClient(`/api/events/${evt.id}/rsvps`);
+                    activeRsvpsList.value = data || [];
+                } catch (e) {
+                    activeRsvpsList.value = [];
+                } finally {
+                    loadingRsvps.value = false;
+                }
+            };
+
+            // NEWSLETTER & BROADCAST UPDATES
+            const newsletterSubscribers = ref([]);
+            const newsletterBroadcasts = ref([]);
+            const newsletterForm = ref({ subject: '', message: '', testEmailOnly: '' });
+            const sendingNewsletterUpdate = ref(false);
+            const newsletterStatusMsg = ref('');
+            const newsletterErrorMsg = ref('');
+            const loadingNewsletter = ref(false);
+            const newsletterSearch = ref('');
+
+            const filteredSubscribers = computed(() => {
+                if (!newsletterSearch.value.trim()) return newsletterSubscribers.value;
+                const q = newsletterSearch.value.toLowerCase().trim();
+                return newsletterSubscribers.value.filter(s => 
+                    (s.email && s.email.toLowerCase().includes(q)) || 
+                    (s.name && s.name.toLowerCase().includes(q)) ||
+                    (s.source && s.source.toLowerCase().includes(q))
+                );
+            });
+
+            const activeSubscribersCount = computed(() => {
+                return newsletterSubscribers.value.filter(s => s.status === 'subscribed').length;
+            });
+
+            const fetchNewsletter = async () => {
+                loadingNewsletter.value = true;
+                try {
+                    const data = await apiClient('/api/newsletter/subscribers');
+                    if (data) {
+                        newsletterSubscribers.value = data.subscribers || [];
+                        newsletterBroadcasts.value = data.broadcasts || [];
+                    }
+                } catch(e) {
+                    console.error('Failed to load newsletter subscribers:', e);
+                } finally {
+                    loadingNewsletter.value = false;
+                }
+            };
+
+            const sendNewsletterUpdate = async () => {
+                if (!newsletterForm.value.subject || !newsletterForm.value.subject.trim()) {
+                    newsletterErrorMsg.value = 'Please provide an email subject for your update.';
+                    return;
+                }
+                if (!newsletterForm.value.message || !newsletterForm.value.message.trim()) {
+                    newsletterErrorMsg.value = 'Please write message content to send to subscribers.';
+                    return;
+                }
+
+                sendingNewsletterUpdate.value = true;
+                newsletterStatusMsg.value = '';
+                newsletterErrorMsg.value = '';
+
+                try {
+                    const res = await apiClient('/api/newsletter/send-update', {
+                        method: 'POST',
+                        body: newsletterForm.value
+                    });
+
+                    if (res && res.success) {
+                        newsletterStatusMsg.value = res.message || 'Update successfully sent to subscribers!';
+                        newsletterForm.value = { subject: '', message: '', testEmailOnly: '' };
+                        if (res.broadcast) {
+                            newsletterBroadcasts.value.unshift(res.broadcast);
+                        }
+                    } else {
+                        newsletterErrorMsg.value = (res && res.error) || 'Failed to send update to subscribers.';
+                    }
+                } catch(e) {
+                    newsletterErrorMsg.value = 'Error connecting to server. Please try again.';
+                } finally {
+                    sendingNewsletterUpdate.value = false;
+                }
+            };
+
+            const setNewsletterTemplate = (type) => {
+                if (type === 'tuesday') {
+                    newsletterForm.value.subject = 'Join us this Tuesday for EUCMD Young Adults Worship & Prayer!';
+                    newsletterForm.value.message = 'Hi everyone,\n\nWe hope your week is off to a blessed start!\n\nThis is a quick reminder about our weekly Young Adults Gathering this Tuesday at 7:00 PM EST.\n\n📍 Location: 914 Silver Spring Ave 204B, Silver Spring, MD 20910\n⏰ Time: 7:00 PM EST\n\nCome expectant for worship, prayer, God\'s Word, and fellowship. Feel free to invite a friend—dinner and fellowship will follow right after the service!\n\nLooking forward to seeing you all,\nEUCMD Young Adults Leadership';
+                } else if (type === 'events') {
+                    newsletterForm.value.subject = 'Upcoming Special Events & Fellowship Opportunities!';
+                    newsletterForm.value.message = 'Dear Young Adults Community,\n\nWe have exciting ministry updates and upcoming events on our church calendar! From community praise nights to life group fellowships and campus gatherings across Maryland, God is doing great things in our generation.\n\nVisit our website to check out upcoming dates and RSVP!\n\nBlessings,\nEUCMD Leadership Team';
+                } else if (type === 'devotional') {
+                    newsletterForm.value.subject = 'Midweek Word & Encouragement - EUCMD Young Adults';
+                    newsletterForm.value.message = '"Let no one despise your youth, but set the believers an example in speech, in conduct, in love, in faith, in purity." — 1 Timothy 4:12\n\nTake five minutes today to reflect on God\'s faithfulness this week. Whatever season you are navigating, know that you are not alone.\n\nOur team is interceding for you daily—reach out if you ever need prayer or pastoral support!';
+                }
+            };
+
+            const removeSubscriber = async (sub) => {
+                if (!(await customConfirm(`Are you sure you want to remove ${sub.email} from the newsletter list?`))) return;
+                try {
+                    const res = await apiClient(`/api/newsletter/subscribers/${sub.id}`, { method: 'DELETE' });
+                    if (res && res.success) {
+                        sub.status = 'unsubscribed';
+                    }
+                } catch(e) {
+                    alert('Failed to remove subscriber');
+                }
+            };
+
+            const copySubscribersEmails = () => {
+                const active = newsletterSubscribers.value.filter(s => s.status === 'subscribed');
+                const emails = active.map(s => s.email).join(', ');
+                if (!emails) {
+                    alert('No active subscriber emails to copy.');
+                    return;
+                }
+                navigator.clipboard.writeText(emails).then(() => {
+                    alert(`Copied ${active.length} subscriber email(s) to clipboard!`);
+                });
+            };
+
+            const fetchAll = async () => {
+                loading.value = true;
+                try {
+                    await Promise.allSettled([
+                        fetchStats().catch(e => console.error("fetchStats failed", e)), 
+                        fetchMembers().catch(e => console.error("fetchMembers failed", e)), 
+                        fetchPods().catch(e => console.error("fetchPods failed", e)), 
+                        fetchPipeline().catch(e => console.error("fetchPipeline failed", e)), 
+                        fetchPlans().catch(e => console.error("fetchPlans failed", e)), 
+                        fetchPrayers().catch(e => console.error("fetchPrayers failed", e)), 
+                        fetchResources().catch(e => console.error("fetchResources failed", e)),
+                        fetchEvents().catch(e => console.error("fetchEvents failed", e)),
+                        fetchNewsletter().catch(e => console.error("fetchNewsletter failed", e))
+                    ]);
+                } catch (e) {
+                    console.error("Dashboard data load error:", e);
+                } finally {
+                    loading.value = false;
+                    if (currentView.value === 'overview') nextTick(() => initChart());
+                }
+            };
+
+            // MEMBER CRUD
+            const copiedFormLink = ref(false);
+            const copyMemberFormLink = () => {
+                const url = window.location.origin + '/member-form';
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(url).then(() => {
+                        copiedFormLink.value = true;
+                        setTimeout(() => { copiedFormLink.value = false; }, 3000);
+                    }).catch(() => {
+                        prompt('Copy member form link to share:', url);
+                    });
+                } else {
+                    prompt('Copy member form link to share:', url);
+                }
+            };
+
+            const saveMember = async () => {
+                if (editingMemberId.value) {
+                    await apiClient(`/api/members/${editingMemberId.value}`, { method: 'PUT', body: memberForm.value });
+                    editingMemberId.value = null;
+                } else {
+                    await apiClient('/api/members', { method: 'POST', body: memberForm.value });
+                }
+                memberForm.value = { name: '', email: '', phone: '', join_date: '', role: 'member', spiritual_stage: 'new' };
+                showAddMember.value = false;
+                await Promise.all([fetchMembers(), fetchStats()]);
+            };
+
+            const editMember = (member) => {
+                editingMemberId.value = member.id;
+                memberForm.value = { name: member.name, email: member.email || '', phone: member.phone || '', join_date: member.join_date || '', role: member.role, spiritual_stage: member.spiritual_stage };
+                showAddMember.value = true;
+            };
+
+            const deleteMember = async (id) => {
+                if (!(await customConfirm('Delete this member?'))) return;
+                await apiClient(`/api/members/${id}`, { method: 'DELETE' });
+                await Promise.all([fetchMembers(), fetchStats(), fetchPods()]);
+            };
+
+            const updateStage = async (member, newStage) => {
+                if (!newStage) return;
+                await apiClient(`/api/members/${member.id}/stage`, { method: 'PUT', body: { stage: newStage } });
+                await Promise.all([fetchMembers(), fetchStats()]);
+            };
+
+            // POD CRUD
+            const isSidebarOpen = ref(false);
+            // Watch sidebar for iOS scroll locking
+            let dashScroll = 0;
+            watch(isSidebarOpen, (isOpen) => {
+                if (isOpen) {
+                    dashScroll = window.pageYOffset;
+                    document.body.style.overflow = 'hidden';
+                    document.body.style.position = 'fixed';
+                    document.body.style.top = `-${dashScroll}px`;
+                    document.body.style.width = '100%';
+                } else {
+                    document.body.style.overflow = '';
+                    document.body.style.position = '';
+                    document.body.style.top = '';
+                    document.body.style.width = '';
+                    window.scrollTo(0, dashScroll);
+                }
+            });
+
+            const editingPodId = ref(null);
+            
+            const createPod = async () => {
+                if (editingPodId.value) {
+                    await apiClient(`/api/pods/${editingPodId.value}`, { method: 'PUT', body: { name: podForm.value.name, leader_id: podForm.value.leader_id || null } });
+                    editingPodId.value = null;
+                } else {
+                    await apiClient('/api/pods', { method: 'POST', body: { name: podForm.value.name, leader_id: podForm.value.leader_id || null } });
+                }
+                podForm.value = { name: '', leader_id: '' };
+                await Promise.all([fetchPods(), fetchStats(), fetchMembers()]);
+            };
+
+            const editPod = (pod) => {
+                editingPodId.value = pod.id;
+                podForm.value = { name: pod.name, leader_id: pod.leader_id || '' };
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+
+            const cancelEditPod = () => {
+                editingPodId.value = null;
+                podForm.value = { name: '', leader_id: '' };
+            };
+
+            const deletePod = async (id) => {
+                if (!(await customConfirm('Are you sure you want to delete this pod?'))) return;
+                await apiClient(`/api/pods/${id}`, { method: 'DELETE' });
+                await Promise.all([fetchPods(), fetchStats(), fetchMembers()]);
+            };
+
+            const addToPod = async (event, podId) => {
+                const memberId = event.target.value;
+                if (!memberId) return;
+                await apiClient(`/api/pods/${podId}/members`, { method: 'POST', body: { member_id: parseInt(memberId) } });
+                event.target.value = '';
+                await Promise.all([fetchPods(), fetchMembers()]);
+            };
+
+            const removeFromPod = async (podId, memberId) => {
+                await apiClient(`/api/pods/${podId}/members/${memberId}`, { method: 'DELETE' });
+                await Promise.all([fetchPods(), fetchMembers()]);
+            };
+
+            // PIPELINE CRUD
+            const addNewcomer = async () => {
+                await apiClient('/api/pipeline', { method: 'POST', body: newcomerForm.value });
+                newcomerForm.value = { name: '', phone: '', email: '', notes: '' };
+                showAddNewcomer.value = false;
+                await fetchPipeline();
+            };
+
+            const moveNewcomer = async (item, colIndex) => {
+                try {
+                    const stages = ['first_contact', 'welcomed', 'invited_to_pod', 'integrated'];
+                    const nextStage = stages[parseInt(colIndex) + 1];
+                    if (!nextStage) {
+                        alert("Cannot move: No next stage found for index " + colIndex);
+                        return;
+                    }
+                    const res = await apiClient(`/api/pipeline/${item.id}`, { method: 'PUT', body: { ...item, stage: nextStage } });
+                    if (res) {
+                        await fetchPipeline();
+                    } else {
+                        alert("Failed to update pipeline stage.");
+                    }
+                } catch (e) {
+                    alert("Error moving newcomer: " + e.message);
+                }
+            };
+
+            const moveNewcomerBack = async (item, colIndex) => {
+                try {
+                    const stages = ['first_contact', 'welcomed', 'invited_to_pod', 'integrated'];
+                    const prevStage = stages[parseInt(colIndex) - 1];
+                    if (!prevStage) return;
+                    
+                    const res = await apiClient(`/api/pipeline/${item.id}`, { method: 'PUT', body: { ...item, stage: prevStage } });
+                    if (res) {
+                        await fetchPipeline();
+                    } else {
+                        alert("Failed to update pipeline stage.");
+                    }
+                } catch (e) {
+                    alert("Error moving newcomer back: " + e.message);
+                }
+            };
+
+            const convertToMember = async (item) => {
+                await apiClient('/api/members', { method: 'POST', body: { name: item.name, phone: item.phone, email: item.email } });
+                await apiClient(`/api/pipeline/${item.id}`, { method: 'DELETE' });
+                await Promise.all([fetchPipeline(), fetchMembers(), fetchStats()]);
+            };
+
+            // PLANNER CRUD
+            const createPlan = async () => {
+                const targetPod = pods.value.find(p => p.id === parseInt(planForm.value.pod_id));
+                const leaderId = targetPod && targetPod.leader_id ? targetPod.leader_id : null;
+                const body = {
+                    pod_id: parseInt(planForm.value.pod_id),
+                    leader_id: leaderId,
+                    week_date: planForm.value.week_date,
+                    bible_passage: planForm.value.bible_passage,
+                    discussion_questions: JSON.stringify(planForm.value.discussion_questions.split('\n').filter(q => q.trim())),
+                    spiritual_goals: JSON.stringify(planForm.value.spiritual_goals.split('\n').filter(g => g.trim()))
+                };
+                await apiClient('/api/weekly-plans', { method: 'POST', body });
+                planForm.value = { pod_id: '', week_date: '', bible_passage: '', discussion_questions: '', spiritual_goals: '' };
+                await fetchPlans();
+            };
+
+            const submitReport = async (plan, reportText) => {
+                await apiClient(`/api/weekly-plans/${plan.id}`, { method: 'PUT', body: { ...plan, post_meeting_notes: reportText } });
+                await fetchPlans();
+            };
+
+            // PRAYER CRUD
+            const addPrayer = async () => {
+                const reqText = prayerForm.value.request_text ? prayerForm.value.request_text.trim() : '';
+                if (!reqText) {
+                    alert("Please enter a prayer request.");
+                    return;
+                }
+                const mId = parseInt(prayerForm.value.member_id);
+                await apiClient('/api/prayer', { method: 'POST', body: { member_id: isNaN(mId) ? null : mId, request_text: reqText, is_urgent: prayerForm.value.is_urgent } });
+                prayerForm.value = { member_id: '', request_text: '', is_urgent: false };
+                showAddPrayer.value = false;
+                await Promise.all([fetchPrayers(), fetchStats()]);
+            };
+
+            const supportPrayer = async (reqId) => {
+                await apiClient(`/api/prayer/${reqId}/support`, { method: 'POST', body: { member_id: 1 } });
+                await fetchPrayers();
+            };
+
+            const markAnswered = async (reqId, testimony) => {
+                await apiClient(`/api/prayer/${reqId}`, { method: 'PUT', body: { status: 'answered', testimony } });
+                await Promise.all([fetchPrayers(), fetchStats()]);
+            };
+
+            const promptAndMarkAnswered = async (reqId) => {
+                const t = await customPrompt('Enter a short testimony (optional):');
+                if (t !== null) {
+                    markAnswered(reqId, t);
+                }
+            };
+
+            // RESOURCE CRUD
+            const addResource = async () => {
+                await apiClient('/api/resources', { method: 'POST', body: resourceForm.value });
+                resourceForm.value = { title: '', description: '', category: 'Bible Study', file_url: '' };
+                showAddResource.value = false;
+                await fetchResources();
+            };
+
+            const deleteResource = async (id) => {
+                await apiClient(`/api/resources/${id}`, { method: 'DELETE' });
+                await fetchResources();
+            };
+
+            // COMPUTED
+            const filteredMembers = computed(() => {
+                if (!searchQuery.value) return allMembers.value;
+                const q = searchQuery.value.toLowerCase().trim();
+                return allMembers.value.filter(m => {
+                    return (m.name || '').toLowerCase().includes(q) || 
+                           (m.email || '').toLowerCase().includes(q) ||
+                           (m.phone || '').toLowerCase().includes(q) ||
+                           (m.role || '').toLowerCase().includes(q) ||
+                           (m.pod || '').toLowerCase().includes(q) ||
+                           (m.spiritual_stage || '').toLowerCase().includes(q) ||
+                           (m.city || '').toLowerCase().includes(q) ||
+                           (m.life_stage || '').toLowerCase().includes(q);
+                });
+            });
+
+            const leaders = computed(() => allMembers.value.filter(m => m.role === 'leader' || m.role === 'admin'));
+            const unassignedMembers = computed(() => {
+                const assignedIds = new Set();
+                pods.value.forEach(p => (p.members || []).forEach(m => assignedIds.add(m.id)));
+                return allMembers.value.filter(m => !assignedIds.has(m.id));
+            });
+
+            const filteredResources = computed(() => {
+                if (resourceCategory.value === 'All') return resources.value;
+                return resources.value.filter(r => r.category === resourceCategory.value);
+            });
+
+            const stageCounts = computed(() => {
+                const counts = {};
+                journeyStages.forEach(s => counts[s] = 0);
+                allMembers.value.forEach(m => {
+                    if (counts[m.spiritual_stage] !== undefined) counts[m.spiritual_stage]++;
+                });
+                return counts;
+            });
+
+            // HELPERS
+            const formatStage = (stage) => (stage || '').split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+
+            const getStageClass = (stage) => {
+                const map = { new: 'bg-gray-800 text-slate-300', saved: 'bg-green-900/50 text-green-400 border border-green-500/30', baptized: 'bg-blue-900/50 text-blue-400 border border-blue-500/30', foundations: 'bg-amber-900/50 text-amber-400 border border-amber-500/30', ready_to_lead: 'bg-orange-900/50 text-orange-400 border border-orange-500/30', leading: 'bg-purple-900/50 text-purple-400 border border-purple-500/30' };
+                return map[stage] || 'bg-gray-800 text-slate-300';
+            };
+
+            const getStageBg = (stage) => {
+                const map = { new: 'bg-gray-600', saved: 'bg-green-500 shadow-sm', baptized: 'bg-blue-500 shadow-sm', foundations: 'bg-amber-500 shadow-sm', ready_to_lead: 'bg-orange-500 shadow-sm', leading: 'bg-purple-500 shadow-sm' };
+                return map[stage] || 'bg-gray-600';
+            };
+
+            const getResourceCatClass = (cat) => {
+                const map = { 'Bible Study': 'text-blue-400', 'Leadership': 'text-purple-400', 'Devotional': 'text-pink-400' };
+                return map[cat] || 'text-slate-400';
+            };
+
+            const isStageCompleted = (currentStage, targetStage) => journeyStages.indexOf(currentStage) > journeyStages.indexOf(targetStage);
+
+            const getJourneyProgress = (currentStage) => {
+                const idx = journeyStages.indexOf(currentStage);
+                const total = journeyStages.length - 1;
+                return `${(idx / total) * 100}%`;
+            };
+
+            let chartInstance = null;
+            const initChart = () => {
+                const ctx = document.getElementById('growthChart');
+                if (!ctx) return;
+                if (chartInstance) chartInstance.destroy();
+                const gradient = ctx.getContext('2d').createLinearGradient(0, 0, 0, 400);
+                gradient.addColorStop(0, 'rgba(0,117,255,0.4)');
+                gradient.addColorStop(1, 'rgba(0,117,255,0)');
+                const mbm = rawStats.value.members_by_month || [];
+                chartInstance = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: mbm.length ? mbm.map(m => m.month) : ['Now'],
+                        datasets: [{ label: 'Members', data: mbm.length ? mbm.map(m => m.count) : [rawStats.value.total_members || 0], borderColor: '#0075ff', backgroundColor: gradient, borderWidth: 3, fill: true, tension: 0.4, pointBackgroundColor: '#fff', pointBorderColor: '#0075ff', pointBorderWidth: 2, pointRadius: 4 }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.05)', drawBorder: false } }, x: { grid: { display: false, drawBorder: false } } } }
+                });
+            };
+
+            watch(currentView, (nv) => {
+                if (nv === 'overview') nextTick(() => initChart());
+            });
+
+
+            // Compute notifications dynamically based on state
+            const notifications = computed(() => {
+                try {
+                    let notifs = [];
+                    let notifId = 1;
+                    if (pipelineCols.value && pipelineCols.value[0] && pipelineCols.value[0].items) {
+                        const newcomers = pipelineCols.value[0].items.length;
+                        if (newcomers > 0) {
+                            notifs.push({
+                                id: notifId++,
+                                type: 'pipeline',
+                                title: 'New Contacts',
+                                message: `${newcomers} newcomer(s) waiting for initial contact.`,
+                                icon: '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>'
+                            });
+                        }
+                    }
+                    if (prayers.value && prayers.value.active) {
+                        const urgentPrayers = prayers.value.active.filter(p => p && (p.is_urgent || p.urgent)).length;
+                        if (urgentPrayers > 0) {
+                            notifs.push({
+                                id: notifId++,
+                                type: 'prayer',
+                                title: 'Urgent Prayer Request',
+                                message: `${urgentPrayers} urgent prayer request(s) need attention.`,
+                                icon: '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>'
+                            });
+                        }
+                    }
+                    return notifs;
+                } catch (e) {
+                    console.error("Vue computed property error:", e);
+                    return [];
+                }
+            });
+
+            const handleNotificationClick = (notif) => {
+                if (notif.type === 'pipeline') currentView.value = 'pipeline';
+                if (notif.type === 'prayer') currentView.value = 'prayer';
+                showNotifications.value = false;
+            };
+
+            
+            const invitesList = ref([]);
+            const inviteRole = ref(2); // Default to Basic Manager
+            
+            const fetchInvites = async () => {
+                if (!hasPermission('manage_users')) return;
+                try {
+                    const data = await apiClient('/api/invites');
+                    invitesList.value = data || [];
+                } catch(e) {}
+            };
+            
+            const generateInvite = async () => {
+                try {
+                    await apiClient('/api/invites', { method: 'POST', body: { role_id: inviteRole.value } });
+                    await fetchInvites();
+                } catch(e) {}
+            };
+
+            const revokeInvite = async (id) => {
+                if (!(await customConfirm('Are you sure you want to revoke and delete this invite code?'))) return;
+                
+                // Optimistic UI update to remove it immediately
+                invitesList.value = invitesList.value.filter(inv => inv.id !== id);
+                
+                try {
+                    const res = await apiClient(`/api/invites/${id}`, { method: 'DELETE' });
+                    if (!res) throw new Error("Network error or invalid ID (API returned null).");
+                    if (res.error) throw new Error(res.error);
+                    if (res.rowcount === 0) throw new Error("Database reported 0 rows deleted. The ID may be invalid.");
+                } catch(e) {
+                    // Revert if failed
+                    alert("Failed to delete invite: " + e.message);
+                    await fetchInvites();
+                }
+            };
+            
+            onMounted(() => {
+                fetchAll();
+                fetchInvites();
+            });
+
+
+            return {
+                inviteRole,
+                invitesList,
+                generateInvite,
+                revokeInvite,
+                hasPermission, userEmail, userRole,
+                userPermissions,
+                isSidebarOpen,
+                currentView, loading, navItems, currentViewTitle,
+                stats, stageDistribution, recentPrayers,
+                allMembers, filteredMembers, searchQuery, showAddMember, memberForm, saveMember, editMember, deleteMember, editingMemberId,
+                copiedFormLink, copyMemberFormLink,
+                formatStage, getStageClass, getStageBg, leaders, unassignedMembers,
+                editingPodId, pods, podForm, createPod, editPod, cancelEditPod, deletePod, addToPod, removeFromPod,
+                pipelineCols, addNewcomer, moveNewcomer, moveNewcomerBack, convertToMember, newcomerForm, showAddNewcomer,
+                plans, planForm, createPlan, submitReport,
+                prayerTab, prayers, prayerForm, addPrayer, supportPrayer, markAnswered, promptAndMarkAnswered, showAddPrayer,
+                journeyStages, stageCounts, isStageCompleted, getJourneyProgress, updateStage,
+                resources, filteredResources, resourceCategory, getResourceCatClass, resourceForm, addResource, deleteResource, showAddResource, showNotifications, notifications, handleNotificationClick,
+                eventsList, showAddEvent, showRsvpsModal, activeEventForRsvps, activeRsvpsList, loadingRsvps, eventForm, fetchEvents, createEvent, deleteEvent, viewEventRsvps,
+                newsletterSubscribers, newsletterBroadcasts, newsletterForm, sendingNewsletterUpdate, newsletterStatusMsg, newsletterErrorMsg, loadingNewsletter, newsletterSearch, filteredSubscribers, activeSubscribersCount, fetchNewsletter, sendNewsletterUpdate, setNewsletterTemplate, removeSubscriber, copySubscribersEmails,
+                upperRoomRoles, upperRoomSearch, upperRoomSavedMsg, upperRoomRoleFilter, filteredUpperRoomRoles, saveUpperRoomSuccession, resetUpperRoomSuccession, copySuccessionSummary,
+                dnaPods, dnaPodsSearch, dnaPodFilter, dnaPodsSavedMsg, upperRoomActiveTab, dnaPodLeaders, filteredDnaPods, saveDnaPodsNominations, resetDnaPodsNominations, copyDnaPodsRosters,
+                copyLeadershipEssentials
+            };
+        }
+    }).mount('#app');

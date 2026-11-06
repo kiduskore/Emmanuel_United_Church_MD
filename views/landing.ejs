@@ -1,0 +1,757 @@
+<%- include('partials/header') %>
+<!-- Hero Section -->
+    <header class="relative min-h-screen flex items-end justify-start pt-20 pb-24 overflow-hidden">
+        <!-- Hero Background Slideshow -->
+        <div class="absolute inset-0">
+            <div class="hero-slide" style="background-image: url('/static/hero_images/new_hero.jpg'); animation-delay: 0s;"></div>
+            <div class="hero-slide" style="background-image: url('/static/hero_images/worship_crowd.jpg'); animation-delay: 5s;"></div>
+            <div class="hero-slide" style="background-image: url('/static/hero_images/dark_worship.jpg'); animation-delay: 10s;"></div>
+            <div class="hero-slide" style="background-image: url('/static/hero_images/crowd_praying.jpg'); animation-delay: 15s;"></div>
+            <div class="hero-slide" style="background-image: url('/static/hero_images/guitarist.jpg'); animation-delay: 20s;"></div>
+            <div class="hero-slide" style="background-image: url('/static/hero_images/man_praying.jpg'); animation-delay: 25s;"></div>
+            <div class="hero-slide" style="background-image: url('/static/hero_images/singer.jpg'); animation-delay: 30s;"></div>
+        </div>
+        
+        <!-- Premium Gradient Overlay (Darker at bottom for text contrast) -->
+        <div class="absolute inset-0 bg-gradient-to-t from-studio-900 via-studio-900/60 to-transparent"></div>
+
+        <style>
+            .hero-slide {
+                position: absolute;
+                inset: 0;
+                background-size: cover;
+                background-position: center;
+                opacity: 0;
+                animation: heroFade 35s infinite;
+            }
+            @keyframes heroFade {
+                0%   { opacity: 0; transform: scale(1); }
+                3%   { opacity: 1; }
+                14%  { opacity: 1; transform: scale(1.05); }
+                17%  { opacity: 0; transform: scale(1.08); }
+                100% { opacity: 0; transform: scale(1.1); }
+            }
+        </style>
+        
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="max-w-4xl gsap-stagger-container">
+                <!-- Unmissable Save The Date Anchor Pill for Knowing God Gathering -->
+                <div class="mb-4 gsap-stagger-item">
+                    <a href="#coming-soon-event" class="inline-flex items-center gap-2.5 px-4 sm:px-5 py-2 rounded-full bg-gradient-to-r from-indigo-950/90 via-purple-950/90 to-studio-950/90 hover:from-indigo-900 hover:to-purple-900 border border-indigo-400/50 backdrop-blur-xl shadow-2xl transition-all group cursor-pointer">
+                        <span class="px-2.5 py-0.5 rounded-full bg-amber-400/25 text-amber-300 border border-amber-400/40 text-[10px] font-black uppercase tracking-wider flex items-center gap-1 shadow-sm">
+                            <span>✨</span> Save The Date
+                        </span>
+                        <span class="text-white text-xs sm:text-sm font-bold">
+                            Coming Soon: <span class="text-indigo-200 group-hover:text-amber-200 transition-colors">Knowing God</span>
+                        </span>
+                        <span class="text-indigo-300/80 text-xs hidden sm:inline font-serif italic">· Isaiah 40:28</span>
+                        <span class="text-indigo-300 group-hover:translate-y-0.5 transition-transform text-xs font-bold">&darr;</span>
+                    </a>
+                </div>
+
+                <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-6 gsap-stagger-item shadow-2xl">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span class="text-white text-xs tracking-[0.2em] font-bold uppercase"><%= typeof t !== 'undefined' ? t('hero.tag') : 'EUCMD Young Adults' %></span>
+                </div>
+
+                <h1 class="text-white text-2xl sm:text-3xl md:text-4xl lg:text-[2.65rem] font-black tracking-tight leading-[1.2] mb-5 gsap-stagger-item drop-shadow-2xl">
+                    <%= typeof t !== 'undefined' ? t('hero.titleLine1') : '“Gathered in His Presence,' %><br/>
+                    <span class="text-white/80">
+                        <%= typeof t !== 'undefined' ? t('hero.titleLine2') : 'Empowered for His Purpose.”' %>
+                    </span>
+                </h1>
+
+                <!-- Scripture Motto Reference -->
+                <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-semibold text-xs sm:text-sm tracking-wide mb-8 gsap-stagger-item shadow-lg">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                    <span><%= typeof t !== 'undefined' ? t('hero.scripture') : 'Acts 1:14 · Acts 1:8' %></span>
+                </div>
+
+                <p class="text-zinc-200 text-lg md:text-2xl max-w-2xl font-medium leading-relaxed mb-12 gsap-stagger-item drop-shadow-lg">
+                    <%= typeof t !== 'undefined' ? t('hero.subtitle') : 'We are a community of young adults in Maryland passionate about encountering Jesus, equipping believers, and empowering disciples.' %>
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 items-center gsap-stagger-item">
+                    <a href="/join" class="w-full sm:w-auto px-10 py-4 min-h-[56px] flex items-center justify-center bg-white text-studio-900 font-bold rounded-full hover:bg-zinc-100 active:bg-zinc-200 transition-all text-center text-sm tracking-wide touch-manipulation active:scale-[0.98] shadow-xl">
+                        <%= typeof t !== 'undefined' ? t('hero.joinGroup') : 'Join a Small Group' %>
+                    </a>
+                    <a href="#resources" class="w-full sm:w-auto px-10 py-4 min-h-[56px] flex items-center justify-center bg-transparent border-2 border-white/20 text-white hover:bg-white/10 active:bg-white/20 transition-all rounded-full text-center text-sm font-bold tracking-wide backdrop-blur-md touch-manipulation active:scale-[0.98]">
+                        <%= typeof t !== 'undefined' ? t('hero.freeResources') : 'Explore Resources' %>
+                    </a>
+                </div>
+
+                <!-- Quick Search Bar (Submits to /search and launches instant palette) -->
+                <div class="mt-6 max-w-lg w-full gsap-stagger-item">
+                    <form action="/search" method="GET" class="w-full relative">
+                        <div class="flex items-center justify-between p-1.5 sm:p-2 rounded-2xl bg-white/10 hover:bg-white/15 focus-within:bg-white/20 border border-white/25 backdrop-blur-xl transition-all shadow-2xl">
+                            <div class="flex items-center gap-3 pl-3 pr-2 flex-1 min-w-0">
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5 text-blue-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                </svg>
+                                <input type="text" 
+                                       name="q" 
+                                       placeholder="Search teachings, scriptures, events..." 
+                                       class="w-full bg-transparent text-white placeholder-zinc-300 text-xs sm:text-sm font-medium focus:outline-none border-none py-1.5"
+                                       autocomplete="off"
+                                       onclick="openSiteSearchModal()">
+                            </div>
+                            <button type="submit" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-all shrink-0 cursor-pointer shadow-sm">
+                                Search
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- COMING SOON EVENT: KNOWING GOD (Isaiah 40:28)                 -->
+    <!-- ============================================================ -->
+    <section id="coming-soon-event" class="py-16 md:py-24 bg-studio-900 relative overflow-hidden border-b border-zinc-800">
+        <!-- Ambient Background Glows -->
+        <div class="absolute inset-0 pointer-events-none overflow-hidden">
+            <div class="absolute -top-[15%] left-1/2 -translate-x-1/2 w-[700px] h-[500px] rounded-full bg-indigo-500/15 blur-[140px]"></div>
+            <div class="absolute bottom-0 right-[10%] w-[450px] h-[450px] rounded-full bg-purple-500/15 blur-[120px]"></div>
+            <div class="absolute top-[30%] -left-[10%] w-[400px] h-[400px] rounded-full bg-amber-400/10 blur-[130px]"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
+            <!-- Section Header Tag -->
+            <div class="text-center mb-8 sm:mb-12 gsap-fade-up">
+                <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-indigo-500/30 bg-indigo-950/60 backdrop-blur-md mb-4 shadow-lg shadow-indigo-950/50">
+                    <span class="w-2.5 h-2.5 rounded-full bg-indigo-400 animate-ping"></span>
+                    <span class="text-indigo-300 text-xs font-bold tracking-[0.2em] uppercase">Upcoming Special Event • Coming Soon</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight">
+                    Get Ready for What God is Doing
+                </h2>
+                <p class="text-zinc-400 max-w-xl mx-auto text-sm sm:text-base mt-3">
+                    A holy gathering for young adults across Maryland seeking spiritual renewal, deep worship, and an encounter with the living God.
+                </p>
+            </div>
+
+            <!-- Main Feature Event Banner Card -->
+            <div class="relative rounded-3xl overflow-hidden border border-indigo-500/30 shadow-[0_25px_60px_-15px_rgba(99,102,241,0.35)] bg-zinc-950 group">
+                <!-- Panoramic Majestic Mountain & Cosmic Heavens Container -->
+                <div class="relative min-h-[540px] sm:min-h-[600px] md:min-h-[660px] flex flex-col justify-between p-6 sm:p-10 md:p-14 overflow-hidden">
+                    <!-- High-Resolution Starry Mountain Backdrop for "Knowing God" -->
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out group-hover:scale-105" 
+                         style="background-image: url('/static/hero_images/knowing_god_stars.jpg');"></div>
+                    
+                    <!-- Multi-layered Atmospheric Gradient Overlays -->
+                    <div class="absolute inset-0 bg-gradient-to-b from-indigo-950/60 via-transparent to-studio-950/95"></div>
+                    <div class="absolute top-[20%] left-1/2 -translate-x-1/2 w-[650px] h-[380px] bg-gradient-to-r from-indigo-500/25 via-purple-400/30 to-amber-300/20 blur-3xl rounded-full pointer-events-none knowing-aura-glow"></div>
+                    <div class="absolute inset-0 bg-studio-950/25"></div>
+
+                    <!-- Top Card Bar: Event Status & Scripture Badge -->
+                    <div class="relative z-10 flex flex-wrap items-center justify-between gap-4">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-studio-950/80 backdrop-blur-md border border-white/15 text-white text-xs font-semibold shadow-md">
+                            <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
+                            <span>EUCMD Young Adults Gathering</span>
+                        </div>
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-950/85 backdrop-blur-md border border-indigo-400/30 text-indigo-200 text-xs font-bold tracking-wider uppercase shadow-md">
+                            <span>✨ Save The Date</span>
+                        </div>
+                    </div>
+
+                    <style>
+                        @keyframes knowingGlowBreath {
+                            0%, 100% {
+                                filter: drop-shadow(0 0 16px rgba(129, 140, 248, 0.8))
+                                        drop-shadow(0 0 42px rgba(168, 85, 247, 0.6))
+                                        drop-shadow(0 8px 30px rgba(0, 0, 0, 0.95));
+                                transform: rotate(-1deg) scale(1);
+                            }
+                            50% {
+                                filter: drop-shadow(0 0 30px rgba(129, 140, 248, 1))
+                                        drop-shadow(0 0 70px rgba(192, 132, 252, 0.85))
+                                        drop-shadow(0 0 110px rgba(251, 191, 36, 0.5))
+                                        drop-shadow(0 10px 35px rgba(0, 0, 0, 0.95));
+                                transform: rotate(-1deg) scale(1.025);
+                            }
+                        }
+
+                        @keyframes knowingShimmer {
+                            0% { background-position: 0% 50%; }
+                            50% { background-position: 100% 50%; }
+                            100% { background-position: 0% 50%; }
+                        }
+
+                        @keyframes knowingAuraPulse {
+                            0%, 100% {
+                                opacity: 0.55;
+                                transform: scale(0.95);
+                            }
+                            50% {
+                                opacity: 0.95;
+                                transform: scale(1.08);
+                            }
+                        }
+
+                        @keyframes knowingSparkDrift {
+                            0% {
+                                transform: translateY(15px) scale(0.6);
+                                opacity: 0;
+                            }
+                            30% {
+                                opacity: 0.85;
+                            }
+                            80% {
+                                opacity: 0.7;
+                            }
+                            100% {
+                                transform: translateY(-70px) scale(1.15);
+                                opacity: 0;
+                            }
+                        }
+
+                        .knowing-title-animated {
+                            font-family: 'Kaushan Script', cursive;
+                            background: linear-gradient(135deg, #ffffff 0%, #ede9fe 25%, #c4b5fd 45%, #a78bfa 65%, #818cf8 85%, #fde68a 100%);
+                            background-size: 250% 250%;
+                            -webkit-background-clip: text;
+                            -webkit-text-fill-color: transparent;
+                            animation: knowingGlowBreath 3.6s ease-in-out infinite, knowingShimmer 7s ease infinite;
+                            display: inline-block;
+                        }
+
+                        .knowing-god-text {
+                            background: linear-gradient(180deg, #ffffff 0%, #f5f3ff 30%, #c4b5fd 70%, #818cf8 100%);
+                            -webkit-background-clip: text;
+                            -webkit-text-fill-color: transparent;
+                            filter: drop-shadow(0 0 18px rgba(129, 140, 248, 0.85)) drop-shadow(0 4px 20px rgba(0, 0, 0, 0.95));
+                        }
+
+                        .knowing-aura-glow {
+                            animation: knowingAuraPulse 4.5s ease-in-out infinite;
+                        }
+
+                        .knowing-spark {
+                            position: absolute;
+                            border-radius: 9999px;
+                            pointer-events: none;
+                            animation: knowingSparkDrift 4s ease-in-out infinite;
+                        }
+                    </style>
+
+                    <!-- Center Artwork: Radiant, Majestic Knowing God Typography -->
+                    <div class="relative z-10 my-auto py-8 sm:py-14 text-center max-w-3xl mx-auto flex flex-col items-center">
+                        <!-- Living Celestial Sunburst Aura Behind Typography -->
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[540px] md:w-[680px] h-[220px] sm:h-[320px] bg-gradient-to-r from-indigo-500/25 via-purple-400/30 to-amber-300/20 blur-3xl rounded-full pointer-events-none knowing-aura-glow -z-10"></div>
+                        
+                        <!-- Floating Starlight Sparks (Holy Light & Wonder) -->
+                        <div class="absolute inset-0 pointer-events-none overflow-hidden -z-5">
+                            <span class="knowing-spark w-2 h-2 bg-amber-300 shadow-[0_0_10px_#f59e0b] top-[40%] left-[20%]" style="animation-delay: 0s;"></span>
+                            <span class="knowing-spark w-2.5 h-2.5 bg-indigo-300 shadow-[0_0_12px_#818cf8] top-[50%] right-[22%]" style="animation-delay: 1.2s;"></span>
+                            <span class="knowing-spark w-1.5 h-1.5 bg-purple-200 shadow-[0_0_8px_#c084fc] top-[30%] right-[32%]" style="animation-delay: 2.3s;"></span>
+                            <span class="knowing-spark w-2 h-2 bg-amber-200 shadow-[0_0_10px_#fbbf24] top-[60%] left-[35%]" style="animation-delay: 3.1s;"></span>
+                        </div>
+
+                        <!-- Sacred Scripture Reference Badge -->
+                        <div class="inline-flex items-center gap-2 mb-2 sm:mb-3 px-4 py-1.5 rounded-full bg-amber-400/10 border border-amber-300/30 backdrop-blur-md shadow-[0_0_20px_rgba(245,158,11,0.25)] select-none">
+                            <span class="text-amber-300 text-xs sm:text-sm animate-pulse">✦</span>
+                            <span class="font-serif italic text-amber-200 text-base sm:text-xl md:text-2xl font-bold tracking-widest drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
+                                ISAIAH 40:28
+                            </span>
+                            <span class="text-amber-300 text-xs sm:text-sm animate-pulse">✦</span>
+                        </div>
+
+                        <!-- "Knowing" Calligraphic Animated Luminous Script -->
+                        <div class="relative py-1">
+                            <h1 class="knowing-title-animated text-7xl sm:text-8xl md:text-9xl lg:text-[10.5rem] font-bold leading-[0.9] select-none tracking-normal">
+                                Knowing
+                            </h1>
+                        </div>
+
+                        <!-- "GOD" Bold Herald Proclamation with Radiant Rays -->
+                        <div class="flex items-center justify-center gap-3 sm:gap-6 mt-1 sm:mt-2 select-none w-full">
+                            <span class="h-[2px] w-8 sm:w-16 md:w-28 bg-gradient-to-r from-transparent via-indigo-400/80 to-amber-300"></span>
+                            <h2 class="knowing-god-text text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-[0.25em] sm:tracking-[0.35em] select-none m-0">
+                                GOD
+                            </h2>
+                            <span class="h-[2px] w-8 sm:w-16 md:w-28 bg-gradient-to-l from-transparent via-indigo-400/80 to-amber-300"></span>
+                        </div>
+
+                        <!-- "Coming Soon" Serif Italic Radiant Subtitle -->
+                        <div class="relative mt-4 sm:mt-6 select-none">
+                            <div class="font-serif italic text-2xl sm:text-3xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-amber-100 via-amber-200 to-amber-400 font-semibold tracking-wide drop-shadow-[0_3px_12px_rgba(245,158,11,0.45)]">
+                                Coming Soon
+                            </div>
+                            <div class="h-0.5 w-24 sm:w-36 mx-auto mt-2 bg-gradient-to-r from-transparent via-amber-300/60 to-transparent"></div>
+                        </div>
+
+                        <!-- Scripture Full Quote Glass Box -->
+                        <div class="mt-6 sm:mt-8 max-w-xl px-6 py-4 rounded-2xl bg-studio-950/85 backdrop-blur-md border border-indigo-500/30 shadow-[0_12px_40px_rgba(0,0,0,0.85),0_0_25px_rgba(99,102,241,0.2)]">
+                            <p class="text-zinc-100 text-xs sm:text-sm md:text-base font-medium italic leading-relaxed">
+                                "Do you not know? Have you not heard? The Lord is the everlasting God, the Creator of the ends of the earth. He will not grow tired or weary, and His understanding no one can fathom."
+                            </p>
+                            <span class="block text-right text-indigo-300 font-bold text-xs mt-1.5 tracking-wide">— Isaiah 40:28</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Bar: Quick Details -->
+                <div class="relative z-10 flex items-center justify-center p-6 sm:p-7 border-t border-white/10 bg-studio-950/80 backdrop-blur-md">
+                    <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs sm:text-sm text-zinc-300">
+                        <div class="flex items-center gap-2">
+                            <span class="p-1.5 rounded-lg bg-indigo-500/20 text-indigo-400">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            </span>
+                            <span>Maryland &amp; DMV Young Adults</span>
+                        </div>
+                        <span class="hidden sm:inline text-zinc-600">•</span>
+                        <div class="flex items-center gap-2">
+                            <span class="p-1.5 rounded-lg bg-amber-500/20 text-amber-400">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            </span>
+                            <span>Dates &amp; Venue Announcing Soon</span>
+                        </div>
+                        <span class="hidden sm:inline text-zinc-600">•</span>
+                        <div class="flex items-center gap-2">
+                            <span class="p-1.5 rounded-lg bg-purple-500/20 text-purple-400">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            </span>
+                            <span>Intimacy, Worship &amp; Encounter</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bento Highlights: What to Expect -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8 gsap-stagger-container">
+                <div class="p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm gsap-stagger-item hover:border-indigo-500/30 transition-all">
+                    <div class="text-2xl mb-2">🌌</div>
+                    <h3 class="text-white font-bold text-sm mb-1">Divine Encounter</h3>
+                    <p class="text-zinc-400 text-xs leading-relaxed">Stepping away from the everyday noise into the stillness of God's presence, seeking Him with our whole hearts.</p>
+                </div>
+                <div class="p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm gsap-stagger-item hover:border-indigo-500/30 transition-all">
+                    <div class="text-2xl mb-2">🔥</div>
+                    <h3 class="text-white font-bold text-sm mb-1">Fervent Prayer</h3>
+                    <p class="text-zinc-400 text-xs leading-relaxed">Standing on Isaiah 40:28 to encounter the everlasting God, the Creator of the ends of the earth whose understanding no one can fathom.</p>
+                </div>
+                <div class="p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm gsap-stagger-item hover:border-indigo-500/30 transition-all">
+                    <div class="text-2xl mb-2">🎶</div>
+                    <h3 class="text-white font-bold text-sm mb-1">Intimate Worship</h3>
+                    <p class="text-zinc-400 text-xs leading-relaxed">Extended, unhurried atmospheres where we gaze upon the beauty of the Lord and minister directly to Jesus.</p>
+                </div>
+                <div class="p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm gsap-stagger-item hover:border-indigo-500/30 transition-all">
+                    <div class="text-2xl mb-2">🤝</div>
+                    <h3 class="text-white font-bold text-sm mb-1">Kingdom Community</h3>
+                    <p class="text-zinc-400 text-xs leading-relaxed">Building authentic, lifelong friendships with brothers and sisters committed to knowing God and making Him known.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIP Notification Modal -->
+        <div id="revive-modal" class="fixed inset-0 z-[120] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 transition-all duration-300 opacity-0 pointer-events-none" style="display: none;">
+            <div class="bg-studio-900 border border-teal-500/30 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative transform transition-transform duration-300 scale-95" id="revive-modal-box">
+                <button onclick="closeReviveNotifyModal()" class="absolute top-4 right-4 text-zinc-400 hover:text-white p-2 rounded-full hover:bg-white/10 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+
+                <div class="text-center mb-6">
+                    <div class="w-12 h-12 rounded-2xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center mx-auto mb-3">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+                    </div>
+                    <span class="text-indigo-400 font-bold text-xs uppercase tracking-widest block mb-1">Knowing God (Isaiah 40:28)</span>
+                    <h3 class="text-2xl font-black text-white">Get Priority Notification</h3>
+                    <p class="text-zinc-400 text-xs mt-1">Be the first to receive date, location, and registration access when doors open.</p>
+                </div>
+
+                <form id="revive-notify-form" onsubmit="submitReviveNotify(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-zinc-300 mb-1">Your Full Name</label>
+                        <input type="text" id="revive-name" required placeholder="e.g. Dawit Bekele" class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-zinc-500 text-sm focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-zinc-300 mb-1">Email Address</label>
+                        <input type="email" id="revive-email" required placeholder="you@example.com" class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-zinc-500 text-sm focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-zinc-300 mb-1">Phone Number (Optional)</label>
+                        <input type="tel" id="revive-phone" placeholder="(240) 555-0199" class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-zinc-500 text-sm focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400">
+                    </div>
+                    <div class="text-left">
+                        <label class="flex items-start gap-2.5 cursor-pointer select-none">
+                            <input type="checkbox" id="revive-consent" required class="mt-1 w-3.5 h-3.5 rounded border-zinc-700 bg-white/10 text-indigo-400 focus:ring-indigo-400">
+                            <span class="text-[11px] text-zinc-400 leading-normal">
+                                I agree to receive event notifications from EUCMD per the <a href="/privacy" target="_blank" class="text-indigo-300 underline">Privacy Policy</a>. (Zero hidden fees, unsubscribe anytime).
+                            </span>
+                        </label>
+                    </div>
+                    <button type="submit" id="revive-submit-btn" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-black text-sm uppercase tracking-wider shadow-lg shadow-indigo-500/25 hover:from-indigo-400 hover:to-purple-400 active:scale-95 transition-all">
+                        Notify Me First ✉️
+                    </button>
+                </form>
+
+                <div id="revive-success-msg" class="hidden text-center py-6">
+                    <div class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto mb-3">
+                        ✓
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-2">You're on the list!</h4>
+                    <p class="text-zinc-300 text-xs leading-relaxed mb-4">We have saved your spot. You will be among the first to receive full details and priority registration for <strong class="text-indigo-400">Knowing God</strong>.</p>
+                    <button onclick="closeReviveNotifyModal()" class="px-6 py-2.5 rounded-full bg-white/10 text-white text-xs font-bold hover:bg-white/20 transition-all">
+                        Done
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notification -->
+        <div id="revive-toast" class="fixed bottom-6 right-6 z-[130] bg-studio-950 border border-indigo-500/40 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300">
+            <span class="text-indigo-400 text-lg">✨</span>
+            <span id="revive-toast-text" class="text-xs font-medium">Link copied to clipboard!</span>
+        </div>
+    </section>
+
+    <script>
+        function openReviveNotifyModal() {
+            const modal = document.getElementById('revive-modal');
+            const box = document.getElementById('revive-modal-box');
+            modal.style.display = 'flex';
+            requestAnimationFrame(() => {
+                modal.classList.remove('opacity-0', 'pointer-events-none');
+                modal.classList.add('opacity-100');
+                box.classList.remove('scale-95');
+                box.classList.add('scale-100');
+            });
+        }
+
+        function closeReviveNotifyModal() {
+            const modal = document.getElementById('revive-modal');
+            const box = document.getElementById('revive-modal-box');
+            modal.classList.remove('opacity-100');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            box.classList.remove('scale-100');
+            box.classList.add('scale-95');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+
+        async function submitReviveNotify(e) {
+            e.preventDefault();
+            const btn = document.getElementById('revive-submit-btn');
+            const form = document.getElementById('revive-notify-form');
+            const success = document.getElementById('revive-success-msg');
+            const name = document.getElementById('revive-name').value.trim();
+            const email = document.getElementById('revive-email').value.trim();
+            const phone = document.getElementById('revive-phone').value.trim();
+
+            btn.disabled = true;
+            btn.innerText = 'Saving...';
+
+            try {
+                const csrf = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
+                const res = await fetch('/api/pipeline', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-Token': csrf
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        phone: phone || '',
+                        stage: 'first_contact',
+                        notes: 'Knowing God (Isaiah 40:28) - Coming Soon Event Waitlist'
+                    })
+                });
+
+                if (res.ok) {
+                    form.classList.add('hidden');
+                    success.classList.remove('hidden');
+                } else {
+                    alert('Thank you! Your interest has been recorded.');
+                    closeReviveNotifyModal();
+                }
+            } catch (err) {
+                console.error(err);
+                form.classList.add('hidden');
+                success.classList.remove('hidden');
+            }
+        }
+
+        function downloadReviveCalendar() {
+            const icsData = [
+                'BEGIN:VCALENDAR',
+                'VERSION:2.0',
+                'PRODID:-//EUCMD Young Adults//Knowing God//EN',
+                'BEGIN:VEVENT',
+                'SUMMARY:Knowing God! (Isaiah 40:28) - EUCMD Young Adults',
+                'DESCRIPTION:Do you not know? Have you not heard? The Lord is the everlasting God\\, the Creator of the ends of the earth. He will not grow tired or weary\\, and His understanding no one can fathom. (Isaiah 40:28). Join EUCMD Young Adults for our upcoming Knowing God gathering.',
+                'LOCATION:Maryland & DMV Region',
+                'STATUS:CONFIRMED',
+                'END:VEVENT',
+                'END:VCALENDAR'
+            ].join('\\r\\n');
+
+            const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.setAttribute('download', 'knowing-god-isaiah-40-28.ics');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            showReviveToast('Calendar reminder saved! Check your downloads.');
+        }
+
+        function shareReviveEvent() {
+            const shareUrl = window.location.origin + '/#coming-soon-event';
+            const shareTitle = 'Knowing God! (Isaiah 40:28) — EUCMD Young Adults';
+            const shareText = '“Do you not know? Have you not heard? The Lord is the everlasting God, the Creator of the ends of the earth. He will not grow tired or weary, and His understanding no one can fathom.” Check out the upcoming Young Adults gathering: Knowing God (Isaiah 40:28)';
+
+            if (navigator.share) {
+                navigator.share({
+                    title: shareTitle,
+                    text: shareText,
+                    url: shareUrl
+                }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(shareUrl).then(() => {
+                    showReviveToast('Event link copied to clipboard! Share it with friends.');
+                }).catch(() => {
+                    showReviveToast('Share link: ' + shareUrl);
+                });
+            }
+        }
+
+        function showReviveToast(msg) {
+            const toast = document.getElementById('revive-toast');
+            const text = document.getElementById('revive-toast-text');
+            text.innerText = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+            }, 3500);
+        }
+    </script>
+    <section class="py-24 bg-studio-50 dark:bg-studio-900 relative overflow-hidden">
+        <!-- Glassmorphism Background Blobs -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+            <div class="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-blue-500/20 dark:bg-blue-600/20 blur-[120px] mix-blend-multiply dark:mix-blend-screen opacity-70 animate-pulse"></div>
+            <div class="absolute top-[20%] -right-[10%] w-[35%] h-[35%] rounded-full bg-purple-500/20 dark:bg-purple-600/20 blur-[120px] mix-blend-multiply dark:mix-blend-screen opacity-70" style="animation: pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;"></div>
+            <div class="absolute -bottom-[10%] left-[20%] w-[40%] h-[40%] rounded-full bg-emerald-500/20 dark:bg-emerald-600/20 blur-[120px] mix-blend-multiply dark:mix-blend-screen opacity-70" style="animation: pulse 10s cubic-bezier(0.4, 0, 0.6, 1) infinite;"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20 gsap-fade-up">
+                <div class="max-w-2xl">
+                    <span class="text-accent2 dark:text-zinc-400 font-bold tracking-[0.15em] uppercase text-xs mb-4 block">
+                        <%= typeof t !== 'undefined' ? t('pillars.tag') : 'Discipleship Journey' %>
+                    </span>
+                    <h2 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-studio-900 dark:text-white leading-tight">
+                        <%= typeof t !== 'undefined' ? t('pillars.title') : 'Four Pillars of Our Community' %>
+                    </h2>
+                </div>
+                <p class="text-zinc-600 dark:text-zinc-400 max-w-md text-lg leading-relaxed md:pb-2">
+                    <%= typeof t !== 'undefined' ? t('pillars.subtitle') : 'A structured, Spirit-led pathway designed to help every young adult mature into an active disciple of Jesus Christ.' %>
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 gsap-stagger-container">
+                <!-- Pillar 1: Foundation (Large Masonry Block) -->
+                <div class="macos-card p-8 flex flex-col justify-between group gsap-stagger-item bg-white dark:bg-studio-800 border border-zinc-200/80 dark:border-white/10 hover:border-blue-500/40 hover:shadow-2xl transition-all duration-300 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white"><%= typeof t !== 'undefined' ? t('pillars.foundation.title') : 'Foundation' %></h3>
+                            <span class="text-3xl font-black text-zinc-300 dark:text-zinc-600 group-hover:text-blue-500/60 transition-colors">01</span>
+                        </div>
+                        <p class="text-zinc-600 dark:text-zinc-300 mb-8 leading-relaxed text-base">
+                            <%= typeof t !== 'undefined' ? t('pillars.foundation.desc') : 'Rooted in Christ through genuine salvation, baptism in water, and understanding the Kingdom of God.' %>
+                        </p>
+                    </div>
+                    <div class="relative z-10 flex flex-col space-y-3 border-t border-zinc-100 dark:border-white/10 pt-6 mt-auto">
+                        <a href="/salvation<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="group/link text-sm font-semibold text-zinc-900 dark:text-zinc-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors inline-flex items-center gap-2 touch-manipulation"><span class="text-blue-500 transition-transform group-hover/link:translate-x-1">→</span> <%= typeof t !== 'undefined' ? t('nav.foundation.salvation') : 'Salvation' %></a>
+                        <a href="/water-baptism<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="group/link text-sm font-semibold text-zinc-900 dark:text-zinc-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors inline-flex items-center gap-2 touch-manipulation"><span class="text-blue-500 transition-transform group-hover/link:translate-x-1">→</span> <%= typeof t !== 'undefined' ? t('nav.foundation.waterBaptism') : 'Water Baptism' %></a>
+                        <a href="/kingdom<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="group/link text-sm font-semibold text-zinc-900 dark:text-zinc-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors inline-flex items-center gap-2 touch-manipulation"><span class="text-blue-500 transition-transform group-hover/link:translate-x-1">→</span> <%= typeof t !== 'undefined' ? t('nav.foundation.kingdom') : 'Kingdom' %></a>
+                    </div>
+                </div>
+
+                <!-- Pillar 2: Belong -->
+                <div class="macos-card p-8 flex flex-col justify-between group gsap-stagger-item bg-white dark:bg-studio-800 border border-zinc-200/80 dark:border-white/10 hover:border-purple-500/40 hover:shadow-2xl transition-all duration-300 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white"><%= typeof t !== 'undefined' ? t('pillars.belong.title') : 'Belong' %></h3>
+                            <span class="text-3xl font-black text-zinc-300 dark:text-zinc-600 group-hover:text-purple-500/60 transition-colors">02</span>
+                        </div>
+                        <p class="text-zinc-600 dark:text-zinc-300 mb-8 leading-relaxed text-base">
+                            <%= typeof t !== 'undefined' ? t('pillars.belong.desc') : 'Living in covenant fellowship through local church membership, lifegroups, and generational mentorship.' %>
+                        </p>
+                    </div>
+                    <div class="relative z-10 flex flex-col space-y-3 pt-6 mt-auto border-t border-zinc-100 dark:border-white/10">
+                        <a href="/membership<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="group/link text-sm font-semibold text-zinc-900 dark:text-zinc-200 hover:text-purple-600 dark:hover:text-purple-400 transition-colors inline-flex items-center gap-2 touch-manipulation"><span class="text-purple-500 transition-transform group-hover/link:translate-x-1">→</span> <%= typeof t !== 'undefined' ? t('nav.belong.membership') : 'Membership' %></a>
+                        <a href="/community<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="group/link text-sm font-semibold text-zinc-900 dark:text-zinc-200 hover:text-purple-600 dark:hover:text-purple-400 transition-colors inline-flex items-center gap-2 touch-manipulation"><span class="text-purple-500 transition-transform group-hover/link:translate-x-1">→</span> <%= typeof t !== 'undefined' ? t('nav.belong.community') : 'Community' %></a>
+                        <a href="/mentorship<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="group/link text-sm font-semibold text-zinc-900 dark:text-zinc-200 hover:text-purple-600 dark:hover:text-purple-400 transition-colors inline-flex items-center gap-2 touch-manipulation"><span class="text-purple-500 transition-transform group-hover/link:translate-x-1">→</span> <%= typeof t !== 'undefined' ? t('nav.belong.mentorship') : 'Mentorship' %></a>
+                    </div>
+                </div>
+
+                <!-- Pillar 3: Formation -->
+                <div class="macos-card p-8 flex flex-col justify-between group gsap-stagger-item bg-white dark:bg-studio-800 border border-zinc-200/80 dark:border-white/10 hover:border-emerald-500/40 hover:shadow-2xl transition-all duration-300 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white"><%= typeof t !== 'undefined' ? t('pillars.formation.title') : 'Formation' %></h3>
+                            <span class="text-3xl font-black text-zinc-300 dark:text-zinc-600 group-hover:text-emerald-500/60 transition-colors">03</span>
+                        </div>
+                        <p class="text-zinc-600 dark:text-zinc-300 mb-8 leading-relaxed text-base">
+                            <%= typeof t !== 'undefined' ? t('pillars.formation.desc') : 'Transformed by scripture memorization, personal spiritual disciplines, emotional maturity, and availability to God.' %>
+                        </p>
+                    </div>
+                    <div class="relative z-10 flex flex-col space-y-3 pt-6 mt-auto border-t border-zinc-100 dark:border-white/10">
+                        <a href="/scripture-memory<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="group/link text-sm font-semibold text-zinc-900 dark:text-zinc-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors inline-flex items-center gap-2 touch-manipulation"><span class="text-emerald-500 transition-transform group-hover/link:translate-x-1">→</span> <%= typeof t !== 'undefined' ? t('nav.formation.scriptureMemory') : 'Scripture Memory' %></a>
+                        <a href="/growth<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="group/link text-sm font-semibold text-zinc-900 dark:text-zinc-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors inline-flex items-center gap-2 touch-manipulation"><span class="text-emerald-500 transition-transform group-hover/link:translate-x-1">→</span> <%= typeof t !== 'undefined' ? t('nav.formation.growth') : 'Growth' %></a>
+                        <a href="/maturity<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="group/link text-sm font-semibold text-zinc-900 dark:text-zinc-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors inline-flex items-center gap-2 touch-manipulation"><span class="text-emerald-500 transition-transform group-hover/link:translate-x-1">→</span> <%= typeof t !== 'undefined' ? t('nav.formation.maturity') : 'Maturity' %></a>
+                    </div>
+                </div>
+
+                <!-- Pillar 4: Mission (Spans rows if needed) -->
+                <div class="macos-card p-8 flex flex-col justify-between group gsap-stagger-item bg-white dark:bg-studio-800 border border-zinc-200/80 dark:border-white/10 hover:border-amber-500/40 hover:shadow-2xl transition-all duration-300 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white"><%= typeof t !== 'undefined' ? t('pillars.mission.title') : 'Mission' %></h3>
+                            <span class="text-3xl font-black text-zinc-300 dark:text-zinc-600 group-hover:text-amber-500/60 transition-colors">04</span>
+                        </div>
+                        <p class="text-zinc-600 dark:text-zinc-300 mb-8 leading-relaxed text-base">
+                            <%= typeof t !== 'undefined' ? t('pillars.mission.desc') : 'Mobilized for global impact through faithful local serving, evangelism, and radical kingdom generosity.' %>
+                        </p>
+                    </div>
+                    <div class="relative z-10 flex flex-col space-y-3 pt-6 mt-auto border-t border-zinc-100 dark:border-white/10">
+                        <a href="/serving<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="group/link text-sm font-semibold text-zinc-900 dark:text-zinc-200 hover:text-amber-600 dark:hover:text-amber-400 transition-colors inline-flex items-center gap-2 touch-manipulation"><span class="text-amber-500 transition-transform group-hover/link:translate-x-1">→</span> <%= typeof t !== 'undefined' ? t('nav.mission.serving') : 'Serving' %></a>
+                        <a href="/generosity<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="group/link text-sm font-semibold text-zinc-900 dark:text-zinc-200 hover:text-amber-600 dark:hover:text-amber-400 transition-colors inline-flex items-center gap-2 touch-manipulation"><span class="text-amber-500 transition-transform group-hover/link:translate-x-1">→</span> <%= typeof t !== 'undefined' ? t('nav.mission.generosity') : 'Giving / Generosity' %></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="py-24 bg-zinc-100 dark:bg-studio-900 border-t border-zinc-200 dark:border-white/5 relative overflow-hidden">
+        <!-- Glassmorphism Background Blobs -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+            <div class="absolute top-[30%] -left-[15%] w-[50%] h-[50%] rounded-full bg-indigo-500/20 dark:bg-indigo-600/20 blur-[120px] mix-blend-multiply dark:mix-blend-screen opacity-70 animate-pulse"></div>
+            <div class="absolute -bottom-[20%] right-[10%] w-[40%] h-[40%] rounded-full bg-blue-500/20 dark:bg-blue-600/20 blur-[120px] mix-blend-multiply dark:mix-blend-screen opacity-70" style="animation: pulse 9s cubic-bezier(0.4, 0, 0.6, 1) infinite;"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+            <div class="text-center mb-16 gsap-fade-up">
+                <span class="text-accent2 dark:text-zinc-400 font-bold tracking-[0.15em] uppercase text-xs mb-4 block">
+                    <%= typeof t !== 'undefined' ? t('resources.tag') : 'Equip & Grow' %>
+                </span>
+                <h2 class="text-4xl md:text-5xl font-black tracking-tight text-studio-900 dark:text-white mb-6">
+                    <%= typeof t !== 'undefined' ? t('resources.title') : 'Discipleship Resources' %>
+                </h2>
+                <p class="text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto text-lg leading-relaxed">
+                    <%= typeof t !== 'undefined' ? t('resources.subtitle') : 'Access our curated library of study guides, books, and tools to help you grow deeper in your walk with Christ.' %>
+                </p>
+            </div>
+
+            <div id="public-resources" class="flex flex-wrap gap-6 lg:gap-8 gsap-stagger-container">
+                <div class="text-center py-12 text-zinc-400 dark:text-zinc-500 col-span-full animate-pulse text-sm font-semibold tracking-wide">
+                    <%= typeof t !== 'undefined' ? t('resources.loading') : 'Loading resources...' %>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Next Steps Section -->
+    <section class="py-24 bg-white dark:bg-studio-900 border-t border-zinc-200 dark:border-white/5 relative overflow-hidden">
+        <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zinc-200 dark:via-white/10 to-transparent"></div>
+        
+        <!-- Glassmorphism Background Blobs -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+            <div class="absolute -top-[10%] left-[20%] w-[35%] h-[35%] rounded-full bg-pink-500/10 dark:bg-pink-600/10 blur-[120px] mix-blend-multiply dark:mix-blend-screen opacity-70 animate-pulse"></div>
+            <div class="absolute bottom-[10%] -right-[10%] w-[40%] h-[40%] rounded-full bg-orange-500/10 dark:bg-orange-600/10 blur-[120px] mix-blend-multiply dark:mix-blend-screen opacity-70" style="animation: pulse 12s cubic-bezier(0.4, 0, 0.6, 1) infinite;"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+            <div class="text-center mb-20 gsap-fade-up">
+                <span class="text-accent2 dark:text-zinc-400 font-bold tracking-[0.15em] uppercase text-xs mb-4 block">
+                    <%= typeof t !== 'undefined' ? t('steps.tag') : 'Get Involved' %>
+                </span>
+                <h2 class="text-4xl md:text-5xl font-black tracking-tight text-studio-900 dark:text-white">
+                    <%= typeof t !== 'undefined' ? t('steps.title') : 'Your Next Steps' %>
+                </h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 gsap-stagger-container">
+                <!-- Step 1 -->
+                <div class="macos-card p-8 lg:p-10 group gsap-stagger-item bg-white dark:bg-studio-800 border border-zinc-200/80 dark:border-white/10 hover:border-blue-500/40 transition-all duration-300 shadow-sm hover:shadow-xl relative overflow-hidden flex flex-col justify-between">
+                    <div class="w-14 h-14 bg-blue-500/10 dark:bg-blue-500/20 text-blue-600 dark:text-blue-400 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 group-hover:-translate-y-1 shadow-sm">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                            <%= typeof t !== 'undefined' ? t('steps.step1.title') : '1. Attend a Gathering' %>
+                        </h3>
+                        <p class="text-zinc-600 dark:text-zinc-300 text-base mb-4 leading-relaxed">
+                            <%= typeof t !== 'undefined' ? t('steps.step1.desc') : 'Join us every Tuesday for our unique DNA: Fasting, Prayer, Worship, Word, Discussion, and Fellowship.' %>
+                        </p>
+                        <p class="text-xs font-semibold text-zinc-500 dark:text-zinc-400 mb-6 flex items-center gap-1.5">
+                            <svg class="w-4 h-4 text-blue-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <span>914 Silver Spring Ave 204B, Silver Spring, MD 20910</span>
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-zinc-100 dark:border-white/10 mt-auto">
+                        <a href="https://maps.google.com/?q=914+Silver+Spring+Ave+204B,+Silver+Spring,+MD+20910" target="_blank" class="text-blue-600 dark:text-blue-400 text-sm font-bold hover:text-blue-700 dark:hover:text-blue-300 transition-colors inline-flex items-center gap-1.5 group/link touch-manipulation">
+                            <%= typeof t !== 'undefined' ? t('steps.step1.link') : 'Get Directions →' %>
+                        </a>
+                    </div>
+                </div>
+                <!-- Step 2 -->
+                <div class="macos-card p-8 lg:p-10 group gsap-stagger-item bg-white dark:bg-studio-800 border border-zinc-200/80 dark:border-white/10 hover:border-purple-500/40 transition-all duration-300 shadow-sm hover:shadow-xl relative overflow-hidden flex flex-col justify-between">
+                    <div class="w-14 h-14 bg-purple-500/10 dark:bg-purple-500/20 text-purple-600 dark:text-purple-400 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-purple-600 group-hover:text-white transition-all duration-300 group-hover:-translate-y-1 shadow-sm">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                            <%= typeof t !== 'undefined' ? t('steps.step2.title') : '2. Join a Small Group' %>
+                        </h3>
+                        <p class="text-zinc-600 dark:text-zinc-300 text-base mb-8 leading-relaxed">
+                            <%= typeof t !== 'undefined' ? t('steps.step2.desc') : 'Authentic community where life happens. Find your circle and build deep, Christ-centered friendships.' %>
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-zinc-100 dark:border-white/10 mt-auto">
+                        <a href="/join" class="text-purple-600 dark:text-purple-400 text-sm font-bold hover:text-purple-700 dark:hover:text-purple-300 transition-colors inline-flex items-center gap-1.5 group/link touch-manipulation">
+                            <%= typeof t !== 'undefined' ? t('steps.step2.link') : 'Find a Group →' %>
+                        </a>
+                    </div>
+                </div>
+                <!-- Step 3 -->
+                <div class="macos-card p-8 lg:p-10 group gsap-stagger-item bg-white dark:bg-studio-800 border border-zinc-200/80 dark:border-white/10 hover:border-emerald-500/40 transition-all duration-300 shadow-sm hover:shadow-xl relative overflow-hidden flex flex-col justify-between">
+                    <div class="w-14 h-14 bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300 group-hover:-translate-y-1 shadow-sm">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white mb-4 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                            <%= typeof t !== 'undefined' ? t('steps.step3.title') : '3. Discover Your Calling' %>
+                        </h3>
+                        <p class="text-zinc-600 dark:text-zinc-300 text-base mb-8 leading-relaxed">
+                            <%= typeof t !== 'undefined' ? t('steps.step3.desc') : 'Use your God-given gifts to serve others and advance the Kingdom in Maryland and beyond.' %>
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-zinc-100 dark:border-white/10 mt-auto">
+                        <a href="/serving" class="text-emerald-600 dark:text-emerald-400 text-sm font-bold hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors inline-flex items-center gap-1.5 group/link touch-manipulation">
+                            <%= typeof t !== 'undefined' ? t('steps.step3.link') : 'Start Serving →' %>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Gallery -->
+    <%- include('partials/instagram-gallery') %>
+
+    <!-- Chatbot Widget -->
+    <%- include('partials/chatbot') %>
+
+    <!-- Join Us Section -->
+    <%- include('partials/join-section') %>
+<%- include('partials/footer') %>
+

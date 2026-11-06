@@ -1,0 +1,280 @@
+<!-- Modular Navigation Bar Component (Warm Stone Editorial Design) -->
+<nav class="fixed top-0 w-full z-[100] transition-all duration-300 bg-stone-50/90 dark:bg-stone-950/90 backdrop-blur-md border-b border-stone-200/80 dark:border-stone-800" id="main-navigation">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        
+        <!-- Brand / Identity -->
+        <a href="/<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="min-h-[44px] inline-flex items-center gap-3 text-stone-900 dark:text-stone-100 whitespace-nowrap mr-4 sm:mr-6 group touch-manipulation" id="nav-brand-logo">
+            <span class="w-8 h-8 rounded-lg bg-stone-900 dark:bg-stone-100 text-stone-50 dark:text-stone-900 flex items-center justify-center font-serif font-bold text-base transition-transform group-hover:scale-105 shadow-xs flex-shrink-0">
+                E
+            </span>
+            <div class="flex flex-col">
+                <span class="font-serif font-bold text-base sm:text-lg leading-tight tracking-tight">EUCMD</span>
+                <span class="text-stone-500 dark:text-stone-400 font-sans text-[11px] tracking-wider uppercase font-medium">Young Adults</span>
+            </div>
+        </a>
+        
+        <!-- Desktop Nav Links: 4 Discipleship Pillars -->
+        <div class="hidden lg:flex items-center space-x-1 xl:space-x-2">
+            
+            <!-- 1. Foundation Dropdown -->
+            <div class="relative group">
+                <button class="min-h-[44px] px-3.5 py-2 rounded-lg text-stone-700 hover:text-stone-950 dark:text-stone-300 dark:hover:text-white hover:bg-stone-200/50 dark:hover:bg-stone-900 transition-all text-xs uppercase tracking-wider font-semibold flex items-center gap-1.5 focus:outline-none whitespace-nowrap" aria-haspopup="true">
+                    <%= typeof t !== 'undefined' ? t('nav.foundation') : 'Foundation' %>
+                    <svg class="w-3.5 h-3.5 opacity-50 group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="absolute top-full left-0 mt-1 w-56 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl shadow-editorial dark:shadow-editorial-dark opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 p-2 z-50 transform origin-top translate-y-1 group-hover:translate-y-0">
+                    <a href="/salvation<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="min-h-[40px] flex items-center px-3.5 py-2 text-xs font-medium text-stone-700 dark:text-stone-300 hover:text-stone-950 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-colors">
+                        <%= typeof t !== 'undefined' ? t('nav.foundation.salvation') : 'Salvation' %>
+                    </a>
+                    <a href="/water-baptism<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="min-h-[40px] flex items-center px-3.5 py-2 text-xs font-medium text-stone-700 dark:text-stone-300 hover:text-stone-950 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-colors">
+                        <%= typeof t !== 'undefined' ? t('nav.foundation.waterBaptism') : 'Water Baptism' %>
+                    </a>
+                    <a href="/kingdom<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="min-h-[40px] flex items-center px-3.5 py-2 text-xs font-medium text-stone-700 dark:text-stone-300 hover:text-stone-950 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-colors">
+                        <%= typeof t !== 'undefined' ? t('nav.foundation.kingdom') : 'Kingdom' %>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 2. Belong Dropdown -->
+            <div class="relative group">
+                <button class="min-h-[44px] px-3.5 py-2 rounded-lg text-stone-700 hover:text-stone-950 dark:text-stone-300 dark:hover:text-white hover:bg-stone-200/50 dark:hover:bg-stone-900 transition-all text-xs uppercase tracking-wider font-semibold flex items-center gap-1.5 focus:outline-none whitespace-nowrap" aria-haspopup="true">
+                    <%= typeof t !== 'undefined' ? t('nav.belong') : 'Belong' %>
+                    <svg class="w-3.5 h-3.5 opacity-50 group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="absolute top-full left-0 mt-1 w-56 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl shadow-editorial dark:shadow-editorial-dark opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 p-2 z-50 transform origin-top translate-y-1 group-hover:translate-y-0">
+                    <a href="/membership<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="min-h-[40px] flex items-center px-3.5 py-2 text-xs font-medium text-stone-700 dark:text-stone-300 hover:text-stone-950 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-colors">
+                        <%= typeof t !== 'undefined' ? t('nav.belong.membership') : 'Membership' %>
+                    </a>
+                    <a href="/community<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="min-h-[40px] flex items-center px-3.5 py-2 text-xs font-medium text-stone-700 dark:text-stone-300 hover:text-stone-950 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-colors">
+                        <%= typeof t !== 'undefined' ? t('nav.belong.community') : 'Community' %>
+                    </a>
+                    <a href="/mentorship<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="min-h-[40px] flex items-center px-3.5 py-2 text-xs font-medium text-stone-700 dark:text-stone-300 hover:text-stone-950 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-colors">
+                        <%= typeof t !== 'undefined' ? t('nav.belong.mentorship') : 'Mentorship' %>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 3. Formation Dropdown -->
+            <div class="relative group">
+                <button class="min-h-[44px] px-3.5 py-2 rounded-lg text-stone-700 hover:text-stone-950 dark:text-stone-300 dark:hover:text-white hover:bg-stone-200/50 dark:hover:bg-stone-900 transition-all text-xs uppercase tracking-wider font-semibold flex items-center gap-1.5 focus:outline-none whitespace-nowrap" aria-haspopup="true">
+                    <%= typeof t !== 'undefined' ? t('nav.formation') : 'Formation' %>
+                    <svg class="w-3.5 h-3.5 opacity-50 group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="absolute top-full left-0 mt-1 w-60 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl shadow-editorial dark:shadow-editorial-dark opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 p-2 z-50 transform origin-top translate-y-1 group-hover:translate-y-0">
+                    <a href="/scripture-memory<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="min-h-[40px] flex items-center px-3.5 py-2 text-xs font-medium text-stone-700 dark:text-stone-300 hover:text-stone-950 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-colors">
+                        <%= typeof t !== 'undefined' ? t('nav.formation.scriptureMemory') : 'Scripture Memory' %>
+                    </a>
+                    <a href="/growth<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="min-h-[40px] flex items-center px-3.5 py-2 text-xs font-medium text-stone-700 dark:text-stone-300 hover:text-stone-950 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-colors">
+                        <%= typeof t !== 'undefined' ? t('nav.formation.growth') : 'Growth' %>
+                    </a>
+                    <a href="/maturity<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="min-h-[40px] flex items-center px-3.5 py-2 text-xs font-medium text-stone-700 dark:text-stone-300 hover:text-stone-950 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-colors">
+                        <%= typeof t !== 'undefined' ? t('nav.formation.maturity') : 'Maturity' %>
+                    </a>
+                    <a href="/availability<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="min-h-[40px] flex items-center px-3.5 py-2 text-xs font-medium text-stone-700 dark:text-stone-300 hover:text-stone-950 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-colors">
+                        <%= typeof t !== 'undefined' ? t('nav.formation.availability') : 'Availability' %>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 4. Mission Dropdown -->
+            <div class="relative group">
+                <button class="min-h-[44px] px-3.5 py-2 rounded-lg text-stone-700 hover:text-stone-950 dark:text-stone-300 dark:hover:text-white hover:bg-stone-200/50 dark:hover:bg-stone-900 transition-all text-xs uppercase tracking-wider font-semibold flex items-center gap-1.5 focus:outline-none whitespace-nowrap" aria-haspopup="true">
+                    <%= typeof t !== 'undefined' ? t('nav.mission') : 'Mission' %>
+                    <svg class="w-3.5 h-3.5 opacity-50 group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="absolute top-full left-0 mt-1 w-56 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl shadow-editorial dark:shadow-editorial-dark opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 p-2 z-50 transform origin-top translate-y-1 group-hover:translate-y-0">
+                    <a href="/serving<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="min-h-[40px] flex items-center px-3.5 py-2 text-xs font-medium text-stone-700 dark:text-stone-300 hover:text-stone-950 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-colors">
+                        <%= typeof t !== 'undefined' ? t('nav.mission.serving') : 'Serving' %>
+                    </a>
+                    <a href="/generosity<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="min-h-[40px] flex items-center px-3.5 py-2 text-xs font-medium text-stone-700 dark:text-stone-300 hover:text-stone-950 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-colors">
+                        <%= typeof t !== 'undefined' ? t('nav.mission.generosity') : 'Giving / Generosity' %>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Knowing God Regional Gathering Direct Link -->
+            <a href="/#coming-soon-event" class="min-h-[44px] px-3.5 py-2 rounded-lg text-indigo-700 dark:text-indigo-300 hover:text-indigo-950 dark:hover:text-white bg-indigo-50/80 hover:bg-indigo-100 dark:bg-indigo-950/50 dark:hover:bg-indigo-900/60 border border-indigo-200 dark:border-indigo-800 transition-all text-xs uppercase tracking-wider font-bold flex items-center gap-1.5 whitespace-nowrap shadow-xs">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+                <span>✨ Knowing God</span>
+            </a>
+        </div>
+
+        <!-- Right Controls: Search, Lang, Theme, CTAs -->
+        <div class="flex items-center gap-1.5 sm:gap-2.5 ml-auto">
+            
+            <!-- Site Search Engine Trigger Button -->
+            <button onclick="openSiteSearchModal()" type="button" 
+                    class="trigger-site-search inline-flex items-center gap-2 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-medium text-stone-700 dark:text-stone-300 bg-stone-100 hover:bg-stone-200 dark:bg-stone-900 dark:hover:bg-stone-800 border border-stone-200 dark:border-stone-800 transition-all min-h-[40px] min-w-[40px] justify-center touch-manipulation group active:scale-95 cursor-pointer shadow-subtle"
+                    aria-label="Search teachings, events, scriptures, small groups (Press ⌘K or /)">
+                <svg class="w-4 h-4 text-stone-600 dark:text-stone-400 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                <span class="hidden sm:inline text-stone-600 dark:text-stone-400 font-medium">Search</span>
+                <kbd class="hidden md:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] font-mono font-medium text-stone-500 dark:text-stone-400 bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded">
+                    <span>⌘</span>K
+                </kbd>
+            </button>
+
+            <!-- Modular 4-Language Switcher Component -->
+            <%- include('language-switcher', { variant: 'dropdown' }) %>
+
+            <!-- Modular Theme Toggle Component -->
+            <%- include('theme-toggle') %>
+            
+            <!-- Primary Tuesday Gathering Action CTA -->
+            <a href="/#weekly-gathering" class="hidden md:inline-flex items-center justify-center min-h-[40px] px-4 py-2 rounded-lg bg-stone-900 text-stone-50 hover:bg-stone-800 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-white active:scale-95 transition-all text-xs font-semibold tracking-wide whitespace-nowrap touch-manipulation">
+                Tuesday 7:30 PM
+            </a>
+
+            <!-- Dashboard Button -->
+            <a href="/dashboard<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="hidden sm:inline-flex items-center justify-center min-h-[40px] px-3.5 py-2 rounded-lg bg-transparent border border-stone-300 dark:border-stone-700 text-stone-800 dark:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-900 active:scale-95 transition-all text-xs font-semibold whitespace-nowrap touch-manipulation">
+                <%= typeof t !== 'undefined' ? t('nav.dashboard') : 'Portal' %>
+            </a>
+            
+            <!-- Mobile Menu Trigger -->
+            <button id="mobile-menu-btn" type="button" class="lg:hidden min-w-[44px] min-h-[44px] p-2.5 text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-850 active:bg-stone-200 dark:active:bg-stone-800 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-stone-400 flex items-center justify-center touch-manipulation" aria-label="Open mobile navigation menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- Responsive Mobile Navigation Drawer Overlay (Warm Stone Editorial Design) -->
+<div id="mobile-menu" class="fixed inset-0 top-20 bg-stone-50/98 dark:bg-stone-950/98 backdrop-blur-xl z-50 lg:hidden overflow-y-auto border-t border-stone-200 dark:border-stone-800 transition-all duration-300 overscroll-contain" style="display: none; opacity: 0; pointer-events: none; -webkit-overflow-scrolling: touch;">
+    <div class="max-w-xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6 sm:space-y-8" style="padding-bottom: calc(6rem + env(safe-area-inset-bottom));">
+        
+        <!-- Mobile Knowing God Gathering Callout Banner -->
+        <a href="/#coming-soon-event" onclick="closeMobileMenu()" class="p-4 rounded-xl bg-gradient-to-r from-indigo-950 via-purple-950 to-stone-900 border border-indigo-500/40 text-white flex items-center justify-between font-bold text-xs tracking-wide shadow-md active:scale-[0.98] transition-all">
+            <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-amber-400/20 text-amber-300 border border-amber-400/30 flex items-center justify-center text-sm">✨</span>
+                <div class="text-left">
+                    <span class="text-[10px] text-amber-300 uppercase font-black block">Coming Soon · Regional Gathering</span>
+                    <strong class="text-sm font-extrabold text-white">Knowing God (Isaiah 40:28)</strong>
+                </div>
+            </div>
+            <span class="text-indigo-300 text-sm font-bold">&rarr;</span>
+        </a>
+
+        <!-- Mobile Gathering & Small Group Actions -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <a href="/#weekly-gathering" onclick="closeMobileMenu()" class="p-4 rounded-xl bg-stone-900 text-stone-50 dark:bg-stone-100 dark:text-stone-900 flex items-center justify-between font-semibold text-xs tracking-wide shadow-subtle active:scale-[0.98] transition-all">
+                <span>Attend Tuesday Gathering (7:30 PM)</span>
+                <span aria-hidden="true">&rarr;</span>
+            </a>
+            <a href="/join" onclick="closeMobileMenu()" class="p-4 rounded-xl bg-white dark:bg-stone-900 border border-stone-300 dark:border-stone-700 text-stone-800 dark:text-stone-200 flex items-center justify-between font-semibold text-xs tracking-wide shadow-subtle active:scale-[0.98] transition-all">
+                <span>Join a Small Group (DNA Pod)</span>
+                <span aria-hidden="true">&rarr;</span>
+            </a>
+        </div>
+
+        <!-- Mobile Search Engine Quick Trigger -->
+        <button onclick="triggerMobileSearch()" type="button" class="w-full p-4 rounded-xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 flex items-center justify-between text-left group active:scale-[0.98] transition-all shadow-subtle">
+            <div class="flex items-center gap-3.5">
+                <span class="w-10 h-10 rounded-lg bg-stone-100 dark:bg-stone-800 text-stone-800 dark:text-stone-200 flex items-center justify-center font-bold">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </span>
+                <div>
+                    <h4 class="text-sm font-bold text-stone-900 dark:text-stone-100">Search Resources & Teachings</h4>
+                    <p class="text-xs text-stone-500 dark:text-stone-400">Teachings, scriptures, events, small groups</p>
+                </div>
+            </div>
+            <span class="text-xs font-mono font-medium px-2 py-1 rounded bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border border-stone-200 dark:border-stone-700">
+                ⌘K
+            </span>
+        </button>
+        
+        <!-- Mobile 4-Language Picker Grid Component -->
+        <div class="p-4 rounded-xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 shadow-subtle">
+            <%- include('language-switcher', { variant: 'grid' }) %>
+        </div>
+
+        <!-- Pillar Navigation Links in Touch-Optimized Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-4 rounded-xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800">
+                <h3 class="text-[11px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-widest mb-2.5">
+                    <%= typeof t !== 'undefined' ? t('nav.foundation') : 'Foundation' %>
+                </h3>
+                <div class="flex flex-col space-y-1">
+                    <a href="/salvation<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="min-h-[44px] px-3 py-2 rounded-lg text-stone-800 dark:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 font-medium text-xs transition-colors flex items-center justify-between touch-manipulation">
+                        <span><%= typeof t !== 'undefined' ? t('nav.foundation.salvation') : 'Salvation' %></span>
+                        <svg class="w-3.5 h-3.5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+                    <a href="/water-baptism<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="min-h-[44px] px-3 py-2 rounded-lg text-stone-800 dark:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 font-medium text-xs transition-colors flex items-center justify-between touch-manipulation">
+                        <span><%= typeof t !== 'undefined' ? t('nav.foundation.waterBaptism') : 'Water Baptism' %></span>
+                        <svg class="w-3.5 h-3.5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+                    <a href="/kingdom<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="min-h-[44px] px-3 py-2 rounded-lg text-stone-800 dark:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 font-medium text-xs transition-colors flex items-center justify-between touch-manipulation">
+                        <span><%= typeof t !== 'undefined' ? t('nav.foundation.kingdom') : 'Kingdom' %></span>
+                        <svg class="w-3.5 h-3.5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800">
+                <h3 class="text-[11px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-widest mb-2.5">
+                    <%= typeof t !== 'undefined' ? t('nav.belong') : 'Belong' %>
+                </h3>
+                <div class="flex flex-col space-y-1">
+                    <a href="/membership<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="min-h-[44px] px-3 py-2 rounded-lg text-stone-800 dark:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 font-medium text-xs transition-colors flex items-center justify-between touch-manipulation">
+                        <span><%= typeof t !== 'undefined' ? t('nav.belong.membership') : 'Membership' %></span>
+                        <svg class="w-3.5 h-3.5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+                    <a href="/community<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="min-h-[44px] px-3 py-2 rounded-lg text-stone-800 dark:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 font-medium text-xs transition-colors flex items-center justify-between touch-manipulation">
+                        <span><%= typeof t !== 'undefined' ? t('nav.belong.community') : 'Community' %></span>
+                        <svg class="w-3.5 h-3.5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+                    <a href="/mentorship<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="min-h-[44px] px-3 py-2 rounded-lg text-stone-800 dark:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 font-medium text-xs transition-colors flex items-center justify-between touch-manipulation">
+                        <span><%= typeof t !== 'undefined' ? t('nav.belong.mentorship') : 'Mentorship' %></span>
+                        <svg class="w-3.5 h-3.5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800">
+                <h3 class="text-[11px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-widest mb-2.5">
+                    <%= typeof t !== 'undefined' ? t('nav.formation') : 'Formation' %>
+                </h3>
+                <div class="flex flex-col space-y-1">
+                    <a href="/scripture-memory<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="min-h-[44px] px-3 py-2 rounded-lg text-stone-800 dark:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 font-medium text-xs transition-colors flex items-center justify-between touch-manipulation">
+                        <span><%= typeof t !== 'undefined' ? t('nav.formation.scriptureMemory') : 'Scripture Memory' %></span>
+                        <svg class="w-3.5 h-3.5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+                    <a href="/growth<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="min-h-[44px] px-3 py-2 rounded-lg text-stone-800 dark:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 font-medium text-xs transition-colors flex items-center justify-between touch-manipulation">
+                        <span><%= typeof t !== 'undefined' ? t('nav.formation.growth') : 'Growth' %></span>
+                        <svg class="w-3.5 h-3.5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+                    <a href="/maturity<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="min-h-[44px] px-3 py-2 rounded-lg text-stone-800 dark:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 font-medium text-xs transition-colors flex items-center justify-between touch-manipulation">
+                        <span><%= typeof t !== 'undefined' ? t('nav.formation.maturity') : 'Maturity' %></span>
+                        <svg class="w-3.5 h-3.5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+                    <a href="/availability<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="min-h-[44px] px-3 py-2 rounded-lg text-stone-800 dark:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 font-medium text-xs transition-colors flex items-center justify-between touch-manipulation">
+                        <span><%= typeof t !== 'undefined' ? t('nav.formation.availability') : 'Availability' %></span>
+                        <svg class="w-3.5 h-3.5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800">
+                <h3 class="text-[11px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-widest mb-2.5">
+                    <%= typeof t !== 'undefined' ? t('nav.mission') : 'Mission' %>
+                </h3>
+                <div class="flex flex-col space-y-1">
+                    <a href="/serving<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="min-h-[44px] px-3 py-2 rounded-lg text-stone-800 dark:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 font-medium text-xs transition-colors flex items-center justify-between touch-manipulation">
+                        <span><%= typeof t !== 'undefined' ? t('nav.mission.serving') : 'Serving' %></span>
+                        <svg class="w-3.5 h-3.5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+                    <a href="/generosity<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="min-h-[44px] px-3 py-2 rounded-lg text-stone-800 dark:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 font-medium text-xs transition-colors flex items-center justify-between touch-manipulation">
+                        <span><%= typeof t !== 'undefined' ? t('nav.mission.generosity') : 'Giving / Generosity' %></span>
+                        <svg class="w-3.5 h-3.5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="pt-4 border-t border-stone-200 dark:border-stone-800">
+            <a href="/dashboard<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" class="w-full text-center min-h-[48px] flex items-center justify-center px-6 py-3 rounded-xl bg-stone-900 text-stone-50 dark:bg-stone-100 dark:text-stone-900 font-semibold transition-all shadow-subtle text-xs tracking-wide touch-manipulation active:scale-[0.98]">
+                <%= typeof t !== 'undefined' ? t('nav.leaderDashboard') : 'Leader Dashboard Portal' %>
+            </a>
+        </div>
+    </div>
+</div>

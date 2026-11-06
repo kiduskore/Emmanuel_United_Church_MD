@@ -1,0 +1,1133 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "keku121@gmail.com",
+      "role_id": 1,
+      "full_name": "Kidus",
+      "is_active": true,
+      "password_hash": "$2b$10$9/8oeycNfBxD9YcFA43G2e3Oyp1yhEg6Pl3LobZMPf14mQUvJoVcy"
+    },
+    {
+      "id": 2,
+      "email": "admin@euc.org",
+      "role_id": 1,
+      "full_name": "Site Administrator",
+      "is_active": true,
+      "password_hash": "$2b$10$QgrG1G15zLUJ0a4m58rPyu.TU56gdR1f3pGo0ceaUosO2rx9Ka4Zq"
+    },
+    {
+      "id": 3,
+      "email": "leader@euc.org",
+      "role_id": 2,
+      "full_name": "Kidus Kore",
+      "is_active": true,
+      "password_hash": "$2b$10$QgrG1G15zLUJ0a4m58rPyu.TU56gdR1f3pGo0ceaUosO2rx9Ka4Zq"
+    }
+  ],
+  "roles": [
+    {
+      "id": 1,
+      "name": "Site Admin"
+    },
+    {
+      "id": 2,
+      "name": "Basic Manager"
+    }
+  ],
+  "permissions": [
+    {
+      "id": 1,
+      "name": "manage_users"
+    },
+    {
+      "id": 2,
+      "name": "manage_pods"
+    },
+    {
+      "id": 3,
+      "name": "manage_members"
+    },
+    {
+      "id": 4,
+      "name": "manage_settings"
+    },
+    {
+      "id": 5,
+      "name": "view_dashboard"
+    }
+  ],
+  "rolePermissions": [
+    {
+      "role_id": 1,
+      "permission_id": 1
+    },
+    {
+      "role_id": 1,
+      "permission_id": 2
+    },
+    {
+      "role_id": 1,
+      "permission_id": 3
+    },
+    {
+      "role_id": 1,
+      "permission_id": 4
+    },
+    {
+      "role_id": 1,
+      "permission_id": 5
+    },
+    {
+      "role_id": 2,
+      "permission_id": 5
+    },
+    {
+      "role_id": 2,
+      "permission_id": 3
+    },
+    {
+      "role_id": 2,
+      "permission_id": 2
+    }
+  ],
+  "members": [
+    {
+      "id": 1,
+      "name": "Kidus Kore",
+      "email": "keku121@gmail.com",
+      "phone": "2027601096",
+      "join_date": "2026-01-15",
+      "role": "admin",
+      "spiritual_stage": "leading",
+      "pod_id": null,
+      "pod_name": null,
+      "pod": null,
+      "is_active": true,
+      "created_at": "2026-01-15T00:00:00Z",
+      "city": "",
+      "life_stage": "",
+      "interests": [
+        "Leadership",
+        "Administration",
+        "Community"
+      ],
+      "notes": "Upper Room Admin & Core Leader"
+    },
+    {
+      "id": 2,
+      "name": "Bercy kebede",
+      "email": "bersabay1234@gmail.com",
+      "phone": "2404762343",
+      "join_date": "2026-01-15",
+      "role": "member",
+      "spiritual_stage": "leading",
+      "pod_id": null,
+      "pod_name": null,
+      "pod": null,
+      "is_active": true,
+      "created_at": "2026-01-15T00:00:00Z",
+      "city": "6004 northwest dr Hyattsville md 20782",
+      "life_stage": "Career / Working",
+      "interests": [
+        "Prayer",
+        "Hospitality",
+        "Discipleship"
+      ],
+      "notes": "Prayer Coordinator & Guest Experience Lead"
+    },
+    {
+      "id": 3,
+      "name": "Nahom Tegegn",
+      "email": "nahiwende92@gmail.com",
+      "phone": "2028262001",
+      "join_date": "2026-01-15",
+      "role": "member",
+      "spiritual_stage": "leading",
+      "pod_id": null,
+      "pod_name": null,
+      "pod": null,
+      "is_active": true,
+      "created_at": "2026-01-15T00:00:00Z",
+      "city": "Silver Spring, MD",
+      "life_stage": "Career / Working",
+      "interests": [
+        "Discipleship",
+        "Bible Study",
+        "Teaching"
+      ],
+      "notes": "Discipleship Lead"
+    },
+    {
+      "id": 4,
+      "name": "Gideon Dilebo",
+      "email": "dilebogideon@gmail.com",
+      "phone": "2406021016",
+      "join_date": "2026-01-15",
+      "role": "member",
+      "spiritual_stage": "foundations",
+      "pod_id": null,
+      "pod_name": null,
+      "pod": null,
+      "is_active": true,
+      "created_at": "2026-01-15T00:00:00Z",
+      "city": "",
+      "life_stage": "",
+      "interests": [
+        "Production",
+        "Sound Mixing",
+        "Media"
+      ],
+      "notes": "Production Lead"
+    },
+    {
+      "id": 5,
+      "name": "Fikir Kebede",
+      "email": "gizachewhaimef@gmail.com",
+      "phone": "3013268345",
+      "join_date": "2026-01-15",
+      "role": "member",
+      "spiritual_stage": "saved",
+      "pod_id": null,
+      "pod_name": null,
+      "pod": null,
+      "is_active": true,
+      "created_at": "2026-01-15T00:00:00Z",
+      "city": "Silverspring",
+      "life_stage": "Other",
+      "interests": [
+        "Event Coordination",
+        "Hospitality",
+        "Logistics"
+      ],
+      "notes": "Event Coordinator"
+    },
+    {
+      "id": 6,
+      "name": "Elias Orion Belachew",
+      "email": "eliasorion11@gmail.com",
+      "phone": "2039045565",
+      "join_date": "2026-01-15",
+      "role": "member",
+      "spiritual_stage": "ready_to_lead",
+      "pod_id": null,
+      "pod_name": null,
+      "pod": null,
+      "is_active": true,
+      "created_at": "2026-01-15T00:00:00Z",
+      "city": "Silver Spring",
+      "life_stage": "Career / Working",
+      "interests": [
+        "Worship",
+        "Band Rehearsals",
+        "Music"
+      ],
+      "notes": "Worship Lead"
+    },
+    {
+      "id": 7,
+      "name": "Biniyam Sibane",
+      "email": "biniyamfekede10@gmail.com",
+      "phone": "2409459529",
+      "join_date": "2026-01-15",
+      "role": "member",
+      "spiritual_stage": "leading",
+      "pod_id": null,
+      "pod_name": null,
+      "pod": null,
+      "is_active": true,
+      "created_at": "2026-01-15T00:00:00Z",
+      "city": "Silver Spring",
+      "life_stage": "Other",
+      "interests": [
+        "Teaching",
+        "Theology",
+        "Curriculum"
+      ],
+      "notes": "Teaching Lead"
+    },
+    {
+      "id": 8,
+      "name": "Kaleab Abate",
+      "email": "kbgecho@gmail.com",
+      "phone": "7857645055",
+      "join_date": "2026-01-15",
+      "role": "member",
+      "spiritual_stage": "ready_to_lead",
+      "pod_id": null,
+      "pod_name": null,
+      "pod": null,
+      "is_active": true,
+      "created_at": "2026-01-15T00:00:00Z",
+      "city": "Silver Spring",
+      "life_stage": "Undergraduate Student",
+      "interests": [
+        "Production",
+        "Audio/Visual",
+        "Media"
+      ],
+      "notes": "Production Lead"
+    }
+  ],
+  "pods": [
+    {
+      "id": 1,
+      "name": "DNA Pod 1",
+      "leader_id": null,
+      "created_at": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": 2,
+      "name": "DNA Pod 2",
+      "leader_id": null,
+      "created_at": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": 3,
+      "name": "DNA Pod 3",
+      "leader_id": null,
+      "created_at": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": 4,
+      "name": "DNA Pod 4",
+      "leader_id": null,
+      "created_at": "2026-01-15T00:00:00Z"
+    }
+  ],
+  "podMembers": [],
+  "prayerRequests": [
+    {
+      "id": 5,
+      "status": "active",
+      "is_urgent": true,
+      "member_id": null,
+      "testimony": null,
+      "created_at": "2026-09-17",
+      "request_text": "Testing prayer text",
+      "requester_name": "Anonymous",
+      "supporter_count": 1
+    },
+    {
+      "id": 1,
+      "status": "active",
+      "is_urgent": true,
+      "member_id": null,
+      "created_at": "2026-02-22",
+      "request_text": "Prayers for our upcoming young adult discipleship retreat and wisdom for new pod leaders stepping up.",
+      "requester_name": "Kidus Kore",
+      "supporter_count": 8
+    },
+    {
+      "id": 2,
+      "status": "active",
+      "is_urgent": false,
+      "member_id": null,
+      "created_at": "2026-02-23",
+      "request_text": "Seeking God's guidance regarding a job offer and career transition into non-profit ministry.",
+      "requester_name": "Meron Alemayehu",
+      "supporter_count": 5
+    },
+    {
+      "id": 3,
+      "status": "active",
+      "is_urgent": true,
+      "member_id": null,
+      "created_at": "2026-02-24",
+      "request_text": "Health and healing for my mother who had outpatient surgery this past Friday.",
+      "requester_name": "Hanna Wolde",
+      "supporter_count": 11
+    },
+    {
+      "id": 4,
+      "status": "answered",
+      "is_urgent": false,
+      "member_id": null,
+      "testimony": "God proved faithful when we had exhausted all human options. Thank you church family for standing in faith!",
+      "created_at": "2026-02-10",
+      "answered_at": "2026-02-20",
+      "request_text": "Praise God! The immigration visa process was approved after two years of praying!",
+      "requester_name": "Ephrem Girma",
+      "supporter_count": 14
+    }
+  ],
+  "prayerSupporters": [],
+  "weeklyPlans": [],
+  "pipeline": [
+    {
+      "id": 1,
+      "name": "Emanuel Bekele",
+      "email": "emanuel.b@gmail.com",
+      "notes": "Visited Tuesday gathering; interested in Silver Spring Pod.",
+      "phone": "(240) 555-0142",
+      "stage": "first_contact",
+      "created_at": "2026-02-24",
+      "first_visit_date": "2026-02-24"
+    },
+    {
+      "id": 2,
+      "name": "Tigist Assefa",
+      "email": "tigist.a@yahoo.com",
+      "notes": "Followed up via text and sent welcome packet; invited for coffee.",
+      "phone": "(301) 555-0176",
+      "stage": "welcomed",
+      "created_at": "2026-02-17",
+      "first_visit_date": "2026-02-17"
+    },
+    {
+      "id": 3,
+      "name": "Nathnael Teshome",
+      "email": "nathnael.t@gmail.com",
+      "notes": "Connected with Dawit for College Park DNA Pod; attended first session.",
+      "phone": "(202) 555-0118",
+      "stage": "invited_to_pod",
+      "created_at": "2026-02-10",
+      "first_visit_date": "2026-02-10"
+    },
+    {
+      "id": 4,
+      "name": "Liya Desta",
+      "email": "liya.d@gmail.com",
+      "notes": "Fully integrated into Bethesda pod; interested in worship team serving.",
+      "phone": "(301) 555-0192",
+      "stage": "integrated",
+      "created_at": "2026-01-20",
+      "first_visit_date": "2026-01-20"
+    },
+    {
+      "id": 5,
+      "name": "test_seeker",
+      "email": "test_seeker@example.com",
+      "notes": "Subscribed to Young Adults Newsletter (footer_form) for follow-up and engagement",
+      "phone": "",
+      "stage": "first_contact",
+      "created_at": "2026-09-25",
+      "assigned_to": null,
+      "first_visit_date": "2026-09-25"
+    },
+    {
+      "id": 6,
+      "name": "Bethlehem Tadesse",
+      "email": "new_member_seeker@gmail.com",
+      "notes": "Subscribed to Young Adults Newsletter (footer_form) for follow-up and engagement",
+      "phone": "",
+      "stage": "first_contact",
+      "created_at": "2026-09-25",
+      "assigned_to": null,
+      "first_visit_date": "2026-09-25"
+    },
+    {
+      "id": 7,
+      "name": "Samuel Alemu",
+      "email": "new_believer@example.com",
+      "notes": "Subscribed to Young Adults Newsletter (footer_form) for follow-up and engagement",
+      "phone": "",
+      "stage": "first_contact",
+      "created_at": "2026-09-25",
+      "assigned_to": null,
+      "first_visit_date": "2026-09-25"
+    },
+    {
+      "id": 8,
+      "name": "keku121",
+      "email": "keku121@gmail.com",
+      "notes": "Subscribed to Young Adults Newsletter (footer_form) for follow-up and engagement",
+      "phone": "",
+      "stage": "first_contact",
+      "created_at": "2026-09-25",
+      "assigned_to": null,
+      "first_visit_date": "2026-09-25"
+    },
+    {
+      "id": 9,
+      "name": "test_subscriber_1",
+      "phone": "",
+      "email": "test_subscriber_1@gmail.com",
+      "stage": "first_contact",
+      "notes": "Subscribed to Young Adults Newsletter (footer_form) for follow-up and engagement",
+      "assigned_to": null,
+      "first_visit_date": "2026-09-25",
+      "created_at": "2026-09-25"
+    },
+    {
+      "id": 10,
+      "name": "test_subscriber_2",
+      "phone": "",
+      "email": "test_subscriber_2@gmail.com",
+      "stage": "first_contact",
+      "notes": "Subscribed to Young Adults Newsletter (footer_form) for follow-up and engagement",
+      "assigned_to": null,
+      "first_visit_date": "2026-09-25",
+      "created_at": "2026-09-25"
+    },
+    {
+      "id": 11,
+      "name": "test_subscriber_3",
+      "phone": "",
+      "email": "test_subscriber_3@gmail.com",
+      "stage": "first_contact",
+      "notes": "Subscribed to Young Adults Newsletter (footer_form) for follow-up and engagement",
+      "assigned_to": null,
+      "first_visit_date": "2026-09-25",
+      "created_at": "2026-09-25"
+    }
+  ],
+  "subscribers": [
+    {
+      "id": null,
+      "email": "test_seeker@example.com",
+      "source": "footer_form",
+      "status": "subscribed",
+      "created_at": "2026-09-25T12:44:28.651Z"
+    },
+    {
+      "id": 2,
+      "name": "Bethlehem Tadesse",
+      "email": "new_member_seeker@gmail.com",
+      "source": "footer_form",
+      "status": "subscribed",
+      "created_at": "2026-09-25T12:45:13.098Z"
+    },
+    {
+      "id": 3,
+      "name": "Samuel Alemu",
+      "email": "new_believer@example.com",
+      "source": "footer_form",
+      "status": "subscribed",
+      "created_at": "2026-09-25T12:58:03.677Z"
+    },
+    {
+      "id": 4,
+      "email": "keku121@gmail.com",
+      "source": "footer_form",
+      "status": "subscribed",
+      "created_at": "2026-09-25T13:01:13.337Z"
+    },
+    {
+      "id": 5,
+      "email": "test_subscriber_1@gmail.com",
+      "source": "footer_form",
+      "status": "subscribed",
+      "created_at": "2026-09-25T13:09:28.300Z"
+    },
+    {
+      "id": 6,
+      "email": "test_subscriber_2@gmail.com",
+      "source": "footer_form",
+      "status": "subscribed",
+      "created_at": "2026-09-25T13:09:29.072Z"
+    },
+    {
+      "id": 7,
+      "email": "test_subscriber_3@gmail.com",
+      "source": "footer_form",
+      "status": "subscribed",
+      "created_at": "2026-09-25T13:09:29.218Z"
+    }
+  ],
+  "newsletterBroadcasts": [
+    {
+      "id": 2,
+      "message": "Grace and peace everyone! We look forward to meeting tomorrow night for praise, prayer, and community fellowship.",
+      "sent_at": "2026-09-25T13:02:24.753Z",
+      "subject": "Tuesday Gathering Reminder: 7:00 PM EST at Silver Spring",
+      "sender_email": "keku121@gmail.com",
+      "recipients_count": 1
+    },
+    {
+      "id": 1,
+      "message": "Join us tomorrow night at 914 Silver Spring Ave 204B for worship, prayer, and fellowship!",
+      "sent_at": "2026-09-25T12:59:06.036Z",
+      "subject": "Tuesday Gathering Reminder: 7:00 PM EST",
+      "sender_email": "keku121@gmail.com",
+      "recipients_count": 3
+    }
+  ],
+  "resources": [
+    {
+      "id": 1,
+      "title": "How to Read the Bible for All Its Worth",
+      "category": "Bible Study",
+      "file_url": "https://bibleproject.com/explore/how-to-read-the-bible/",
+      "created_at": "2026-01-01",
+      "description": "A foundational guide to understanding and interpreting Scripture effectively."
+    },
+    {
+      "id": 2,
+      "title": "Gospel of John Study Guide",
+      "category": "Bible Study",
+      "file_url": "https://www.thegospelcoalition.org/course/knowing-bible-john/",
+      "created_at": "2026-01-01",
+      "description": "A 12-week deep dive into the Gospel of John focusing on the identity of Jesus."
+    },
+    {
+      "id": 3,
+      "title": "The Master Plan of Evangelism",
+      "category": "Leadership",
+      "file_url": "https://discipleship.org/resources/",
+      "created_at": "2026-01-01",
+      "description": "Robert Coleman's classic on how Jesus made disciples and how we can follow His model."
+    },
+    {
+      "id": 4,
+      "title": "Spiritual Leadership",
+      "category": "Leadership",
+      "file_url": "https://discipleship.org/resources/",
+      "created_at": "2026-01-01",
+      "description": "J. Oswald Sanders' essential principles for guiding others through spiritual maturity."
+    },
+    {
+      "id": 5,
+      "title": "DNA Pod Leader Guide",
+      "category": "Leadership",
+      "file_url": "https://www.desiringgod.org/articles/how-to-lead-a-small-group",
+      "created_at": "2026-01-01",
+      "description": "Internal guide on how to facilitate effective DNA pods, navigate difficult conversations, and multiply leaders."
+    },
+    {
+      "id": 6,
+      "title": "New Morning Mercies",
+      "category": "Devotional",
+      "file_url": "https://www.paultripp.com/new-morning-mercies",
+      "created_at": "2026-01-01",
+      "description": "Daily gospel-centered devotionals by Paul David Tripp."
+    }
+  ],
+  "inviteCodes": [
+    {
+      "id": 1,
+      "code": "EUCleader26",
+      "is_used": false,
+      "role_id": 1,
+      "role_name": "Site Admin",
+      "created_at": "2026-09-16T13:25:19.848Z"
+    },
+    {
+      "id": 2,
+      "code": "GROWTH2026",
+      "is_used": false,
+      "role_id": 2,
+      "role_name": "Basic Manager",
+      "created_at": "2026-09-16T13:25:19.849Z"
+    }
+  ],
+  "resetTokens": [
+    {
+      "id": 1,
+      "token": "kha40rp0c0ms17lybh6aq9",
+      "is_used": true,
+      "user_id": 1,
+      "expires_at": 1789576530822
+    },
+    {
+      "id": 2,
+      "token": "n2o2583n88aq1p4w9mlxk",
+      "is_used": true,
+      "user_id": 1,
+      "expires_at": 1789611249162
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "date": "2026-09-29",
+      "time": "7:00 PM - 9:00 PM",
+      "title": "Tuesday DNA Gathering: Worship, Word & Fellowship",
+      "capacity": 120,
+      "category": "gathering",
+      "location": "EUC Sanctuary, 12604 New Hampshire Ave, Silver Spring, MD 20904",
+      "created_at": "2026-09-01",
+      "description": "Our weekly young adults gathering dedicated to authentic worship, biblical teaching, table discussions, and deep fellowship.",
+      "is_featured": true
+    },
+    {
+      "id": 2,
+      "date": "2026-10-02",
+      "time": "7:30 PM - 10:00 PM",
+      "title": "First Friday Encounter: Worship & Intercession",
+      "capacity": 80,
+      "category": "prayer",
+      "location": "EUC Prayer Chapel, 12604 New Hampshire Ave, Silver Spring, MD",
+      "created_at": "2026-09-01",
+      "description": "An unhurried night of worship, deep prayer, and intercession for our cities, generation, and spiritual breakthroughs.",
+      "is_featured": true
+    },
+    {
+      "id": 3,
+      "date": "2026-10-10",
+      "time": "11:00 AM - 2:00 PM",
+      "title": "12 Tribes Community Brunch & Fellowship",
+      "capacity": 75,
+      "category": "fellowship",
+      "location": "Fellowship Pavilion, 12604 New Hampshire Ave, Silver Spring, MD",
+      "created_at": "2026-09-01",
+      "description": "Join your tribe family for food, games, and rich fellowship outside Tuesday. A wonderful time to invite friends and connect deeper!",
+      "is_featured": false
+    },
+    {
+      "id": 4,
+      "date": "2026-10-17",
+      "time": "10:00 AM - 1:00 PM",
+      "title": "Kingdom Outreach: City Blessing & Food Distribution",
+      "capacity": 40,
+      "category": "service",
+      "location": "Silver Spring Downtown & Local Community Center",
+      "created_at": "2026-09-01",
+      "description": "Hands-on practical love for our local community. Packing essentials kits, food distribution, and prayer for local families.",
+      "is_featured": false
+    },
+    {
+      "id": 5,
+      "date": "2026-11-06",
+      "time": "Fri 5:00 PM – Sun 1:00 PM",
+      "title": "Fall Young Adults Discipleship Retreat 2026",
+      "capacity": 60,
+      "category": "retreat",
+      "location": "Blue Ridge Mountain Christian Retreat Center, VA",
+      "created_at": "2026-09-01",
+      "description": "Three transformative days unplugged in the mountains with worship, deep teaching, campfire fellowship, and visionary leadership sessions.",
+      "is_featured": true
+    }
+  ],
+  "eventRsvps": [],
+  "departments": [
+    {
+      "id": "bible_study",
+      "number": 1,
+      "name": "Bible Study — Tuesday",
+      "shortName": "Bible Study",
+      "schedule": "Every Tuesday at 7:00 PM",
+      "location": "914 Silver Spring Ave, Suite 204B, Silver Spring, MD",
+      "accentColor": "from-blue-600 to-indigo-600",
+      "leader": {
+        "name": "Kidus Kore",
+        "email": "leader@euc.org",
+        "phone": "(202) 760-1096",
+        "role": "Department Leader",
+        "notes": "Leading Tuesday interactive Scripture studies and discipleship discussion."
+      },
+      "assistant1": {
+        "name": "Yonas Haile",
+        "email": "yonas.h@eucmaryland.org",
+        "phone": "(240) 412-8819",
+        "role": "Supportive Leader (Assistant)",
+        "notes": "Curating discussion questions and small group materials."
+      },
+      "assistant2": {
+        "name": "Betelhem Tefera",
+        "email": "betelhem.t@eucmaryland.org",
+        "phone": "(301) 674-9921",
+        "role": "Supportive Leader (Assistant)",
+        "notes": "Tracking upcoming sessions and sharing study notes with members."
+      },
+      "responsibilities": [
+        "Prepare weekly Bible study topics and Scripture passages.",
+        "Coordinate discussion questions and study materials.",
+        "Track upcoming sessions and share study notes."
+      ],
+      "tasks": [
+        {
+          "id": "bs-1",
+          "title": "Prepare Tuesday study guide for Acts 2:42-47",
+          "assignedTo": "Kidus Kore",
+          "dueDate": "Every Monday",
+          "completed": true
+        },
+        {
+          "id": "bs-2",
+          "title": "Send discussion questions to DNA Pod leaders",
+          "assignedTo": "Yonas Haile",
+          "dueDate": "Every Tuesday 12 PM",
+          "completed": false
+        },
+        {
+          "id": "bs-3",
+          "title": "Publish study notes & summary to Young Adult Hub",
+          "assignedTo": "Betelhem Tefera",
+          "dueDate": "Every Wednesday",
+          "completed": false
+        }
+      ],
+      "notes": "Meets every Tuesday for prayer, fellowship, and verse-by-verse inductive study.",
+      "updatedAt": "2026-10-29T14:19:29.684Z"
+    },
+    {
+      "id": "event_organizing",
+      "number": 2,
+      "name": "Event Organizing",
+      "shortName": "Event Organizing",
+      "schedule": "Monthly Fellowships & Seasonal Retreats",
+      "location": "DMV Area & Fellowship Hall",
+      "accentColor": "from-emerald-600 to-teal-600",
+      "leader": {
+        "name": "Selamawit Bekele",
+        "email": "selam.b@eucmaryland.org",
+        "phone": "(202) 819-3342",
+        "role": "Department Leader",
+        "notes": "Managing overall event strategy, community retreats, and vision nights."
+      },
+      "assistant1": {
+        "name": "Daniel Mengistu",
+        "email": "daniel.m@eucmaryland.org",
+        "phone": "(240) 581-2204",
+        "role": "Supportive Leader (Assistant)",
+        "notes": "Logistics, event budgeting, supplies purchasing, and equipment setup."
+      },
+      "assistant2": {
+        "name": "Ruth Tadesse",
+        "email": "ruth.t@eucmaryland.org",
+        "phone": "(301) 902-1145",
+        "role": "Supportive Leader (Assistant)",
+        "notes": "Volunteer team scheduling and day-of event checklists."
+      },
+      "responsibilities": [
+        "Plan fellowships, retreats, outreach, and special gatherings.",
+        "Manage budgets, logistics, supplies, and event timelines.",
+        "Assign event tasks and coordinate volunteers."
+      ],
+      "tasks": [
+        {
+          "id": "eo-1",
+          "title": "Finalize logistics & venue checklist for upcoming fellowship",
+          "assignedTo": "Selamawit Bekele",
+          "dueDate": "2026-10-25",
+          "completed": true
+        },
+        {
+          "id": "eo-2",
+          "title": "Manage catering budget & supply purchases",
+          "assignedTo": "Daniel Mengistu",
+          "dueDate": "2026-10-28",
+          "completed": false
+        },
+        {
+          "id": "eo-3",
+          "title": "Assign setup, tear-down, and hospitality volunteer shifts",
+          "assignedTo": "Ruth Tadesse",
+          "dueDate": "2026-10-30",
+          "completed": false
+        }
+      ],
+      "notes": "Coordinates all external fellowships, city outreach days, and the annual fall retreat.",
+      "updatedAt": "2026-10-29T14:19:29.684Z"
+    },
+    {
+      "id": "media",
+      "number": 3,
+      "name": "Media",
+      "shortName": "Media & Creative",
+      "schedule": "Weekly Gatherings & Digital Channels",
+      "location": "Media Booth & Creative Lab",
+      "accentColor": "from-purple-600 to-pink-600",
+      "leader": {
+        "name": "Dawit Alemu",
+        "email": "dawit.a@eucmaryland.org",
+        "phone": "(240) 771-4490",
+        "role": "Department Leader",
+        "notes": "Overseeing live event capture, high-quality video recaps, and sound."
+      },
+      "assistant1": {
+        "name": "Hanna Girma",
+        "email": "hanna.g@eucmaryland.org",
+        "phone": "(202) 438-6623",
+        "role": "Supportive Leader (Assistant)",
+        "notes": "Social media graphics, promotional flyers, and weekly announcement slides."
+      },
+      "assistant2": {
+        "name": "Nahom Berhanu",
+        "email": "nahom.b@eucmaryland.org",
+        "phone": "(301) 829-4501",
+        "role": "Supportive Leader (Assistant)",
+        "notes": "Permission and consent verification before publishing photos/videos."
+      },
+      "responsibilities": [
+        "Manage photography, video, graphics, and announcements.",
+        "Prepare media for ministry events and social channels.",
+        "Confirm permissions before publishing identifiable photos or videos."
+      ],
+      "tasks": [
+        {
+          "id": "med-1",
+          "title": "Curate highlight photos and recaps from Tuesday gathering",
+          "assignedTo": "Dawit Alemu",
+          "dueDate": "Every Wednesday",
+          "completed": true
+        },
+        {
+          "id": "med-2",
+          "title": "Design weekly Instagram carousel announcements",
+          "assignedTo": "Hanna Girma",
+          "dueDate": "Every Thursday",
+          "completed": false
+        },
+        {
+          "id": "med-3",
+          "title": "Audit media releases and privacy permissions for attendees",
+          "assignedTo": "Nahom Berhanu",
+          "dueDate": "Ongoing",
+          "completed": false
+        }
+      ],
+      "notes": "Maintains EUCMD visual excellence across Instagram, web presence, and Sunday announcements.",
+      "updatedAt": "2026-10-29T14:19:29.684Z"
+    },
+    {
+      "id": "teaching",
+      "number": 4,
+      "name": "Teaching",
+      "shortName": "Teaching & Equipping",
+      "schedule": "Bi-Weekly Seminars & Sunday Classes",
+      "location": "Main Sanctuary & Online Classroom",
+      "accentColor": "from-amber-600 to-orange-600",
+      "leader": {
+        "name": "Pastor Samuel Gebre",
+        "email": "samuel.g@eucmaryland.org",
+        "phone": "(240) 650-7712",
+        "role": "Department Leader",
+        "notes": "Guiding teaching standards, theological framework, and guest speakers."
+      },
+      "assistant1": {
+        "name": "Michael Assefa",
+        "email": "michael.a@eucmaryland.org",
+        "phone": "(202) 991-5520",
+        "role": "Supportive Leader (Assistant)",
+        "notes": "Speaker hospitality, sermon presentation slides, and curriculum materials."
+      },
+      "assistant2": {
+        "name": "Lydia Worku",
+        "email": "lydia.w@eucmaryland.org",
+        "phone": "(301) 714-8833",
+        "role": "Supportive Leader (Assistant)",
+        "notes": "Liaison with Bible Study leaders to ensure coordinated teaching roadmaps."
+      },
+      "responsibilities": [
+        "Coordinate teaching sessions and learning resources.",
+        "Support speakers and prepare lesson materials.",
+        "Work with Bible Study to keep teaching plans aligned."
+      ],
+      "tasks": [
+        {
+          "id": "tch-1",
+          "title": "Review upcoming 6-week Foundations of Faith curriculum",
+          "assignedTo": "Pastor Samuel Gebre",
+          "dueDate": "2026-11-01",
+          "completed": false
+        },
+        {
+          "id": "tch-2",
+          "title": "Compile study handout packets for guest speaker",
+          "assignedTo": "Michael Assefa",
+          "dueDate": "2026-10-27",
+          "completed": true
+        },
+        {
+          "id": "tch-3",
+          "title": "Sync with Bible Study team on Tuesday doctrinal topics",
+          "assignedTo": "Lydia Worku",
+          "dueDate": "Monthly 1st Mon",
+          "completed": false
+        }
+      ],
+      "notes": "Works hand-in-hand with pastoral leadership to ground young adults in sound biblical truth.",
+      "updatedAt": "2026-10-29T14:19:29.684Z"
+    },
+    {
+      "id": "worship",
+      "number": 5,
+      "name": "Worship",
+      "shortName": "Worship & Music",
+      "schedule": "Thursdays Rehearsal 7:30 PM & Weekend Services",
+      "location": "Sanctuary Stage & Music Room",
+      "accentColor": "from-rose-600 to-red-600",
+      "leader": {
+        "name": "Eden Tesfaye",
+        "email": "eden.t@eucmaryland.org",
+        "phone": "(240) 882-9901",
+        "role": "Department Leader",
+        "notes": "Overseeing worship culture, spiritual preparation, and weekly song selections."
+      },
+      "assistant1": {
+        "name": "Abel Solomon",
+        "email": "abel.s@eucmaryland.org",
+        "phone": "(202) 760-1096",
+        "role": "Supportive Leader (Assistant)",
+        "notes": "Instrumental arrangements, vocal harmonies, and rehearsal coaching."
+      },
+      "assistant2": {
+        "name": "Meron Kebede",
+        "email": "meron.k@eucmaryland.org",
+        "phone": "(301) 512-6634",
+        "role": "Supportive Leader (Assistant)",
+        "notes": "Vocal rotation rosters, schedule notices, and audio tech handoffs."
+      },
+      "responsibilities": [
+        "Prepare worship sets and song lists.",
+        "Coordinate singers, musicians, and rehearsals.",
+        "Share schedules and technical requirements with Media."
+      ],
+      "tasks": [
+        {
+          "id": "wor-1",
+          "title": "Curate 4-song acoustic worship set for Tuesday gathering",
+          "assignedTo": "Eden Tesfaye",
+          "dueDate": "Every Tuesday",
+          "completed": true
+        },
+        {
+          "id": "wor-2",
+          "title": "Lead acoustic guitar & keyboard sound check",
+          "assignedTo": "Abel Solomon",
+          "dueDate": "Every Tuesday 6:15 PM",
+          "completed": false
+        },
+        {
+          "id": "wor-3",
+          "title": "Submit song lyrics and chord charts to Media booth",
+          "assignedTo": "Meron Kebede",
+          "dueDate": "Every Monday 5 PM",
+          "completed": false
+        }
+      ],
+      "notes": "Creating an atmosphere where young adults passionately encounter Jesus in worship.",
+      "updatedAt": "2026-10-29T14:19:29.684Z"
+    },
+    {
+      "id": "prayer",
+      "number": 6,
+      "name": "Prayer",
+      "shortName": "Prayer & Intercession",
+      "schedule": "Every Saturday 6:30 AM & Pre-Service Prayer",
+      "location": "Prayer Chapel & Virtual Prayer Line",
+      "accentColor": "from-cyan-600 to-blue-600",
+      "leader": {
+        "name": "Rahel Wolde",
+        "email": "rahel.w@eucmaryland.org",
+        "phone": "(202) 664-8821",
+        "role": "Department Leader",
+        "notes": "Intercessory prayer leadership, fasting periods, and monthly prayer vigils."
+      },
+      "assistant1": {
+        "name": "Bereket Tilahun",
+        "email": "bereket.t@eucmaryland.org",
+        "phone": "(240) 339-1178",
+        "role": "Supportive Leader (Assistant)",
+        "notes": "Distributing prayer guides and organizing small group prayer stations."
+      },
+      "assistant2": {
+        "name": "Martha Desta",
+        "email": "martha.d@eucmaryland.org",
+        "phone": "(301) 402-9980",
+        "role": "Supportive Leader (Assistant)",
+        "notes": "Strict confidentiality management for private member prayer requests."
+      },
+      "responsibilities": [
+        "Coordinate prayer meetings and prayer schedules.",
+        "Share prayer points and organize group prayer sessions.",
+        "Handle sensitive prayer requests with appropriate privacy."
+      ],
+      "tasks": [
+        {
+          "id": "pry-1",
+          "title": "Host weekly Saturday morning dawn prayer on Zoom",
+          "assignedTo": "Rahel Wolde",
+          "dueDate": "Every Saturday 6:30 AM",
+          "completed": true
+        },
+        {
+          "id": "pry-2",
+          "title": "Compile and distribute monthly ministry prayer guide",
+          "assignedTo": "Bereket Tilahun",
+          "dueDate": "1st of month",
+          "completed": false
+        },
+        {
+          "id": "pry-3",
+          "title": "Review incoming confidential prayer wall requests privately",
+          "assignedTo": "Martha Desta",
+          "dueDate": "Daily",
+          "completed": false
+        }
+      ],
+      "notes": "Covering our pastors, leaders, small groups, and young adults in continuous prayer.",
+      "updatedAt": "2026-10-29T14:19:29.684Z"
+    },
+    {
+      "id": "welcoming_followup",
+      "number": 7,
+      "name": "Welcoming & Follow-Up",
+      "shortName": "Welcoming & Follow-Up",
+      "schedule": "Every Tuesday & Sunday Gatherings",
+      "location": "Welcome Desk & Foyer Greeting Area",
+      "accentColor": "from-violet-600 to-purple-600",
+      "leader": {
+        "name": "Yohannes Fikre",
+        "email": "yohannes.f@eucmaryland.org",
+        "phone": "(240) 554-7721",
+        "role": "Department Leader",
+        "notes": "First impressions team, greeter training, and guest welcome package."
+      },
+      "assistant1": {
+        "name": "Feven Belay",
+        "email": "feven.b@eucmaryland.org",
+        "phone": "(202) 831-4419",
+        "role": "Supportive Leader (Assistant)",
+        "notes": "Personal follow-up texts, phone calls, and welcome email greetings."
+      },
+      "assistant2": {
+        "name": "Caleb Zewdu",
+        "email": "caleb.z@eucmaryland.org",
+        "phone": "(301) 918-3350",
+        "role": "Supportive Leader (Assistant)",
+        "notes": "Guest contact preference records and warm handoff to DNA Pods."
+      },
+      "responsibilities": [
+        "Welcome new attendees and help them feel included.",
+        "Coordinate follow-up messages and invitations.",
+        "Track contact preferences and follow up respectfully."
+      ],
+      "tasks": [
+        {
+          "id": "wlc-1",
+          "title": "Welcome table setup and guest gift bags preparation",
+          "assignedTo": "Yohannes Fikre",
+          "dueDate": "Every Tuesday 6:30 PM",
+          "completed": true
+        },
+        {
+          "id": "wlc-2",
+          "title": "Send warm welcome text to all first-time visitors",
+          "assignedTo": "Feven Belay",
+          "dueDate": "Within 24-48 hrs",
+          "completed": false
+        },
+        {
+          "id": "wlc-3",
+          "title": "Sync visitor cards into pipeline and verify contact preferences",
+          "assignedTo": "Caleb Zewdu",
+          "dueDate": "Every Thursday",
+          "completed": false
+        }
+      ],
+      "notes": "Ensuring every person who walks through our doors feels welcomed, loved, and valued.",
+      "updatedAt": "2026-10-29T14:19:29.684Z"
+    }
+  ],
+  "nextIds": {
+    "pods": 5,
+    "users": 4,
+    "events": 6,
+    "members": 9,
+    "pipeline": 12,
+    "resources": 7,
+    "attendance": 1,
+    "eventRsvps": 1,
+    "devotionals": 1,
+    "inviteCodes": 3,
+    "resetTokens": 3,
+    "subscribers": 8,
+    "weeklyPlans": 1,
+    "prayerRequests": 8,
+    "prayerSupporters": 1,
+    "broadcasts": 3
+  }
+}

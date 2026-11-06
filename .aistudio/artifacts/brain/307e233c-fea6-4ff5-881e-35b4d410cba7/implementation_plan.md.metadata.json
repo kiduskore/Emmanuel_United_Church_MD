@@ -1,0 +1,6 @@
+{
+  "summary":  "Implementation plan for locking down database persistence and removing automatic remote database writes. Ensures zero destructive resets, preserves all existing tables and member data, eliminates purge scripts, and confines automated mutation saves exclusively to local JSON file storage.",
+  "updatedAt":  "2026-10-29T15:01:24.557832636Z",
+  "requestFeedback":  true,
+  "userFacing":  true
+}

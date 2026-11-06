@@ -1,0 +1,99 @@
+<%- include('partials/header') %>
+<!-- Hero Image Banner -->
+    <header class="relative w-full h-[50vh] min-h-[400px] pt-20 flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-[url('/static/hero_images/singer.jpg')] bg-cover bg-center"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-white/80 via-white/70 to-[#FAFAFA] dark:from-[#0b1437]/90 dark:via-[#0b1437]/80 dark:to-[#0b1437]"></div>
+        
+        <div class="relative z-10 text-center px-6">
+            <h1 class="text-5xl md:text-7xl font-extrabold text-gray-900 dark:text-white mb-4 tracking-tight drop-shadow-lg">
+                <%= typeof t !== 'undefined' ? t('waterBaptism.heroTitle') : 'Go Public.' %>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-700 dark:text-gray-300 font-medium max-w-2xl mx-auto drop-shadow-md">
+                <%= typeof t !== 'undefined' ? t('waterBaptism.heroSubtitle') : 'Declare your faith through the waters.' %>
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Content Overlapping Hero -->
+    <main class="flex-1 max-w-4xl mx-auto w-full px-6 py-8 -mt-16 relative z-20 macos-glass mb-12">
+        
+        <div class="flex items-center gap-2 mb-4">
+            <span class="bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-300 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider flex items-center gap-1">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <%= typeof t !== 'undefined' ? t('common.readTime', { min: '3' }) : '3 MIN READ' %>
+            </span>
+        </div>
+        <div class="flex items-center justify-between mb-8 border-b border-gray-200 dark:border-white/10 pb-6">
+            <h2 class="text-3xl font-black text-gray-900 dark:text-white tracking-tight">
+                <%= typeof t !== 'undefined' ? t('waterBaptism.title') : 'Water Baptism' %>
+            </h2>
+            <div class="w-24 h-1 rounded-full opacity-80" style="background-color: #06b6d4"></div>
+        </div>
+        
+        <div class="prose max-w-none">
+            <div class="mb-8">
+                <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white flex items-center gap-3">
+                    <svg class="w-6 h-6 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <%= typeof t !== 'undefined' ? t('waterBaptism.section1.title') : 'What Is Baptism?' %>
+                </h3>
+                <div class="p-6 bg-gray-50 hover:bg-gray-100 dark:hover:bg-white/10 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg dark:bg-white/5 rounded-2xl border-l-4 my-6" style="border-color: currentColor">
+                    <p class="text-gray-800 dark:text-gray-200 text-lg font-medium leading-relaxed italic">
+                        <%= typeof t !== 'undefined' ? t('waterBaptism.section1.q1') : 'Baptism does not save you — Jesus does. Baptism is an act of joyful obedience to the One who saved you. Before Jesus ascended, He gave this command: "Go therefore and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit" (Matthew 28:19).' %>
+                    </p>
+                </div>
+                <div class="p-6 bg-gray-50 hover:bg-gray-100 dark:hover:bg-white/10 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg dark:bg-white/5 rounded-2xl border-l-4 my-6" style="border-color: currentColor">
+                    <p class="text-gray-800 dark:text-gray-200 text-lg font-medium leading-relaxed italic">
+                        <%= typeof t !== 'undefined' ? t('waterBaptism.section1.q2') : 'Peter declared on the day of Pentecost: "Repent and be baptized, every one of you, in the name of Jesus Christ for the forgiveness of your sins" (Acts 2:38). Baptism is your outward picture of an inward reality.' %>
+                    </p>
+                </div>
+                <p class="text-gray-600 dark:text-gray-400 text-lg leading-relaxed mb-4">
+                    <%= typeof t !== 'undefined' ? t('waterBaptism.section1.p1') : 'When you go under the water, it represents the burial of your old life — buried with Christ. When you come up out of the water, it represents resurrection — raised to walk in newness of life (Romans 6:3-4).' %>
+                </p>
+            </div>
+
+            <div class="mb-8">
+                <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white flex items-center gap-3">
+                    <svg class="w-6 h-6 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <%= typeof t !== 'undefined' ? t('waterBaptism.section2.title') : 'Why Get Baptized?' %>
+                </h3>
+                <div class="p-6 bg-gray-50 hover:bg-gray-100 dark:hover:bg-white/10 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg dark:bg-white/5 rounded-2xl border-l-4 my-6" style="border-color: currentColor">
+                    <p class="text-gray-800 dark:text-gray-200 text-lg font-medium leading-relaxed italic">
+                        <%= typeof t !== 'undefined' ? t('waterBaptism.section2.q1') : 'First and most importantly: because Jesus did it (Matthew 3:13-17). If Jesus considered baptism essential to fulfill all righteousness, it matters deeply for every believer.' %>
+                    </p>
+                </div>
+                <p class="text-gray-600 dark:text-gray-400 text-lg leading-relaxed mb-4">
+                    <%= typeof t !== 'undefined' ? t('waterBaptism.section2.p1') : 'Baptism is your public confession that you belong to Christ in a culture that tries to define your identity.' %>
+                </p>
+            </div>
+
+            <div class="mb-8">
+                <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white flex items-center gap-3">
+                    <svg class="w-6 h-6 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <%= typeof t !== 'undefined' ? t('waterBaptism.section3.title') : 'Who Should Be Baptized?' %>
+                </h3>
+                <p class="text-gray-600 dark:text-gray-400 text-lg leading-relaxed mb-4">
+                    <%= typeof t !== 'undefined' ? t('waterBaptism.section3.p1') : 'If you have made a personal decision to follow Jesus Christ as your Lord and Savior, you are ready to be baptized. It does not require years of perfection, only genuine faith in Jesus.' %>
+                </p>
+            </div>
+
+            <div class="mb-8">
+                <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white flex items-center gap-3">
+                    <svg class="w-6 h-6 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <%= typeof t !== 'undefined' ? t('waterBaptism.section4.title') : 'What to Expect' %>
+                </h3>
+                <p class="text-gray-600 dark:text-gray-400 text-lg leading-relaxed mb-4">
+                    <%= typeof t !== 'undefined' ? t('waterBaptism.section4.p1') : 'Baptism Sunday is a celebration! You will be guided by leaders, declare your faith, and be baptized in water while your church family rejoices and prays over you.' %>
+                </p>
+            </div>
+        </div>
+        
+        <div class="mt-16 pt-8 border-t border-gray-200 dark:border-white/10">
+            <a href="/join" class="block w-full text-center text-white font-bold text-lg py-5 rounded-xl hover:opacity-90 transition-all shadow-lg transform hover:-translate-y-1" style="background-color: #06b6d4">
+                <%= typeof t !== 'undefined' ? t('waterBaptism.ctaBtn') : 'Sign Up for Water Baptism' %>
+            </a>
+        </div>
+    </main>
+
+    <!-- Join Us Section -->
+    <%- include('partials/join-section') %>
+<%- include('partials/footer') %>
