@@ -1,31 +1,41 @@
-<%- include('partials/header') %>
+<%- include('partials/header', { 
+    metaTitle: 'Privacy Policy | Emmanuel United Church of Maryland',
+    metaDesc: 'Learn how Emmanuel United Church of Maryland protects your privacy and personal information.',
+    currentPath: '/privacy'
+}) %>
+<%- include('partials/navbar') %>
 
-<main id="main-content" class="flex-grow pt-28 pb-20 px-6 lg:px-12 max-w-5xl mx-auto text-left">
-    <!-- Header Badge -->
-    <div class="mb-8">
-        <a href="/" class="inline-flex items-center gap-2 text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline mb-4">
-            &larr; Back to Home
-        </a>
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 text-xs font-bold uppercase tracking-wider mb-3">
-            Legal & Compliance
+<main id="main-content" class="min-h-screen text-white pt-28 pb-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto flex-1 w-full relative overflow-hidden">
+    <!-- Ambient Cosmic Spotlight Beams -->
+    <div class="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[550px] bg-gradient-to-b from-cyan-400/20 via-sky-500/10 to-transparent blur-3xl -z-10"></div>
+    <div class="pointer-events-none absolute top-1/3 -left-32 w-96 h-96 bg-sky-500/15 rounded-full blur-3xl -z-10"></div>
+
+    <div class="azure-glass-shell p-8 sm:p-12 relative overflow-hidden space-y-10">
+        <div class="diamond-glint" style="top: 2rem; right: 2rem;"></div>
+
+        <!-- Header Badge -->
+        <div>
+            <div class="azure-pill inline-flex items-center gap-2 mb-3">
+                <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+                <span>Legal & Compliance</span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-heading font-black text-white uppercase tracking-tight mb-3">
+                Privacy Policy
+            </h1>
+            <p class="text-xs font-mono text-cyan-300">
+                Last Updated: 2026 &bull; Effective Immediately
+            </p>
         </div>
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-studio-900 dark:text-white tracking-tight mb-3">
-            Privacy Policy
-        </h1>
-        <p class="text-sm text-zinc-500 dark:text-zinc-400">
-            Last Updated: October 20, 2026 &bull; Effective Immediately
-        </p>
-    </div>
 
-    <!-- Quick Summary Box -->
-    <div class="p-6 sm:p-8 rounded-3xl bg-blue-50/60 dark:bg-studio-800/80 border border-blue-200/80 dark:border-blue-900/30 mb-12 space-y-3">
-        <h2 class="text-base font-bold text-blue-950 dark:text-blue-200 flex items-center gap-2">
-            <span>🛡️</span> <span>Our Ministry Privacy Commitment</span>
-        </h2>
-        <p class="text-xs sm:text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
-            Emmanuel United Church of Maryland Young Adults Ministry ("EUCMD", "we", "us", or "our") deeply values your trust. <strong>We do not sell, rent, monetize, or trade your personal information.</strong> We only collect minimal information necessary to coordinate fellowship gatherings, pray for one another, manage discipleship small groups, and communicate church announcements.
-        </p>
-    </div>
+        <!-- Quick Summary Box -->
+        <div class="azure-inner-card p-6 sm:p-8 space-y-3 border-l-4 border-l-cyan-400">
+            <h2 class="text-base font-heading font-bold text-white uppercase flex items-center gap-2">
+                <span class="text-cyan-400">🛡️</span> <span>Our Ministry Privacy Commitment</span>
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                Emmanuel United Church of Maryland ("EUCMD", "we", "us", or "our") deeply values your trust. <strong>We do not sell, rent, monetize, or trade your personal information.</strong> We only collect minimal information necessary to coordinate worship gatherings, pastoral care, discipleship small groups, and communicate church announcements.
+            </p>
+        </div>
 
     <!-- Policy Sections -->
     <div class="space-y-10 text-sm sm:text-base text-zinc-700 dark:text-zinc-300 leading-relaxed">
@@ -264,6 +274,7 @@
                 Phone: (202) 760-1096
             </p>
         </section>
+    </div>
     </div>
 </main>
 

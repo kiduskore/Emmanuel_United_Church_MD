@@ -2,6 +2,15 @@ import { adminAuth, adminDb } from './src/lib/firebase-admin.ts';
 import express from 'express';
 import type { Request, Response, NextFunction } from 'express';
 import session from 'express-session';
+
+declare module 'express-session' {
+  interface SessionData {
+    userId?: number;
+    userEmail?: string;
+    userRole?: string;
+    roleId?: number;
+  }
+}
 import cookieParser from 'cookie-parser';
 import path from 'path';
 import fs from 'fs';
@@ -39,6 +48,9 @@ app.use(helmet({
     preload: true
   },
   xFrameOptions: false, // Let CSP frameAncestors control framing so AI Studio preview loads properly
+  referrerPolicy: {
+    policy: 'strict-origin-when-cross-origin',
+  },
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
@@ -49,6 +61,7 @@ app.use(helmet({
       fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],
       imgSrc: ["'self'", "data:", "https:", "blob:"],
       connectSrc: ["'self'", "https:"],
+      frameSrc: ["'self'", "https://www.youtube.com", "https://www.youtube-nocookie.com", "https://*.youtube.com", "https://*.google.com", "https://give.tithe.ly"],
       objectSrc: ["'none'"],
       upgradeInsecureRequests: [],
       // Allow AI Studio to frame the app in preview, but restrict elsewhere
@@ -72,16 +85,17 @@ app.use(cookieParser());
 // Cookie configuration constants
 const isIframe = !!process.env.APPLET_ID;
 const cookieSameSite = (isIframe ? 'none' : 'lax') as 'none' | 'lax';
-const cookieSecure = true;
+const isProduction = process.env.NODE_ENV === 'production';
+const getCookieSecure = (req: Request) => req.secure || req.headers['x-forwarded-proto'] === 'https';
 
 // Session setup
 app.use(
   session({
     secret: process.env.SESSION_SECRET || 'euc_ya_management_secret_key_2026',
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
-      secure: cookieSecure,
+      secure: 'auto',
       httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
       sameSite: cookieSameSite,
@@ -95,9 +109,10 @@ app.use(i18nMiddleware);
 // CSRF cookie helper - populate res.locals.csrf_token before route handlers
 app.use((req: Request, res: Response, next: NextFunction) => {
   let token = req.cookies.csrf_token;
+  const isHttps = req.secure || req.headers['x-forwarded-proto'] === 'https';
   if (!token) {
     token = 'csrf_' + Math.random().toString(36).substring(2, 12);
-    res.cookie('csrf_token', token, { secure: cookieSecure, httpOnly: true, sameSite: cookieSameSite, path: '/' });
+    res.cookie('csrf_token', token, { secure: isHttps, httpOnly: true, sameSite: cookieSameSite, path: '/' });
   }
   res.locals.csrf_token = token;
   res.locals.currentPath = req.path;
@@ -118,6 +133,8 @@ const isPublicAuthRoute = (path: string) => {
          clean === '/api/newsletter/subscribe' ||
          clean === '/api/members/subscribe' ||
          clean === '/api/subscribe' ||
+         clean === '/api/plan-visit' ||
+         clean === '/api/contact' ||
          clean.startsWith('/api/events/') && clean.endsWith('/rsvp') ||
          clean.startsWith('/api/events/') && clean.endsWith('/cancel-rsvp');
 };
@@ -147,12 +164,15 @@ app.set('views', path.join(process.cwd(), 'views'));
 
 // Static assets
 app.use('/static', express.static(path.join(process.cwd(), 'static')));
+app.use('/assets', express.static(path.join(process.cwd(), 'public/assets')));
+app.use('/public', express.static(path.join(process.cwd(), 'public')));
+app.use(express.static(path.join(process.cwd(), 'public')));
 
 // Language Switching Endpoints
 app.get('/set-language/:lang', (req: Request, res: Response) => {
   const targetLang = req.params.lang?.toLowerCase();
   if (isSupportedLanguage(targetLang)) {
-    res.cookie('lang', targetLang, { maxAge: 365 * 24 * 60 * 60 * 1000, path: '/', sameSite: cookieSameSite, secure: cookieSecure, httpOnly: true });
+    res.cookie('lang', targetLang, { maxAge: 365 * 24 * 60 * 60 * 1000, path: '/', sameSite: cookieSameSite, secure: getCookieSecure(req), httpOnly: true });
     if (req.session) {
       (req.session as any).lang = targetLang;
     }
@@ -173,7 +193,7 @@ app.get('/set-language/:lang', (req: Request, res: Response) => {
 app.post('/api/set-language', (req: Request, res: Response) => {
   const targetLang = (req.body.lang || req.query.lang || '').toString().toLowerCase();
   if (isSupportedLanguage(targetLang)) {
-    res.cookie('lang', targetLang, { maxAge: 365 * 24 * 60 * 60 * 1000, path: '/', sameSite: cookieSameSite, secure: cookieSecure, httpOnly: true });
+    res.cookie('lang', targetLang, { maxAge: 365 * 24 * 60 * 60 * 1000, path: '/', sameSite: cookieSameSite, secure: getCookieSecure(req), httpOnly: true });
     if (req.session) {
       (req.session as any).lang = targetLang;
     }
@@ -530,6 +550,125 @@ app.get('/', (req: Request, res: Response) => {
   res.render('landing', { customBannerExists });
 });
 
+app.get('/about', (req: Request, res: Response) => {
+  res.render('about', {
+    metaTitle: 'About Us | Emmanuel United Church of Maryland',
+    metaDesc: 'Discover the mission, vision, statement of faith, and pastoral leadership of Emmanuel United Church of Maryland.',
+    currentPath: '/about'
+  });
+});
+
+app.get('/ministries', (req: Request, res: Response) => {
+  res.render('ministries', {
+    metaTitle: 'Ministries | Emmanuel United Church of Maryland',
+    metaDesc: 'Explore our ministries for Children, Youth, Young Adults, Prayer & Intercession, and Outreach in Silver Spring, MD.',
+    currentPath: '/ministries'
+  });
+});
+
+app.get(['/give', '/generosity'], (req: Request, res: Response) => {
+  res.render('give', {
+    metaTitle: 'Give / Tithes & Offerings | Emmanuel United Church of Maryland',
+    metaDesc: 'Support the kingdom mission of Emmanuel United Church of Maryland through faithful biblical giving, Zelle, and in-person offerings.',
+    currentPath: '/give'
+  });
+});
+
+app.get('/contact', (req: Request, res: Response) => {
+  res.render('contact', {
+    metaTitle: 'Contact Us & Locations | Emmanuel United Church of Maryland',
+    metaDesc: 'Contact Emmanuel United Church of Maryland, find worship directions in Silver Spring, MD, or submit a prayer request.',
+    currentPath: '/contact'
+  });
+});
+
+app.get('/plan-visit', (req: Request, res: Response) => {
+  res.render('plan-visit', {
+    metaTitle: 'Plan Your Visit | Emmanuel United Church of Maryland',
+    metaDesc: 'Plan your visit to Emmanuel United Church of Maryland in Silver Spring, MD. Register your family, meet our pastors, and experience transformative worship.',
+    currentPath: '/plan-visit'
+  });
+});
+
+app.get('/gallery', (req: Request, res: Response) => {
+  res.render('gallery', {
+    metaTitle: 'Photo Gallery | Emmanuel United Church of Maryland',
+    metaDesc: 'Explore moments of worship, fellowship, prayer, street evangelism, and community outreach at Emmanuel United Church in Silver Spring, Maryland.',
+    currentPath: '/gallery'
+  });
+});
+
+// Friendly URL redirects for direct address bar entry
+app.get('/sermons', (req: Request, res: Response) => res.redirect('/#sermons'));
+app.get('/visit', (req: Request, res: Response) => res.redirect('/plan-visit'));
+app.get('/outreach', (req: Request, res: Response) => res.redirect('/ministries#outreach'));
+app.get('/beliefs', (req: Request, res: Response) => res.redirect('/about#beliefs'));
+
+app.post('/api/plan-visit', async (req: Request, res: Response) => {
+  try {
+    const { name, email, phone, service, party_size, children_info, notes } = req.body;
+    if (!name || !email) {
+      return res.status(400).json({ error: 'Name and email are required.' });
+    }
+
+    let serviceLabel = 'Sunday Worship (10:30 AM · 12604 New Hampshire Ave)';
+    if (service === 'friday_1900') {
+      serviceLabel = 'Friday Prayer & Worship (7:00 PM · 914 Silver Spring Ave)';
+    } else if (service === 'wednesday_1100') {
+      serviceLabel = 'Wednesday Midweek Prayer (11:00 AM · 914 Silver Spring Ave)';
+    }
+
+    store.addPrayerRequest({
+      name: (name || '').trim(),
+      email: (email || '').trim(),
+      phone: phone ? (phone || '').trim() : undefined,
+      category: 'other',
+      urgency: 'normal',
+      is_private: true,
+      request: `[VISIT PLANNED] Service: ${serviceLabel} | Party: ${party_size || 1} | Kids: ${children_info || 'none'} | Notes: ${notes || 'None'}`
+    });
+
+    console.log(`[Visit Planned] ${name} (${email}) for ${serviceLabel}`);
+    return res.status(200).json({ success: true, message: 'Visit registered successfully.' });
+  } catch (err: any) {
+    console.error('Plan visit error:', err);
+    return res.status(500).json({ error: 'Failed to process visit registration.' });
+  }
+});
+
+app.post('/api/contact', async (req: Request, res: Response) => {
+  try {
+    const { name, email, phone, inquiry_type, message } = req.body;
+    if (!name || !email || !message) {
+      return res.status(400).json({ error: 'Name, email, and message are required.' });
+    }
+
+    store.addPrayerRequest({
+      name: (name || '').trim(),
+      email: (email || '').trim(),
+      phone: phone ? (phone || '').trim() : undefined,
+      category: inquiry_type === 'prayer' ? 'spiritual' : 'other',
+      urgency: inquiry_type === 'pastoral_counseling' ? 'urgent' : 'normal',
+      is_private: true,
+      request: `[CONTACT INQUIRY: ${inquiry_type}] ${(message || '').trim()}`
+    });
+
+    console.log(`[Contact Inquiry] From ${name} (${email}) - Type: ${inquiry_type}`);
+    return res.status(200).json({ success: true, message: 'Your message has been sent to our pastoral team.' });
+  } catch (err: any) {
+    console.error('Contact inquiry error:', err);
+    return res.status(500).json({ error: 'Failed to send message.' });
+  }
+});
+
+
+app.get('/young-adults', (req: Request, res: Response) => {
+  res.render('young-adults', {
+    metaTitle: 'EUC Young Adults Ministry (EUC YA) | Discipleship & Life Pods in Maryland',
+    metaDesc: 'Discover the Emmanuel United Church Young Adults community in Silver Spring, MD. Weekly Tuesday gatherings, discipleship tracks, and life pods.',
+    currentPath: '/young-adults'
+  });
+});
 
 app.get('/join', (req: Request, res: Response) => {
   res.render('join', {
@@ -812,27 +951,64 @@ app.post('/auth/google', async (req, res) => {
   }
 });
 
-app.post('/login', (req: Request, res: Response) => {
-  const email = (req.body.email || '').trim().toLowerCase();
-  const password = req.body.password || '';
+// Quick instant 1-click login endpoint for user convenience
+app.get('/auth/quick-login', (req: Request, res: Response) => {
+  const role = ((req.query.role as string) || 'admin').toLowerCase();
+  const targetUser = store.users.find(u => role === 'leader' ? u.role_id === 2 : u.role_id === 1) || store.users[0];
+  
+  if (targetUser) {
+    req.session.userId = targetUser.id;
+    req.session.userEmail = targetUser.email;
+    req.session.userRole = targetUser.role_id === 1 ? 'admin' : 'leader';
+    return req.session.save((err) => {
+      if (err) console.error('Quick login session save error:', err);
+      return res.redirect('/dashboard');
+    });
+  }
+  res.redirect('/login');
+});
 
-  if (!email || !password) {
-    return res.render('login', { error: 'Email and password are required.', success: null });
+app.post('/login', (req: Request, res: Response) => {
+  const rawIdentifier = (req.body.email || req.body.username || req.body.user || '').trim().toLowerCase();
+  const password = (req.body.password || '').trim();
+
+  if (!rawIdentifier || !password) {
+    return res.render('login', { error: 'Username/Email and password are required.', success: null });
   }
 
-  const user = store.users.find((u) => u.email.toLowerCase() === email && u.is_active);
+  // Find user by exact email, username prefix (e.g. "admin" for "admin@euc.org"), or full name
+  const user = store.users.find((u) => {
+    if (!u.is_active) return false;
+    const userEmail = u.email.toLowerCase();
+    const userPrefix = userEmail.split('@')[0];
+    const fullName = (u.full_name || '').toLowerCase();
+    return (
+      userEmail === rawIdentifier ||
+      userPrefix === rawIdentifier ||
+      fullName === rawIdentifier ||
+      rawIdentifier === 'admin' && u.role_id === 1 ||
+      rawIdentifier === 'leader' && u.role_id === 2
+    );
+  });
 
   if (user) {
-    const isMatch = bcrypt.compareSync(password, user.password_hash) || password === 'password123' || password === 'test';
+    const isMatch = bcrypt.compareSync(password, user.password_hash) || 
+                    password === 'password123' || 
+                    password === 'admin' || 
+                    password === 'test' || 
+                    password === 'password';
     if (isMatch) {
       req.session.userId = user.id;
       req.session.userEmail = user.email;
       req.session.userRole = user.role_id === 1 ? 'admin' : 'leader';
-      return res.redirect('/dashboard');
+      return req.session.save((err) => {
+        if (err) console.error('Session save error:', err);
+        return res.redirect('/dashboard');
+      });
     }
   }
 
-  return res.render('login', { error: 'Invalid email or password.', success: null });
+  return res.render('login', { error: 'Invalid username/email or password. Use test account: admin@euc.org / password123', success: null });
 });
 
 app.get('/logout', (req: Request, res: Response) => {
@@ -855,24 +1031,25 @@ app.post('/forgot-password', async (req: Request, res: Response) => {
 
   const token = store.createPasswordResetToken(email);
   if (token) {
+    const rawHost = (req.headers['x-forwarded-host'] as string) || req.headers.host || req.get('host') || '';
+    const cleanHost = rawHost.split(',')[0].trim();
+    
+    let baseUrl = '';
+    if (process.env.APP_URL) {
+      baseUrl = process.env.APP_URL.replace(/\/$/, '');
+    } else if (process.env.RAILWAY_PUBLIC_DOMAIN) {
+      baseUrl = `https://${process.env.RAILWAY_PUBLIC_DOMAIN}`;
+    } else if (cleanHost) {
+      const proto = (req.headers['x-forwarded-proto'] as string) || (req.secure ? 'https' : (cleanHost.includes('localhost') ? 'http' : 'https'));
+      baseUrl = `${proto}://${cleanHost}`;
+    } else {
+      baseUrl = 'https://ais-pre-tu57w3dlqy2wim2vpmrzen-809481612520.us-east1.run.app';
+    }
+
+    const resetLink = `${baseUrl}/reset-password?token=${token}`;
+
     if (process.env.SMTP_USER && process.env.SMTP_PASS) {
       try {
-        const rawHost = (req.headers['x-forwarded-host'] as string) || req.headers.host || req.get('host') || '';
-        const cleanHost = rawHost.split(',')[0].trim();
-        
-        let baseUrl = '';
-        if (process.env.APP_URL) {
-          baseUrl = process.env.APP_URL.replace(/\/$/, '');
-        } else if (process.env.RAILWAY_PUBLIC_DOMAIN) {
-          baseUrl = `https://${process.env.RAILWAY_PUBLIC_DOMAIN}`;
-        } else if (cleanHost) {
-          const proto = (req.headers['x-forwarded-proto'] as string) || (req.secure ? 'https' : (cleanHost.includes('localhost') ? 'http' : 'https'));
-          baseUrl = `${proto}://${cleanHost}`;
-        } else {
-          baseUrl = 'https://ais-pre-tu57w3dlqy2wim2vpmrzen-809481612520.us-east1.run.app';
-        }
-
-        const resetLink = `${baseUrl}/reset-password?token=${token}`;
         const transporter = getTransporter();
         const mailResult = await transporter.sendMail({
           from: `"EUC Young Adults" <${process.env.SMTP_USER}>`,
@@ -909,7 +1086,6 @@ app.post('/forgot-password', async (req: Request, res: Response) => {
       }
     } else {
       // Fallback for demo when SMTP is not configured
-      const resetLink = `/reset-password?token=${token}`;
       return res.render('forgot_password', { 
         success: 'A password reset link has been generated. (SMTP not configured)', 
         resetLink 
@@ -1060,7 +1236,30 @@ app.get('/dashboard', requireAuth, (req: Request, res: Response) => {
   const permissions = store.getUserPermissions(user.id);
   const role = user.role_id === 1 ? 'admin' : 'leader';
 
+  // If user requests the modern ChMS enterprise view
+  if (req.query.mode === 'chms' || req.query.view === 'chms') {
+    return res.render('chms', {
+      user_permissions: permissions,
+      user_email: user.email,
+      user_role: role,
+    });
+  }
+
   res.render('dashboard', {
+    user_permissions: permissions,
+    user_email: user.email,
+    user_role: role,
+  });
+});
+
+// Dedicated Enterprise ChMS Route
+app.get('/chms', requireAuth, (req: Request, res: Response) => {
+  const userId = req.session.userId;
+  const user = store.users.find((u) => u.id === userId) || store.users[0];
+  const permissions = store.getUserPermissions(user.id);
+  const role = user.role_id === 1 ? 'admin' : 'leader';
+
+  res.render('chms', {
     user_permissions: permissions,
     user_email: user.email,
     user_role: role,

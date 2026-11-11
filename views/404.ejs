@@ -1,37 +1,45 @@
-<%- include('partials/header') %>
+<%- include('partials/header', { 
+    metaTitle: 'Page Not Found (404) | Emmanuel United Church of Maryland',
+    metaDesc: 'The page you were looking for could not be found. Return to Emmanuel United Church of Maryland home.',
+    currentPath: '/404'
+}) %>
+<%- include('partials/navbar') %>
 
-<main id="main-content" class="flex-grow pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto text-center flex flex-col items-center justify-center min-h-[70vh] bg-stone-50 dark:bg-stone-950 text-stone-900 dark:text-stone-100">
-    <div class="space-y-6 max-w-xl">
-        <!-- Quiet Unboxed Metadata (Zero-Pill Discipline) -->
-        <div class="text-xs font-semibold uppercase tracking-[0.2em] text-stone-500 dark:text-stone-400">
-            <span>Error 404</span>
-            <span aria-hidden="true">·</span>
-            <span>Page Not Found</span>
+<main id="main-content" class="min-h-screen text-white pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto text-center flex flex-col items-center justify-center relative overflow-hidden">
+    <!-- Ambient Cosmic Spotlight Beams -->
+    <div class="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[550px] bg-gradient-to-b from-cyan-400/20 via-sky-500/10 to-transparent blur-3xl -z-10"></div>
+
+    <div class="azure-glass-shell p-8 sm:p-12 relative overflow-hidden space-y-6 w-full">
+        <div class="diamond-glint" style="top: 2rem; right: 2rem;"></div>
+
+        <div class="azure-pill inline-flex items-center gap-2 mb-2">
+            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+            <span>Error 404 · Page Not Found</span>
         </div>
 
-        <h1 class="text-4xl sm:text-6xl font-serif font-bold text-stone-900 dark:text-white tracking-tight">
+        <h1 class="text-4xl sm:text-6xl font-heading font-black text-white uppercase tracking-tight">
             Lost Your Way?
         </h1>
 
-        <p class="text-stone-600 dark:text-stone-300 text-sm sm:text-base leading-relaxed">
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-md mx-auto">
             The page or resource you are looking for may have been moved, renamed, or is temporarily unavailable.
         </p>
 
         <!-- Scripture Reflection -->
-        <div class="p-6 rounded-2xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 shadow-subtle text-xs sm:text-sm text-stone-600 dark:text-stone-400 font-serif italic">
-            "Your word is a lamp to my feet and a light to my path." &mdash; <span class="font-sans not-italic font-semibold text-stone-800 dark:text-stone-200">Psalm 119:105</span>
+        <div class="azure-inner-card p-6 border-l-4 border-l-cyan-400 text-xs sm:text-sm text-cyan-200 italic max-w-md mx-auto">
+            "Your word is a lamp to my feet and a light to my path." &mdash; <span class="not-italic font-bold text-white">Psalm 119:105</span>
         </div>
 
         <!-- Navigation CTAs -->
         <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <a href="/" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-stone-900 text-stone-50 hover:bg-stone-800 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-white font-semibold text-xs tracking-wide shadow-subtle transition-all active:scale-95">
+            <a href="/" class="azure-primary-btn w-full sm:w-auto px-6 py-3 text-xs uppercase tracking-wider">
                 &larr; Return to Homepage
             </a>
-            <a href="/events" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-white dark:bg-stone-900 hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-800 dark:text-stone-200 font-semibold text-xs border border-stone-300 dark:border-stone-700 shadow-subtle transition-all active:scale-95">
+            <a href="/events" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-heading font-bold text-xs uppercase tracking-wider border border-white/20 transition-all">
                 Upcoming Events & RSVP
             </a>
-            <a href="/#resources" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-white dark:bg-stone-900 hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-800 dark:text-stone-200 font-semibold text-xs border border-stone-300 dark:border-stone-700 shadow-subtle transition-all active:scale-95">
-                Discipleship Resources
+            <a href="/young-adults#curriculum" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-heading font-bold text-xs uppercase tracking-wider border border-white/20 transition-all">
+                Discipleship Tracks
             </a>
         </div>
     </div>

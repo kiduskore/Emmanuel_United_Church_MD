@@ -1,0 +1,507 @@
+<%- include('partials/header', { 
+    metaTitle: 'Ministries | Emmanuel United Church of Maryland',
+    metaDesc: 'Explore our ministries for Children, Youth, Young Adults, and Intercessory Prayer at Emmanuel United Church of Maryland.',
+    currentPath: '/ministries'
+}) %>
+
+<%- include('partials/navbar') %>
+
+<main id="main-content" class="min-h-screen text-white selection:bg-cyan-500 selection:text-slate-950 pt-24 pb-20 relative overflow-hidden">
+
+    <!-- Ambient Celestial Azure Aurora Spotlight Flares -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[600px] bg-sky-500/18 rounded-full filter blur-[150px]"></div>
+        <div class="absolute top-1/3 -right-40 w-[600px] h-[600px] bg-cyan-400/14 rounded-full filter blur-[160px]"></div>
+        <div class="absolute bottom-10 left-1/4 w-[550px] h-[550px] bg-blue-700/16 rounded-full filter blur-[150px]"></div>
+    </div>
+
+    <!-- Celestial Azure Glassmorphic Ministries Hero Header -->
+    <section class="py-16 sm:py-24 text-center relative overflow-hidden z-10">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/[0.08] border border-sky-400/30 text-xs font-heading font-bold uppercase tracking-widest text-cyan-300 mb-6 backdrop-blur-xl shadow-lg">
+                <span class="font-ethiopic font-bold text-amber-300">አገልግሎቶች</span>
+                <span aria-hidden="true" class="text-white/40">·</span>
+                <span class="text-white">Every Generation</span>
+            </div>
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-heading font-black tracking-tight uppercase text-white mb-6">
+                Ministries At EUC
+            </h1>
+            <p class="text-base sm:text-xl text-sky-100/90 max-w-3xl mx-auto font-sans leading-relaxed text-balance">
+                Discipling every age and stage of life into deeper relationship with Jesus Christ and meaningful kingdom impact in Maryland and the world.
+            </p>
+        </div>
+    </section>
+
+    <!-- Ministries Catalog -->
+    <div class="py-16 sm:py-24 space-y-12 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+        <!-- 1. Children's Ministry -->
+        <section id="children" class="p-8 sm:p-12 rounded-[2.5rem] azure-glass-shell border border-sky-400/30 shadow-2xl scroll-mt-24 relative overflow-hidden">
+            <div class="diamond-glint top-6 right-6 hidden sm:block"></div>
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                <div class="md:col-span-5">
+                    <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-sky-400/30 shadow-xl">
+                        <img src="/static/images/children.jpg" alt="Children's Ministry at EUC Maryland" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="md:col-span-7 space-y-4">
+                    <span class="text-xs font-heading font-bold uppercase tracking-widest text-cyan-300">
+                        Ages 4 to 11
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl font-heading font-bold uppercase text-white">
+                        Kingdom Kids (eKidz)
+                    </h2>
+                    <p class="text-xs sm:text-sm text-sky-100/80 font-sans leading-relaxed">
+                        Kingdom Kids provides a safe, nurturing, and joyful atmosphere where children experience God's love. During our Sunday worship service (10:30 AM), trained teachers guide children through interactive Bible stories, scripture memory verses, worship songs, and engaging arts and crafts.
+                    </p>
+                    <div class="p-4 rounded-xl azure-inner-card border border-sky-400/20 text-xs font-sans text-sky-200/90 space-y-1">
+                        <div><strong class="text-white font-heading uppercase text-xs">When:</strong> Sundays at 10:30 AM (Check-in opens at 10:15 AM)</div>
+                        <div><strong class="text-white font-heading uppercase text-xs">Location:</strong> 12604 New Hampshire Ave, Silver Spring, MD 20904</div>
+                        <div><strong class="text-white font-heading uppercase text-xs">Safety:</strong> Dedicated background-checked team & secure check-in system</div>
+                    </div>
+                    <div class="pt-2">
+                        <button type="button" onclick="window.openVisitModal && window.openVisitModal()" class="px-6 py-3 rounded-full azure-primary-btn text-white font-heading font-bold text-xs uppercase tracking-wider transition-all shadow-md active:scale-95">
+                            Register Your Children For Visit &rarr;
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Ignite Youth Ministry -->
+        <section id="youth" class="p-8 sm:p-12 rounded-[2.5rem] azure-glass-shell border border-sky-400/30 shadow-2xl scroll-mt-24 relative overflow-hidden">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                <div class="md:col-span-5 order-first md:order-last">
+                    <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-sky-400/30 shadow-xl">
+                        <img src="/assets/aistudio/485177008_1067548918734247_7033400783672244298_n_2b77b8e1.jpg" alt="Ignite Youth Ministry" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="md:col-span-7 space-y-4">
+                    <span class="text-xs font-heading font-bold uppercase tracking-widest text-cyan-300">
+                        Ages 12 to 18 (Middle & High School)
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl font-heading font-bold uppercase text-white">
+                        Ignite Youth Ministry
+                    </h2>
+                    <p class="text-xs sm:text-sm text-sky-100/80 font-sans leading-relaxed">
+                        Ignite Youth empowers teenagers to navigate culture with unshakeable faith in Jesus. Through weekly discussions, biblical mentorship, games, and retreats, youth develop strong Christian convictions, enduring friendships, and leadership courage.
+                    </p>
+                    <div class="p-4 rounded-xl azure-inner-card border border-sky-400/20 text-xs font-sans text-sky-200/90 space-y-1">
+                        <div><strong class="text-white font-heading uppercase text-xs">Activities:</strong> Youth discipleship, campus outreaches, and annual retreats</div>
+                        <div><strong class="text-white font-heading uppercase text-xs">Location:</strong> Main Sanctuary & Midweek Youth Pods</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Young Adults Ministry -->
+        <section id="young-adults" class="p-8 sm:p-12 rounded-[2.5rem] azure-glass-shell border border-sky-400/35 shadow-2xl scroll-mt-24 relative overflow-hidden">
+            <div class="diamond-glint top-6 right-6 hidden sm:block"></div>
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                <div class="md:col-span-5">
+                    <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-sky-400/30 shadow-xl">
+                        <img src="/assets/aistudio/671615242_1382859233869879_6517316448121868293_n_c029ca77.jpg" alt="Young Adults Ministry" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="md:col-span-7 space-y-4">
+                    <span class="text-xs font-heading font-bold uppercase tracking-widest text-cyan-300">
+                        College, Grad Students & Young Professionals (19+)
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl font-heading font-bold uppercase text-white">
+                        EUC Young Adults (EUC YA)
+                    </h2>
+                    <p class="text-xs sm:text-sm text-sky-100/80 font-sans leading-relaxed">
+                        EUC YA is a dynamic, multi-campus community of young adults in Maryland, Washington D.C., and Northern Virginia. We host weekly discipleship small groups (Pods), monthly worship encounters, and vocational mentorship forums.
+                    </p>
+                    <div class="p-4 rounded-xl azure-inner-card border border-sky-400/20 text-xs font-sans text-sky-200/90 space-y-1">
+                        <div><strong class="text-white font-heading uppercase text-xs">Weekly Gathering:</strong> Tuesdays 7:30 PM at 914 Silver Spring Ave, Suite 204B</div>
+                        <div><strong class="text-white font-heading uppercase text-xs">Small Groups:</strong> Weekly Life Pods meeting across Maryland & DMV</div>
+                        <div><strong class="text-white font-heading uppercase text-xs">Instagram:</strong> <a href="https://www.instagram.com/eucmdyoungadult/" target="_blank" rel="noopener noreferrer" class="text-cyan-300 hover:underline">@eucmdyoungadult</a></div>
+                    </div>
+                    <div class="pt-2 flex flex-wrap items-center gap-3">
+                        <a href="/young-adults" class="px-6 py-3 rounded-full azure-primary-btn text-white font-heading font-bold text-xs uppercase tracking-wider transition-all shadow-md active:scale-95">
+                            Explore YA Hub & 12 Tracks &rarr;
+                        </a>
+                        <a href="/community" class="px-5 py-2.5 rounded-full azure-pill text-white font-heading font-bold text-xs uppercase tracking-wider transition-colors border border-sky-400/30">
+                            Life Pods
+                        </a>
+                        <a href="/member-form" class="px-5 py-2.5 rounded-full bg-white/[0.08] hover:bg-white/15 text-sky-200 hover:text-white font-heading font-bold text-xs uppercase tracking-wider transition-colors border border-sky-400/20">
+                            Member Form &rarr;
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Prayer & Intercession -->
+        <section id="prayer" class="p-8 sm:p-12 rounded-[2.5rem] azure-glass-shell border border-sky-400/30 shadow-2xl scroll-mt-24 relative overflow-hidden">
+            <div class="space-y-4">
+                <span class="text-xs font-heading font-bold uppercase tracking-widest text-cyan-300">
+                    Spiritual Engine of the Church
+                </span>
+                <h2 class="text-2xl sm:text-4xl font-heading font-bold uppercase text-white">
+                    Prayer & Intercession Ministry
+                </h2>
+                <p class="text-xs sm:text-sm text-sky-100/80 font-sans leading-relaxed">
+                    Prayer is the foundational pillar of Emmanuel United Church of Maryland. Our dedicated prayer warriors and intercessors stand in the gap weekly for individual needs, family breakthroughs, revival across the DMV, and global missions.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                    <div class="p-5 rounded-2xl azure-inner-card border border-sky-400/25">
+                        <strong class="text-white block font-heading uppercase text-sm mb-1">Wednesday Midweek Prayer</strong>
+                        <div class="text-cyan-300 text-xs font-bold font-heading mb-1">Wednesdays, 11:00 AM – 2:00 PM</div>
+                        <div class="text-sky-200/70 text-xs font-sans">914 Silver Spring Ave, Ste 204B, Silver Spring, MD 20910</div>
+                    </div>
+                    <div class="p-5 rounded-2xl azure-inner-card border border-sky-400/25">
+                        <strong class="text-white block font-heading uppercase text-sm mb-1">Need Confidential Prayer?</strong>
+                        <div class="text-sky-200/70 text-xs font-sans mb-3">Our pastoral care team and elders pray over every request.</div>
+                        <button type="button" onclick="window.openWatchModal && (window.openWatchModal(), setTimeout(() => window.switchWatchTab('prayer'), 100))" class="text-xs font-heading font-bold uppercase text-cyan-300 hover:underline">
+                            Submit a Prayer Request &rarr;
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Outreach & Missions -->
+        <section id="outreach" class="p-8 sm:p-12 rounded-[2.5rem] azure-glass-shell border border-sky-400/30 shadow-2xl scroll-mt-24 relative overflow-hidden">
+            <div class="diamond-glint top-8 right-8 hidden sm:block"></div>
+            
+            <div class="space-y-6">
+                <div class="max-w-3xl">
+                    <span class="inline-block px-3.5 py-1 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-400/30 text-xs font-heading font-bold uppercase tracking-widest mb-3">
+                        Compassion & Evangelism in Action
+                    </span>
+                    <h2 class="text-3xl sm:text-5xl font-heading font-black uppercase text-white tracking-tight">
+                        Community Outreach & Missions
+                    </h2>
+                    <div class="text-sm font-ethiopic text-sky-300/90 mt-1 font-semibold">
+                        የወንጌል ተልዕኮና የማህበረሰብ አገልግሎት · በሲልቨር ስፕሪንግ ሜሪላንድ
+                    </div>
+                    <p class="text-xs sm:text-base text-sky-100/90 font-sans leading-relaxed mt-3">
+                        Embodying the gospel of Jesus Christ by taking His living Word to the streets of downtown Silver Spring, ministering to vulnerable families across Montgomery County, and partnering with national and international mission initiatives. Senior Pastor Dr. Bezalem Fisseha and our passionate church team actively proclaim Christ through one-on-one witnessing, multilingual scripture signs, and compassionate community care.
+                    </p>
+                </div>
+
+                <!-- Outreach Focus Areas (3 Cards) -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+                    <div class="p-5 rounded-2xl azure-inner-card border border-sky-400/25 space-y-2">
+                        <div class="w-8 h-8 rounded-xl bg-cyan-500/20 text-cyan-300 flex items-center justify-center font-bold text-sm">
+                            📢
+                        </div>
+                        <h3 class="text-sm font-heading font-bold uppercase text-white">Downtown Street Witness</h3>
+                        <p class="text-xs text-sky-200/80 font-sans leading-relaxed">
+                            Proclaiming the good news along Georgia Avenue, Wayne Avenue, and the Silver Spring civic center plaza with scripture tracts and personal testimony.
+                        </p>
+                    </div>
+
+                    <div class="p-5 rounded-2xl azure-inner-card border border-sky-400/25 space-y-2">
+                        <div class="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold text-sm">
+                            🌐
+                        </div>
+                        <h3 class="text-sm font-heading font-bold uppercase text-white">Multilingual Scripture</h3>
+                        <p class="text-xs text-sky-200/80 font-sans leading-relaxed">
+                            Engaging diverse DMV cultures through scripture banners in Amharic ("ኢየሱስ ጌታ ነው!"), Chinese ("耶穌是道路、真理、生命"), Arabic, and English.
+                        </p>
+                    </div>
+
+                    <div class="p-5 rounded-2xl azure-inner-card border border-sky-400/25 space-y-2">
+                        <div class="w-8 h-8 rounded-xl bg-purple-500/20 text-purple-300 flex items-center justify-center font-bold text-sm">
+                            🤝
+                        </div>
+                        <h3 class="text-sm font-heading font-bold uppercase text-white">Compassion & Relief</h3>
+                        <p class="text-xs text-sky-200/80 font-sans leading-relaxed">
+                            Providing practical benevolence, food distribution support, immigrant settlement guidance, and global missionary church planting alliances.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Picture Gallery Section Header -->
+                <div class="pt-6 border-t border-sky-400/20 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <span class="text-xs font-heading font-bold uppercase tracking-wider text-cyan-300">Photo Showcase</span>
+                        <h3 class="text-xl sm:text-2xl font-heading font-bold uppercase text-white">
+                            Outreach & Street Evangelism Photo Gallery
+                        </h3>
+                        <p class="text-xs text-sky-200/75 font-sans">Click any photo below to inspect in full-resolution lightbox.</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="px-3 py-1 rounded-full azure-pill text-xs font-mono text-cyan-300">11 Authentic Photos</span>
+                    </div>
+                </div>
+
+                <!-- 11 Photos Interactive Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="outreach-photo-grid">
+                    
+                    <!-- 1. Full Team Banner under Autumn Ginkgo -->
+                    <div class="group relative rounded-2xl overflow-hidden azure-inner-card border border-sky-400/30 hover:border-cyan-400 transition-all cursor-pointer shadow-lg" onclick="window.openOutreachLightbox && window.openOutreachLightbox(0)">
+                        <div class="aspect-[4/3] overflow-hidden relative">
+                            <img src="/assets/aistudio/7bf8c88b-0eda-42cc-9c9f-917d28b880c6.JPG" alt="Full Outreach Team in Autumn Silver Spring" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                            <span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 text-[10px] font-heading font-bold uppercase">Team Banner</span>
+                        </div>
+                        <div class="p-3">
+                            <div class="text-xs font-heading font-bold text-white uppercase truncate">The Way, The Truth, The Life</div>
+                            <div class="text-[11px] text-sky-200/70 font-sans truncate">John 14:6 Christ banner with full team</div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Pastor Dr. Bezalem Street Evangelism -->
+                    <div class="group relative rounded-2xl overflow-hidden azure-inner-card border border-sky-400/30 hover:border-cyan-400 transition-all cursor-pointer shadow-lg" onclick="window.openOutreachLightbox && window.openOutreachLightbox(1)">
+                        <div class="aspect-[4/3] overflow-hidden relative">
+                            <img src="/assets/aistudio/7c245220-c7aa-4c8e-b51e-59798eb9def6.JPG" alt="Pastor Dr. Bezalem Street Evangelism" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                            <span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-[10px] font-heading font-bold uppercase">Dr. Bezalem</span>
+                        </div>
+                        <div class="p-3">
+                            <div class="text-xs font-heading font-bold text-white uppercase truncate">Pastor Dr. Bezalem Sharing Tracts</div>
+                            <div class="text-[11px] text-sky-200/70 font-sans truncate">Street corner witness & Romans 1:16 cape</div>
+                        </div>
+                    </div>
+
+                    <!-- 3. ኢየሱስ ጌታ ነው! Sign in Plaza -->
+                    <div class="group relative rounded-2xl overflow-hidden azure-inner-card border border-sky-400/30 hover:border-cyan-400 transition-all cursor-pointer shadow-lg" onclick="window.openOutreachLightbox && window.openOutreachLightbox(2)">
+                        <div class="aspect-[4/3] overflow-hidden relative">
+                            <img src="/assets/aistudio/1e774192-81c3-431d-ae6f-342df0c5227e.JPG" alt="ኢየሱስ ጌታ ነው! Sign" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                            <span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 text-[10px] font-heading font-bold uppercase">Amharic Sign</span>
+                        </div>
+                        <div class="p-3">
+                            <div class="text-xs font-heading font-bold text-white uppercase truncate">ኢየሱስ ጌታ ነው! (Jesus is Lord)</div>
+                            <div class="text-[11px] text-sky-200/70 font-sans truncate">Amharic gospel sign on pedestrian plaza</div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Jesus Saves Sign High on Crosswalk -->
+                    <div class="group relative rounded-2xl overflow-hidden azure-inner-card border border-sky-400/30 hover:border-cyan-400 transition-all cursor-pointer shadow-lg" onclick="window.openOutreachLightbox && window.openOutreachLightbox(3)">
+                        <div class="aspect-[4/3] overflow-hidden relative">
+                            <img src="/assets/aistudio/c316c200-7d7d-489c-86df-097aedfeeac6.JPG" alt="Jesus Saves Sign" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                            <span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-[10px] font-heading font-bold uppercase">Jesus Saves</span>
+                        </div>
+                        <div class="p-3">
+                            <div class="text-xs font-heading font-bold text-white uppercase truncate">Jesus Saves Crosswalk Sign</div>
+                            <div class="text-[11px] text-sky-200/70 font-sans truncate">Elevating the name of Jesus above traffic</div>
+                        </div>
+                    </div>
+
+                    <!-- 5. Multilingual Scripture Flag -->
+                    <div class="group relative rounded-2xl overflow-hidden azure-inner-card border border-sky-400/30 hover:border-cyan-400 transition-all cursor-pointer shadow-lg" onclick="window.openOutreachLightbox && window.openOutreachLightbox(4)">
+                        <div class="aspect-[4/3] overflow-hidden relative">
+                            <img src="/assets/aistudio/593d3e63-d81c-435d-abe4-2d5f5df311ac.JPG" alt="Multilingual Scripture Flag" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                            <span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-200 text-[10px] font-heading font-bold uppercase">Flag Witness</span>
+                        </div>
+                        <div class="p-3">
+                            <div class="text-xs font-heading font-bold text-white uppercase truncate">Multilingual Gospel Flag</div>
+                            <div class="text-[11px] text-sky-200/70 font-sans truncate">Chinese, Arabic, English, Amharic flag</div>
+                        </div>
+                    </div>
+
+                    <!-- 6. Crosswalk Banner Proclamation -->
+                    <div class="group relative rounded-2xl overflow-hidden azure-inner-card border border-sky-400/30 hover:border-cyan-400 transition-all cursor-pointer shadow-lg" onclick="window.openOutreachLightbox && window.openOutreachLightbox(5)">
+                        <div class="aspect-[4/3] overflow-hidden relative">
+                            <img src="/assets/aistudio/da33096c-b6cb-4bce-b8d3-e3d70924b049.JPG" alt="Crosswalk Banner Proclamation" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                            <span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-red-500/20 text-red-300 text-[10px] font-heading font-bold uppercase">Red Cross</span>
+                        </div>
+                        <div class="p-3">
+                            <div class="text-xs font-heading font-bold text-white uppercase truncate">Crosswalk Christ Proclamation</div>
+                            <div class="text-[11px] text-sky-200/70 font-sans truncate">Holding wide banner with pocket Bibles</div>
+                        </div>
+                    </div>
+
+                    <!-- 7. Team Autumn Gathering (Wide shot) -->
+                    <div class="group relative rounded-2xl overflow-hidden azure-inner-card border border-sky-400/30 hover:border-cyan-400 transition-all cursor-pointer shadow-lg" onclick="window.openOutreachLightbox && window.openOutreachLightbox(6)">
+                        <div class="aspect-[4/3] overflow-hidden relative">
+                            <img src="/assets/aistudio/08ba735a-ebbb-4d83-94df-15d6c56a89ec.JPG" alt="EUC Outreach Team Group" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                            <span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 text-[10px] font-heading font-bold uppercase">Great Commission</span>
+                        </div>
+                        <div class="p-3">
+                            <div class="text-xs font-heading font-bold text-white uppercase truncate">United for the Harvest</div>
+                            <div class="text-[11px] text-sky-200/70 font-sans truncate">All generations united in downtown mission</div>
+                        </div>
+                    </div>
+
+                    <!-- 8. Evangelism Plaza Ministry -->
+                    <div class="group relative rounded-2xl overflow-hidden azure-inner-card border border-sky-400/30 hover:border-cyan-400 transition-all cursor-pointer shadow-lg" onclick="window.openOutreachLightbox && window.openOutreachLightbox(7)">
+                        <div class="aspect-[4/3] overflow-hidden relative">
+                            <img src="/assets/aistudio/96b4fdba-fc17-4b33-9f71-060eecbab731.JPG" alt="Amharic Sign in Plaza" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                            <span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-[10px] font-heading font-bold uppercase">Plaza Witness</span>
+                        </div>
+                        <div class="p-3">
+                            <div class="text-xs font-heading font-bold text-white uppercase truncate">Civic Plaza Witness</div>
+                            <div class="text-[11px] text-sky-200/70 font-sans truncate">Unashamed gospel declaration in the city</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Action CTA Cluster -->
+                <div class="pt-6 border-t border-sky-400/20 flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex flex-wrap items-center gap-3">
+                        <button type="button" onclick="window.openVisitModal && window.openVisitModal()" class="px-7 py-3.5 rounded-full azure-primary-btn text-white font-heading font-bold text-xs uppercase tracking-wider transition-all shadow-md active:scale-95">
+                            Plan a Visit &rarr;
+                        </button>
+                        <a href="/contact" class="px-7 py-3.5 rounded-full azure-pill text-white font-heading font-bold text-xs uppercase tracking-wider transition-colors border border-sky-400/30">
+                            Volunteer With Outreach &rarr;
+                        </a>
+                    </div>
+                    <a href="/gallery" class="text-xs font-heading font-bold uppercase tracking-wider text-cyan-300 hover:text-white transition-colors flex items-center gap-1.5">
+                        <span>View Complete Church Photo Gallery</span>
+                        <span>&rarr;</span>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Outreach Lightbox Modal -->
+        <div id="outreach-lightbox-modal" class="fixed inset-0 z-[200] hidden items-center justify-center p-3 sm:p-6 bg-black/95 backdrop-blur-3xl transition-opacity duration-300" role="dialog" aria-modal="true" aria-label="Outreach Photo Lightbox">
+            <div class="relative w-full max-w-5xl max-h-[92vh] flex flex-col items-center justify-center">
+                <!-- Close Button -->
+                <button type="button" onclick="window.closeOutreachLightbox && window.closeOutreachLightbox()" class="absolute -top-12 right-0 sm:right-2 p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer z-50" aria-label="Close lightbox">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+
+                <!-- Navigation Previous Button -->
+                <button type="button" onclick="window.prevOutreachPhoto && window.prevOutreachPhoto()" class="absolute left-2 sm:-left-12 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/60 hover:bg-black/90 text-white border border-white/20 transition-all cursor-pointer z-50" aria-label="Previous photo">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                </button>
+
+                <!-- Navigation Next Button -->
+                <button type="button" onclick="window.nextOutreachPhoto && window.nextOutreachPhoto()" class="absolute right-2 sm:-right-12 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/60 hover:bg-black/90 text-white border border-white/20 transition-all cursor-pointer z-50" aria-label="Next photo">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </button>
+
+                <!-- Image Container -->
+                <div class="relative w-full rounded-2xl overflow-hidden border border-sky-400/40 shadow-2xl bg-black flex items-center justify-center max-h-[75vh]">
+                    <img id="outreach-lightbox-img" src="" alt="Outreach Photo" class="max-h-[75vh] w-auto max-w-full object-contain">
+                </div>
+
+                <!-- Caption Bar -->
+                <div class="w-full mt-4 p-4 rounded-2xl bg-[#08152e]/90 border border-sky-400/30 text-center text-white backdrop-blur-xl">
+                    <div class="flex items-center justify-between mb-1">
+                        <span id="outreach-lightbox-category" class="text-[11px] font-heading font-bold uppercase tracking-widest text-cyan-300">Outreach Photo</span>
+                        <span id="outreach-lightbox-counter" class="text-xs font-mono text-sky-300">Photo 1 of 8</span>
+                    </div>
+                    <h3 id="outreach-lightbox-title" class="text-lg font-heading font-bold uppercase text-white">Title</h3>
+                    <p id="outreach-lightbox-desc" class="text-xs text-sky-200/80 font-sans mt-0.5">Description</p>
+                </div>
+            </div>
+        </div>
+
+        <script>
+        (function() {
+            const outreachPhotos = [
+                {
+                    src: "/assets/aistudio/7bf8c88b-0eda-42cc-9c9f-917d28b880c6.JPG",
+                    title: "The Way, The Truth, The Life (John 14:6)",
+                    category: "Full Outreach Team",
+                    desc: "Emmanuel United Church evangelism team gathered in downtown Silver Spring under golden autumn ginkgo trees with Christ scripture banner."
+                },
+                {
+                    src: "/assets/aistudio/7c245220-c7aa-4c8e-b51e-59798eb9def6.JPG",
+                    title: "Street Evangelism with Pastor Dr. Bezalem Fisseha",
+                    category: "Pastor & Outreach",
+                    desc: "Pastor Dr. Bezalem sharing gospel tracts with passersby alongside sister wearing 'NOT ASHAMED - ROMANS 1:16' cross cape."
+                },
+                {
+                    src: "/assets/aistudio/1e774192-81c3-431d-ae6f-342df0c5227e.JPG",
+                    title: "ኢየሱስ ጌታ ነው! (Jesus is Lord)",
+                    category: "Amharic Proclamation",
+                    desc: "Brother holding high-visibility Amharic chalkboard gospel sign on the downtown Silver Spring pedestrian civic plaza."
+                },
+                {
+                    src: "/assets/aistudio/c316c200-7d7d-489c-86df-097aedfeeac6.JPG",
+                    title: "Jesus Saves Crosswalk Ministry",
+                    category: "Street Witness",
+                    desc: "Lifting the bold yellow 'JESUS SAVES' gospel sign high above the crosswalk on the bustling corner of downtown Silver Spring."
+                },
+                {
+                    src: "/assets/aistudio/593d3e63-d81c-435d-abe4-2d5f5df311ac.JPG",
+                    title: "Multilingual Gospel Flag",
+                    category: "Nations Outreach",
+                    desc: "Waving scripture flag ('耶穌是道路、真理、生命' - Chinese, Arabic, English, Amharic) along the Silver Spring walkway."
+                },
+                {
+                    src: "/assets/aistudio/da33096c-b6cb-4bce-b8d3-e3d70924b049.JPG",
+                    title: "Crosswalk Christ Banner Proclamation",
+                    category: "Gospel Witness",
+                    desc: "Holding the wide Christ banner with the red cross across the Silver Spring intersection while offering prayer."
+                },
+                {
+                    src: "/assets/aistudio/08ba735a-ebbb-4d83-94df-15d6c56a89ec.JPG",
+                    title: "United for the Great Commission",
+                    category: "Team Fellowship",
+                    desc: "Men, women, youth, and children of EUC Maryland taking the love and hope of Jesus to our city."
+                },
+                {
+                    src: "/assets/aistudio/96b4fdba-fc17-4b33-9f71-060eecbab731.JPG",
+                    title: "Civic Plaza Unashamed Proclamation",
+                    category: "Plaza Witness",
+                    desc: "Standing boldly for the Lord with 'ኢየሱስ ጌታ ነው!' banner in front of downtown shops and restaurants."
+                }
+            ];
+
+            let activeIndex = 0;
+
+            window.openOutreachLightbox = function(index) {
+                activeIndex = (index >= 0 && index < outreachPhotos.length) ? index : 0;
+                const modal = document.getElementById('outreach-lightbox-modal');
+                if (!modal) return;
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+                updateLightboxContent();
+            };
+
+            window.closeOutreachLightbox = function() {
+                const modal = document.getElementById('outreach-lightbox-modal');
+                if (!modal) return;
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = '';
+            };
+
+            window.prevOutreachPhoto = function() {
+                activeIndex = (activeIndex - 1 + outreachPhotos.length) % outreachPhotos.length;
+                updateLightboxContent();
+            };
+
+            window.nextOutreachPhoto = function() {
+                activeIndex = (activeIndex + 1) % outreachPhotos.length;
+                updateLightboxContent();
+            };
+
+            function updateLightboxContent() {
+                const item = outreachPhotos[activeIndex];
+                const img = document.getElementById('outreach-lightbox-img');
+                const title = document.getElementById('outreach-lightbox-title');
+                const cat = document.getElementById('outreach-lightbox-category');
+                const desc = document.getElementById('outreach-lightbox-desc');
+                const counter = document.getElementById('outreach-lightbox-counter');
+
+                if (img) img.src = item.src;
+                if (title) title.textContent = item.title;
+                if (cat) cat.textContent = item.category;
+                if (desc) desc.textContent = item.desc;
+                if (counter) counter.textContent = `Photo ${activeIndex + 1} of ${outreachPhotos.length}`;
+            }
+
+            document.addEventListener('keydown', function(e) {
+                const modal = document.getElementById('outreach-lightbox-modal');
+                if (!modal || modal.classList.contains('hidden')) return;
+                if (e.key === 'Escape') window.closeOutreachLightbox();
+                if (e.key === 'ArrowLeft') window.prevOutreachPhoto();
+                if (e.key === 'ArrowRight') window.nextOutreachPhoto();
+            });
+        })();
+        </script>
+
+    </div>
+
+</main>
+
+<%- include('partials/footer') %>

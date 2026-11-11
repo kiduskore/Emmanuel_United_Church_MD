@@ -6,7 +6,7 @@
       "role_id": 1,
       "full_name": "Kidus",
       "is_active": true,
-      "password_hash": "$2b$10$9/8oeycNfBxD9YcFA43G2e3Oyp1yhEg6Pl3LobZMPf14mQUvJoVcy"
+      "password_hash": "$2b$10$QgrG1G15zLUJ0a4m58rPyu.TU56gdR1f3pGo0ceaUosO2rx9Ka4Zq"
     },
     {
       "id": 2,
@@ -687,6 +687,18 @@
       "created_at": "2026-09-01",
       "description": "Three transformative days unplugged in the mountains with worship, deep teaching, campfire fellowship, and visionary leadership sessions.",
       "is_featured": true
+    },
+    {
+      "id": 6,
+      "date": "2026-11-13",
+      "time": "Fri & Sat 7:00 PM · Sun 10:00 AM",
+      "title": "End Time Educational Conference (የመጨረሻው ዘመን ትምህርታዊ ኮንፈረንስ)",
+      "capacity": 350,
+      "category": "gathering",
+      "location": "914 Silver Spring Ave (Fri/Sat 7PM) & 12604 New Hampshire Ave (Sun 10AM)",
+      "created_at": "2026-11-11",
+      "description": "Special 3-day prophetic & bible conference with Pastor Dr. Tesfa Workneh, Pastor Dr. Bezalem Fisseha, Brother Sisay, Pastor Abrham, Singer Nebiyat, and Singer Solomon. Entry Free!",
+      "is_featured": true
     }
   ],
   "eventRsvps": [],
@@ -1115,7 +1127,7 @@
   "nextIds": {
     "pods": 5,
     "users": 4,
-    "events": 6,
+    "events": 7,
     "members": 9,
     "pipeline": 12,
     "resources": 7,

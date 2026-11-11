@@ -66,8 +66,8 @@
     </script>
     <script>
         window.USER_PERMISSIONS = <%- JSON.stringify(user_permissions || []) %>;
-        window.USER_EMAIL = "<%- user_email || "" %>";
-        window.USER_ROLE = "<%- user_role || "" %>";
+        window.USER_EMAIL = <%- JSON.stringify(user_email || '') %>;
+        window.USER_ROLE = <%- JSON.stringify(user_role || '') %>;
     </script>
 <style>
         [v-cloak] { display: none !important; }
@@ -147,7 +147,9 @@
     <aside class="w-72 bg-cardDark md:bg-transparent backdrop-blur-2xl h-[100dvh] fixed left-0 top-0 text-white flex flex-col z-50 transition-transform duration-300" :class="isSidebarOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full md:translate-x-0'">
         <div class="p-6">
             <div class="flex items-center gap-3 mb-2">
-                <img src="/static/euc_logo.jpg" alt="EUC Logo" class="h-12 w-12 rounded-full object-cover shadow-sm border border-white/10">
+                <div class="h-12 w-12 rounded-2xl bg-white/95 p-1 flex items-center justify-center shadow-md border border-white/20 shrink-0">
+                    <img src="/static/euc_church_logo.png" alt="EUC Logo" class="h-full w-full object-contain">
+                </div>
                 <div>
                     <h1 class="text-2xl font-black tracking-tight text-white leading-none">EUC<span class="text-accent text-sm">.</span></h1>
                     <p class="text-white/60 text-[10px] uppercase tracking-widest font-semibold mt-1">Dashboard</p>
@@ -214,7 +216,12 @@
                 </button>
             </div>
             
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-3">
+                <a href="/chms" class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-xs shadow-md transition-all">
+                    <span>🏛️</span>
+                    <span>Launch ChMS Enterprise</span>
+                </a>
+
                 <div class="hidden md:flex flex-col items-end mr-2">
                     <span class="text-sm font-bold text-white">{{ userEmail }}</span>
                     <span class="text-[10px] uppercase tracking-wider font-semibold text-blue-400">{{ userRole === 'admin' ? 'Site Manager' : 'Basic Manager' }}</span>
@@ -1328,7 +1335,7 @@
             <p class="text-xl text-slate-300 mb-10 leading-relaxed">
                 Navigating adulthood is complicated, but you don't have to do it alone. Whether you're in college, starting a career, or figuring out what's next, there is a place for you here.
             </p>
-            <a @click.prevent="currentView = 'ya_groups'" href="#" class="inline-block bg-[#0075ff] text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-600 transition-all shadow-sm hover:shadow-sm transform hover:-translate-y-1">
+            <a @click.prevent="currentView = 'ya_groups'" href="#ya-groups" role="button" class="inline-block bg-[#0075ff] text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-600 transition-all shadow-sm hover:shadow-sm transform hover:-translate-y-1">
                 Join a Small Group
             </a>
         </div>

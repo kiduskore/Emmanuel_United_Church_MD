@@ -4,8 +4,10 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch server.ts",
-    "build": "echo 'Build completed'",
-    "start": "node server.ts"
+    "build:client": "esbuild src/client/index.tsx --bundle --outfile=static/js/church-app.js --define:process.env.NODE_ENV=\\\"production\\\" --minify",
+    "build": "npm run build:client && tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "start": "tsx server.ts"
   },
   "dependencies": {
     "@google/genai": "^2.22.0",
@@ -14,16 +16,19 @@
     "drizzle-kit": "^0.31.10",
     "drizzle-orm": "^0.45.2",
     "ejs": "^3.1.10",
+    "esbuild": "^0.28.2",
     "express": "^4.21.2",
     "express-session": "^1.18.1",
     "firebase": "^12.19.0",
     "firebase-admin": "^14.4.0",
+    "framer-motion": "^14.10.1",
     "helmet": "^8.3.0",
     "marked": "^18.0.13",
     "nodemailer": "^9.0.5",
     "pg": "^8.23.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
+    "react-icons": "^5.7.0",
     "tsx": "^4.19.3",
     "typescript": "^5.7.3"
   },

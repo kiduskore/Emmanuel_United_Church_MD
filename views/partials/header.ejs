@@ -28,41 +28,42 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     
     <!-- Primary SEO Metadata -->
-    <title><%= typeof metaTitle !== 'undefined' ? metaTitle : 'EUCMD Young Adults | Christian Church Community in Maryland' %></title>
-    <meta name="description" content="<%= typeof metaDesc !== 'undefined' ? metaDesc : 'Emmanuel United Church of Maryland Young Adults community. Growing deep in faith, leadership, weekly small groups, discipleship, and spiritual renewal across the DMV.' %>">
-    <meta name="keywords" content="young adult church maryland, dmv christian young adults, christian small groups maryland, knowing god conference, silver spring church young adults, eucmd young adults">
+    <title><%= typeof metaTitle !== 'undefined' ? metaTitle : 'Emmanuel United Church of Maryland | Wholistic Development for Wholistic Mission' %></title>
+    <meta name="description" content="<%= typeof metaDesc !== 'undefined' ? metaDesc : 'Emmanuel United Church of Maryland (EUC Maryland) - A Christ-centered community in Silver Spring, MD welcoming individuals and families to grow spiritually, fellowship, and serve. Sunday worship at 10:30 AM.' %>">
+    <meta name="keywords" content="Emmanuel United Church of Maryland, EUC Maryland, church in Silver Spring MD, Ethiopian church Maryland, DMV Christian church, Pastor Bezalem Fisseha, wholistic development for wholistic mission">
     <meta name="author" content="Emmanuel United Church of Maryland">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     
     <!-- Favicon & Mobile Web App Manifest -->
-    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
-    <link rel="apple-touch-icon" href="/static/favicon.svg">
+    <link rel="icon" type="image/png" href="/static/euc_church_logo.png">
+    <link rel="apple-touch-icon" href="/static/euc_church_logo.png">
     <link rel="manifest" href="/static/site.webmanifest">
-    <meta name="theme-color" content="#0075ff">
+    <meta name="theme-color" content="#0f1e36">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://ya.eucmaryland.org<%= typeof currentPath !== 'undefined' ? currentPath : '' %>">
+    <link rel="canonical" href="https://eucmaryland.org<%= typeof currentPath !== 'undefined' ? currentPath : '' %>">
     
     <!-- Open Graph Social Share Cards -->
-    <meta property="og:site_name" content="EUCMD Young Adults">
-    <meta property="og:title" content="<%= typeof metaTitle !== 'undefined' ? metaTitle : 'EUCMD Young Adults | Christian Church Community in Maryland' %>">
-    <meta property="og:description" content="<%= typeof metaDesc !== 'undefined' ? metaDesc : 'Emmanuel United Church of Maryland Young Adults community. Growing deep in faith, leadership, weekly small groups, discipleship, and spiritual renewal across the DMV.' %>">
-    <meta property="og:url" content="https://ya.eucmaryland.org<%= typeof currentPath !== 'undefined' ? currentPath : '' %>">
+    <meta property="og:site_name" content="Emmanuel United Church of Maryland">
+    <meta property="og:title" content="<%= typeof metaTitle !== 'undefined' ? metaTitle : 'Emmanuel United Church of Maryland | Wholistic Development for Wholistic Mission' %>">
+    <meta property="og:description" content="<%= typeof metaDesc !== 'undefined' ? metaDesc : 'A Christ-centered community welcoming all to grow spiritually, fellowship, and serve. Worship with us Sundays at 10:30 AM in Silver Spring, MD.' %>">
+    <meta property="og:url" content="https://eucmaryland.org<%= typeof currentPath !== 'undefined' ? currentPath : '' %>">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://ya.eucmaryland.org/static/hero_images/worship_crowd.jpg">
+    <meta property="og:image" content="/static/images/sanctuary.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="EUCMD Young Adults worship and prayer gathering in Maryland">
+    <meta property="og:image:alt" content="Emmanuel United Church of Maryland sanctuary worship">
     <meta property="og:locale" content="en_US">
     
     <!-- Twitter Social Share Cards -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="<%= typeof metaTitle !== 'undefined' ? metaTitle : 'EUCMD Young Adults | Christian Church Community in Maryland' %>">
-    <meta name="twitter:description" content="<%= typeof metaDesc !== 'undefined' ? metaDesc : 'Emmanuel United Church of Maryland Young Adults community. Growing deep in faith, leadership, weekly small groups, discipleship, and spiritual renewal across the DMV.' %>">
-    <meta name="twitter:image" content="https://ya.eucmaryland.org/static/hero_images/worship_crowd.jpg">
-    <meta name="twitter:image:alt" content="EUCMD Young Adults worship gathering">
+    <meta name="twitter:title" content="<%= typeof metaTitle !== 'undefined' ? metaTitle : 'Emmanuel United Church of Maryland' %>">
+    <meta name="twitter:description" content="<%= typeof metaDesc !== 'undefined' ? metaDesc : 'Wholistic Development for Wholistic Mission — Emmanuel United Church of Maryland.' %>">
+    <meta name="twitter:image" content="/static/images/sanctuary.jpg">
+    <meta name="twitter:image:alt" content="Emmanuel United Church of Maryland sanctuary">
 
     <!-- Schema.org JSON-LD Structured Data -->
     <script type="application/ld+json">
@@ -75,7 +76,7 @@
           "name": "EUCMD Young Adults",
           "legalName": "Emmanuel United Church of Maryland Young Adults Ministry",
           "url": "https://ya.eucmaryland.org",
-          "logo": "https://ya.eucmaryland.org/static/hero_images/new_hero.jpg",
+          "logo": "https://ya.eucmaryland.org/static/euc_church_logo.png",
           "image": "https://ya.eucmaryland.org/static/hero_images/worship_crowd.jpg",
           "description": "A vibrant Christian community of young adults in Maryland passionate about encountering Jesus, equipping believers, and empowering disciples.",
           "parentOrganization": {
@@ -147,10 +148,10 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="format-detection" content="telephone=no">
     
-    <!-- Modern Web Fonts: Noto Sans Ethiopic + Plus Jakarta Sans + Playfair Display + Cormorant Garamond + Cinzel -->
+    <!-- Modern Web Fonts: Oswald + Noto Sans Ethiopic + Plus Jakarta Sans + Playfair Display + Cormorant Garamond -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Noto+Sans+Ethiopic:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Noto+Sans+Ethiopic:wght@300;400;500;600;700;800;900&family=Oswald:wght@500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- GSAP for Smooth Scroll & Animations (with graceful fallback for iOS Safari) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
@@ -164,44 +165,54 @@
                 extend: {
                     fontFamily: {
                         sans: ['"Plus Jakarta Sans"', '"Noto Sans Ethiopic"', 'system-ui', '-apple-system', 'sans-serif'],
+                        heading: ['"Oswald"', '"Plus Jakarta Sans"', 'sans-serif'],
                         ethiopic: ['"Noto Sans Ethiopic"', '"Plus Jakarta Sans"', 'sans-serif'],
-                        display: ['"Cormorant Garamond"', '"Playfair Display"', 'Georgia', 'serif'],
-                        serif: ['"Cormorant Garamond"', '"Playfair Display"', 'Georgia', 'serif'],
+                        display: ['"Oswald"', '"Playfair Display"', 'sans-serif'],
+                        serif: ['"Playfair Display"', '"Cormorant Garamond"', 'Georgia', 'serif'],
                         cinzel: ['"Cinzel"', 'serif'],
                     },
                     colors: {
-                        stone: {
-                            50: '#FAF8F5',
-                            100: '#F4EFE6',
-                            200: '#E8E1D5',
-                            300: '#D5CBB9',
-                            400: '#B0A28B',
-                            500: '#8C7C63',
-                            600: '#6E604B',
-                            700: '#524736',
-                            800: '#383023',
-                            900: '#211C14',
-                            950: '#14110C'
+                        azure: {
+                            space: '#060d1d',
+                            deep: '#0a1428',
+                            surface: 'rgba(10, 18, 34, 0.82)',
+                            surfaceHover: 'rgba(15, 26, 48, 0.9)',
+                            glow: '#00d2ff',
+                            cyan: '#38bdf8',
+                            electric: '#0ea5e9',
+                            ice: '#e0f2fe',
+                            muted: '#94a3b8'
                         },
-                        warm: {
-                            bronze: '#9E6738',
-                            ochre: '#B65C2B',
-                            forest: '#324030',
-                            sand: '#F7F4EE'
+                        nft: {
+                            bg: '#060d1d',
+                            card: 'rgba(10, 18, 34, 0.82)',
+                            cardHover: 'rgba(16, 28, 52, 0.92)',
+                            glass: 'rgba(14, 165, 233, 0.15)',
+                            glassBorder: 'rgba(56, 189, 248, 0.35)',
+                            frosted: 'rgba(224, 242, 254, 0.12)',
+                            primary: '#0ea5e9',
+                            accent: '#00e5ff',
+                            cyan: '#38bdf8',
+                            periwinkle: '#7dd3fc',
+                            softViolet: '#bae6fd'
                         },
                         studio: {
-                            900: '#15120E', // warm dark stone
-                            800: '#1F1B16',
-                            700: '#2E2820',
-                            100: '#F4EFE6',
-                            50: '#FAF8F5'  // warm stone background
+                            900: '#060d1d',
+                            800: '#0b162c',
+                            700: '#132240',
+                            100: '#e2e8f0',
+                            50: '#f8fafc'
                         }
                     },
                     boxShadow: {
-                        'subtle': '0 1px 3px 0 rgba(28, 25, 23, 0.04), 0 1px 2px -1px rgba(28, 25, 23, 0.04)',
-                        'editorial': '0 10px 30px -10px rgba(28, 25, 23, 0.08), 0 4px 6px -2px rgba(28, 25, 23, 0.03)',
-                        'editorial-dark': '0 20px 40px -15px rgba(0, 0, 0, 0.6)',
-                        'premium': '0 20px 40px -10px rgba(0, 0, 0, 0.06)'
+                        'subtle': '0 1px 3px 0 rgba(0, 0, 0, 0.2)',
+                        'editorial': '0 10px 30px -10px rgba(0, 0, 0, 0.5)',
+                        'azure-glow': '0 12px 35px -5px rgba(14, 165, 233, 0.55), 0 0 20px rgba(0, 229, 255, 0.4)',
+                        'azure-glass': '0 25px 60px -15px rgba(2, 6, 23, 0.8), inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.6), inset 0 -1px 1px 0 rgba(56, 189, 248, 0.2)',
+                        'azure-inner': '0 15px 35px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.15)',
+                        'nft-glow': '0 10px 30px -5px rgba(14, 165, 233, 0.45)',
+                        'nft-glass': '0 25px 60px -15px rgba(2, 6, 23, 0.8), inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.6)',
+                        'nft-frosted': '0 30px 60px -20px rgba(4, 9, 20, 0.85), inset 0 1px 1px rgba(255, 255, 255, 0.3)'
                     }
                 }
             }
@@ -216,6 +227,11 @@
             -webkit-text-size-adjust: 100%;
             touch-action: manipulation;
             scroll-behavior: smooth;
+        }
+
+        /* Ensure in-page anchor links clear the sticky 5rem (h-20) navigation header */
+        [id], section[id] {
+            scroll-margin-top: 6rem;
         }
 
         /* Mobile touch & iOS optimizations */
@@ -305,57 +321,180 @@
             opacity: 1;
         }
         
-        .macos-glass {
-            background-color: rgba(255, 255, 255, 0.7);
+        /* ======================================================== */
+        /* CELESTIAL AZURE GLASSMORPHISM (IMAGE_29354439.PNG THEME) */
+        /* Deep space midnight navy, cyan spotlight, frosted glass  */
+        /* ======================================================== */
+        body {
+            background-color: #060d1d !important;
+            color: #f8fafc !important;
+            background-image: 
+                radial-gradient(ellipse 80% 55% at 50% -10%, rgba(14, 165, 233, 0.45) 0%, rgba(2, 132, 199, 0.25) 35%, rgba(6, 13, 29, 0) 75%),
+                radial-gradient(ellipse 50% 40% at 85% 20%, rgba(6, 182, 212, 0.16) 0%, transparent 60%),
+                radial-gradient(circle at 15% 85%, rgba(14, 116, 144, 0.18) 0%, transparent 55%),
+                radial-gradient(circle at 50% 60%, rgba(30, 58, 138, 0.15) 0%, transparent 60%);
+            background-attachment: fixed;
+        }
+
+        /* Outer Azure Frosted Glass Container (Matching attachment outer card) */
+        .azure-glass-shell,
+        .nft-glass-card {
+            background: linear-gradient(180deg, rgba(20, 115, 230, 0.28) 0%, rgba(10, 55, 125, 0.18) 35%, rgba(8, 20, 42, 0.82) 100%);
+            backdrop-filter: blur(36px) saturate(190%);
+            -webkit-backdrop-filter: blur(36px) saturate(190%);
+            border: 1px solid rgba(125, 211, 252, 0.35);
+            border-top: 1.5px solid rgba(255, 255, 255, 0.75);
+            border-radius: 2.5rem;
+            box-shadow: 
+                0 25px 60px -15px rgba(2, 6, 23, 0.85),
+                0 0 45px -10px rgba(14, 165, 233, 0.35),
+                inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.6),
+                inset 0 -1px 1px 0 rgba(56, 189, 248, 0.2);
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            position: relative;
+        }
+
+        .azure-glass-shell:hover,
+        .nft-glass-card:hover {
+            border-color: rgba(56, 189, 248, 0.55);
+            transform: translateY(-2px);
+            box-shadow: 
+                0 30px 70px -15px rgba(2, 6, 23, 0.9),
+                0 0 55px -5px rgba(14, 165, 233, 0.45),
+                inset 0 2px 1.5px 0 rgba(255, 255, 255, 0.75);
+        }
+
+        /* Inner Nested Dark Glass Card (Matching attachment inner tasks) */
+        .azure-inner-card {
+            background: rgba(10, 18, 34, 0.82);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-top: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 1.5rem;
+            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            transition: all 0.25s ease;
+        }
+
+        .azure-inner-card:hover {
+            background: rgba(14, 25, 46, 0.9);
+            border-color: rgba(56, 189, 248, 0.35);
+        }
+
+        /* Diamond Star Lens Flare Sparkle (Attachment glint feature) */
+        .diamond-glint {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            pointer-events: none;
+            z-index: 30;
+        }
+        .diamond-glint::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 22px;
+            height: 2.5px;
+            background: #ffffff;
+            box-shadow: 0 0 10px 2px #38bdf8, 0 0 20px 4px #00e5ff;
+            border-radius: 9999px;
+        }
+        .diamond-glint::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 2.5px;
+            height: 22px;
+            background: #ffffff;
+            box-shadow: 0 0 10px 2px #38bdf8, 0 0 20px 4px #00e5ff;
+            border-radius: 9999px;
+        }
+
+        /* Glowing Electric Cyan Progress Bar (Attachment signature widget) */
+        .cyan-progress-track {
+            height: 7px;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.12);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .cyan-progress-fill {
+            height: 100%;
+            border-radius: 9999px;
+            background: linear-gradient(90deg, #38bdf8 0%, #00e5ff 100%);
+            box-shadow: 0 0 14px rgba(0, 229, 255, 0.9);
+        }
+
+        /* Frosted Pill Buttons & Badges (Matching "In progress" badge) */
+        .nft-frosted-pill,
+        .azure-pill {
+            background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            border-radius: 1.5rem;
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.05);
-            transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-        
-        .macos-glass:hover {
-            transform: translateY(-4px) scale(1.01);
-            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .macos-nav {
-            background-color: rgba(255, 255, 255, 0.8) !important;
-            backdrop-filter: blur(24px) saturate(180%) !important;
-            -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 9999px;
+            color: #ffffff;
+            transition: all 0.25s ease;
         }
 
-        html.dark .macos-nav {
-            background-color: rgba(21, 18, 14, 0.85) !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-        }
-        
-        .macos-card {
-            background-color: #ffffff;
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
-            border-radius: 1.5rem;
-            overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        .nft-frosted-pill:hover,
+        .azure-pill:hover {
+            background: rgba(255, 255, 255, 0.16);
+            border-color: rgba(56, 189, 248, 0.5);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
         }
 
-        html.dark .macos-card {
-            background-color: #1F1B16 !important;
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6) !important;
+        /* Primary Glowing Azure/Cyan Pill Button */
+        .nft-primary-btn,
+        .azure-primary-btn {
+            background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 50%, #00d2ff 100%);
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            color: #ffffff;
+            box-shadow: 0 10px 30px -5px rgba(14, 165, 233, 0.6), inset 0 1.5px 0 rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(14px);
+            border-radius: 9999px;
+            transition: all 0.25s ease;
         }
 
-        html.dark .macos-glass {
-            background-color: rgba(31, 27, 22, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6);
+        .nft-primary-btn:hover,
+        .azure-primary-btn:hover {
+            background: linear-gradient(135deg, #0369a1 0%, #0284c7 50%, #38bdf8 100%);
+            box-shadow: 0 15px 40px -5px rgba(0, 229, 255, 0.7), inset 0 2px 0 rgba(255, 255, 255, 0.8);
+            transform: translateY(-2px) scale(1.01);
         }
-    
-        html.dark body {
-            background-color: #14110C; /* Rich dark stone */
-            color: #F4EFE6; /* Warm stone text */
+
+        .nft-glow-text,
+        .azure-glow-text {
+            text-shadow: 0 2px 20px rgba(56, 189, 248, 0.55);
+        }
+
+        .nft-gradient-text,
+        .azure-gradient-text {
+            background: linear-gradient(135deg, #ffffff 40%, #7dd3fc 75%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Floating Bottom Glass Dock */
+        .nft-dock {
+            background: rgba(8, 18, 38, 0.85);
+            backdrop-filter: blur(32px) saturate(200%);
+            -webkit-backdrop-filter: blur(32px) saturate(200%);
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            border-top: 1.5px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 30px rgba(14, 165, 233, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            border-radius: 9999px;
+        }
+
+        .nft-hex-btn {
+            background: linear-gradient(135deg, #0284c7, #00d2ff);
+            clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+            box-shadow: 0 0 25px rgba(0, 210, 255, 0.8);
         }
         
         .editorial-rule {
@@ -379,16 +518,13 @@
         }
     </style>
 </head>
-<body class="bg-stone-50 dark:bg-stone-950 text-stone-900 dark:text-stone-100 overflow-x-hidden min-h-screen flex flex-col font-sans selection:bg-stone-200 dark:selection:bg-stone-800">
+<body class="bg-[#060d1d] text-white overflow-x-hidden min-h-screen flex flex-col font-sans selection:bg-sky-500/30 selection:text-white">
     <!-- Accessible Skip to Main Content Link (WCAG 2.1 AA) -->
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[99999] focus:px-4 focus:py-2.5 focus:bg-stone-900 focus:text-white focus:rounded-xl focus:shadow-2xl focus:outline-none focus:ring-2 focus:ring-stone-400 font-bold text-xs">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[99999] focus:px-4 focus:py-2.5 focus:bg-sky-950 focus:text-white focus:rounded-xl focus:shadow-2xl focus:outline-none focus:ring-2 focus:ring-sky-400 font-bold text-xs">
         Skip to main content
     </a>
 
     <div id="progress-bar"></div>
-
-    <!-- Modular Navigation Header (Includes 4-Language Switcher & Theme Toggle) -->
-    <%- include('navbar') %>
 
     <!-- Global Site Search Engine (Command Palette Ctrl+K / Cmd+K) -->
     <%- include('search-engine') %>

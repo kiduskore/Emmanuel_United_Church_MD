@@ -8,6 +8,15 @@ declare global {
 
 export const createPool = () => {
   if (!global._postgresPool) {
+    if (!process.env.SQL_HOST) {
+      global._postgresPool = {
+        query: async () => ({ rows: [] }),
+        connect: async () => ({ query: async () => ({ rows: [] }), release: () => {} }),
+        on: () => {},
+      } as any;
+      return global._postgresPool;
+    }
+
     global._postgresPool = new Pool({
       host: process.env.SQL_HOST,
       user: process.env.SQL_USER,
@@ -24,5 +33,40 @@ export const createPool = () => {
   return global._postgresPool;
 };
 
-const pool = createPool();
-export const db = drizzle(pool, { schema });
+let db: any;
+try {
+  if (process.env.SQL_HOST) {
+    const pool = createPool();
+    db = drizzle(pool, { schema });
+  } else {
+    console.warn('[AI Studio] Database not connected — using mock');
+    const noOp = {
+      findMany: async () => [],
+      findFirst: async () => null,
+      findUnique: async () => null,
+      create: async (d: any) => d?.data ?? {},
+      update: async (d: any) => d?.data ?? {},
+      delete: async () => ({})
+    };
+    db = new Proxy({}, {
+      get: (_, prop) => prop === 'query'
+        ? new Proxy({}, { get: () => noOp }) : async () => [],
+    });
+  }
+} catch {
+  console.warn('[AI Studio] Database initialization failed — using mock');
+  const noOp = {
+    findMany: async () => [],
+    findFirst: async () => null,
+    findUnique: async () => null,
+    create: async (d: any) => d?.data ?? {},
+    update: async (d: any) => d?.data ?? {},
+    delete: async () => ({})
+  };
+  db = new Proxy({}, {
+    get: (_, prop) => prop === 'query'
+      ? new Proxy({}, { get: () => noOp }) : async () => [],
+  });
+}
+
+export { db };

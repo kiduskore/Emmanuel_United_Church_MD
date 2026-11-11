@@ -1,24 +1,33 @@
-<%- include('partials/header') %>
+<%- include('partials/header', { 
+    metaTitle: 'Cookie Policy | Emmanuel United Church of Maryland',
+    metaDesc: 'Audit and inventory of cookies used on Emmanuel United Church of Maryland platform.',
+    currentPath: '/cookie-policy'
+}) %>
+<%- include('partials/navbar') %>
 
-<main id="main-content" class="flex-grow pt-28 pb-20 px-6 lg:px-12 max-w-5xl mx-auto text-left">
-    <!-- Header Badge -->
-    <div class="mb-8">
-        <a href="/" class="inline-flex items-center gap-2 text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline mb-4">
-            &larr; Back to Home
-        </a>
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 text-xs font-bold uppercase tracking-wider mb-3">
-            Transparency & Consent
+<main id="main-content" class="min-h-screen text-white pt-28 pb-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto flex-1 w-full relative overflow-hidden">
+    <!-- Ambient Cosmic Spotlight Beams -->
+    <div class="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[550px] bg-gradient-to-b from-cyan-400/20 via-sky-500/10 to-transparent blur-3xl -z-10"></div>
+
+    <div class="azure-glass-shell p-8 sm:p-12 relative overflow-hidden space-y-10">
+        <div class="diamond-glint" style="top: 2rem; right: 2rem;"></div>
+
+        <!-- Header Badge -->
+        <div>
+            <div class="azure-pill inline-flex items-center gap-2 mb-3">
+                <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+                <span>Transparency & Consent</span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-heading font-black text-white uppercase tracking-tight mb-3">
+                Cookie Policy
+            </h1>
+            <p class="text-xs font-mono text-cyan-300">
+                Last Updated: 2026 &bull; Effective Immediately
+            </p>
         </div>
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-studio-900 dark:text-white tracking-tight mb-3">
-            Cookie Policy
-        </h1>
-        <p class="text-sm text-zinc-500 dark:text-zinc-400">
-            Last Updated: October 20, 2026 &bull; Effective Immediately
-        </p>
-    </div>
 
-    <!-- Interactive Preference Trigger Box -->
-    <div class="p-6 sm:p-8 rounded-3xl bg-zinc-100 dark:bg-studio-800/80 border border-zinc-200 dark:border-white/10 mb-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <!-- Interactive Preference Trigger Box -->
+        <div class="azure-inner-card p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
         <div>
             <h2 class="text-base font-bold text-studio-900 dark:text-white mb-1">
                 Customize Your Cookie Preferences
@@ -135,6 +144,7 @@
                 Address: 914 Silver Spring Ave, Silver Spring, MD 20910
             </p>
         </section>
+    </div>
     </div>
 </main>
 

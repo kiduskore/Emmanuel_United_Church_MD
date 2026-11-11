@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Emmanuel United Church of Maryland - Enterprise Church Management System (ChMS) Web Dashboard.">
+    <title>EUC ChMS Dashboard | Emmanuel United Church of Maryland</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+                        heading: ['"Oswald"', '"Plus Jakarta Sans"', 'sans-serif']
+                    },
+                    colors: {
+                        azure: {
+                            space: '#060d1d',
+                            deep: '#0a1428',
+                            surface: 'rgba(10, 18, 34, 0.82)',
+                            glow: '#00d2ff',
+                            cyan: '#38bdf8',
+                            electric: '#0ea5e9',
+                            ice: '#e0f2fe'
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.25s ease-out forwards;
+        }
+
+        body {
+            background-color: #060d1d;
+            color: #f8fafc;
+            background-image: 
+                radial-gradient(ellipse 80% 55% at 50% -10%, rgba(14, 165, 233, 0.45) 0%, rgba(2, 132, 199, 0.25) 35%, rgba(6, 13, 29, 0) 75%),
+                radial-gradient(ellipse 50% 40% at 85% 20%, rgba(6, 182, 212, 0.16) 0%, transparent 60%),
+                radial-gradient(circle at 15% 85%, rgba(14, 116, 144, 0.18) 0%, transparent 55%);
+            background-attachment: fixed;
+        }
+
+        /* Outer Azure Frosted Glass Container (Matching attachment outer card) */
+        .azure-glass-shell {
+            background: linear-gradient(180deg, rgba(20, 115, 230, 0.28) 0%, rgba(10, 55, 125, 0.18) 35%, rgba(8, 20, 42, 0.82) 100%);
+            backdrop-filter: blur(36px) saturate(190%);
+            -webkit-backdrop-filter: blur(36px) saturate(190%);
+            border: 1px solid rgba(125, 211, 252, 0.35);
+            border-top: 1.5px solid rgba(255, 255, 255, 0.75);
+            border-radius: 2.5rem;
+            box-shadow: 
+                0 25px 60px -15px rgba(2, 6, 23, 0.85),
+                0 0 45px -10px rgba(14, 165, 233, 0.35),
+                inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.6),
+                inset 0 -1px 1px 0 rgba(56, 189, 248, 0.2);
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            position: relative;
+        }
+
+        /* Inner Nested Dark Glass Card */
+        .azure-inner-card {
+            background: rgba(10, 18, 34, 0.82);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-top: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 1.5rem;
+            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        /* 4-point Diamond Star Glint */
+        .diamond-glint {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            pointer-events: none;
+            z-index: 30;
+        }
+        .diamond-glint::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 22px;
+            height: 2.5px;
+            background: #ffffff;
+            box-shadow: 0 0 10px 2px #38bdf8, 0 0 20px 4px #00e5ff;
+            border-radius: 9999px;
+        }
+        .diamond-glint::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 2.5px;
+            height: 22px;
+            background: #ffffff;
+            box-shadow: 0 0 10px 2px #38bdf8, 0 0 20px 4px #00e5ff;
+            border-radius: 9999px;
+        }
+
+        /* Glowing Electric Cyan Progress Bar */
+        .cyan-progress-track {
+            height: 7px;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.12);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .cyan-progress-fill {
+            height: 100%;
+            border-radius: 9999px;
+            background: linear-gradient(90deg, #38bdf8 0%, #00e5ff 100%);
+            box-shadow: 0 0 14px rgba(0, 229, 255, 0.9);
+        }
+
+        /* Frosted Pill Buttons & Badges */
+        .azure-pill {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 9999px;
+            color: #ffffff;
+            transition: all 0.25s ease;
+        }
+
+        /* Primary Glowing Azure Pill Button */
+        .azure-primary-btn {
+            background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 50%, #00d2ff 100%);
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            color: #ffffff;
+            box-shadow: 0 10px 30px -5px rgba(14, 165, 233, 0.6), inset 0 1.5px 0 rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(14px);
+            border-radius: 9999px;
+            transition: all 0.25s ease;
+        }
+    </style>
+</head>
+<body class="bg-[#060d1d] text-slate-100 antialiased min-h-screen">
+    
+    <!-- React ChMS Root -->
+    <div id="euc-chms-dashboard-root">
+        <!-- High-density initial skeleton while React hydrates -->
+        <div class="min-h-screen flex items-center justify-center p-8 text-center text-slate-400">
+            <div class="azure-glass-shell p-10 rounded-[2.5rem] max-w-sm mx-auto space-y-4 shadow-2xl">
+                <div class="w-16 h-16 rounded-2xl bg-white/95 p-1 flex items-center justify-center mx-auto shadow-lg shadow-sky-500/40 border border-sky-300/40 overflow-hidden">
+                    <img src="/static/euc_church_logo.png" alt="Emmanuel United Church Logo" class="w-full h-full object-contain">
+                </div>
+                <p class="text-base font-bold text-white tracking-wide">Connecting to Emmanuel ChMS...</p>
+                <div class="cyan-progress-track max-w-xs mx-auto">
+                    <div class="cyan-progress-fill animate-pulse" style="width: 75%;"></div>
+                </div>
+                <p class="text-xs text-sky-200/70">Synchronizing Maryland campuses & ministry databases</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Client Bundle -->
+    <script src="/static/js/church-app.js"></script>
+</body>
+</html>

@@ -1,100 +1,109 @@
-<%- include('partials/header') %>
+<%- include('partials/header', { 
+    metaTitle: 'Data Deletion Request | Right to Erasure | EUCMD',
+    metaDesc: 'Exercise your right to erasure under GDPR and CCPA. Request permanent removal of your personal data.',
+    currentPath: '/privacy/data-deletion'
+}) %>
+<%- include('partials/navbar') %>
 
-<main id="main-content" class="flex-grow pt-28 pb-20 px-6 lg:px-12 max-w-3xl mx-auto text-left">
-    <!-- Header Badge -->
-    <div class="mb-8">
-        <a href="/privacy" class="inline-flex items-center gap-2 text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline mb-4">
-            &larr; Back to Privacy Policy
-        </a>
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20 text-xs font-bold uppercase tracking-wider mb-3">
-            Right to Erasure (GDPR & CCPA)
-        </div>
-        <h1 class="text-3xl sm:text-4xl font-black text-studio-900 dark:text-white tracking-tight mb-3">
-            Personal Data Deletion Request
-        </h1>
-        <p class="text-sm text-zinc-600 dark:text-zinc-400">
-            Submit your email address below to permanently remove all personal information (newsletter subscriptions, event RSVPs, contact notes, and prayer requests) from our databases.
-        </p>
-    </div>
+<main id="main-content" class="min-h-screen text-white pt-28 pb-20 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto flex-1 w-full relative overflow-hidden">
+    <!-- Ambient Cosmic Spotlight Beams -->
+    <div class="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[550px] bg-gradient-to-b from-cyan-400/20 via-sky-500/10 to-transparent blur-3xl -z-10"></div>
 
-    <!-- Request Form Card -->
-    <div class="p-6 sm:p-10 rounded-3xl bg-white dark:bg-studio-800 border border-zinc-200 dark:border-white/10 shadow-xl space-y-6">
-        
-        <form id="data-deletion-form" onsubmit="submitDataDeletion(event)" class="space-y-6">
-            <input type="hidden" name="csrf_token" value="<%= typeof csrf_token !== 'undefined' ? csrf_token : '' %>">
-            
-            <div>
-                <label for="delete-email" class="block text-xs font-bold uppercase tracking-wider text-zinc-700 dark:text-zinc-300 mb-2">
-                    Your Email Address <span class="text-rose-500">*</span>
-                </label>
-                <input type="email" 
-                       id="delete-email" 
-                       required 
-                       placeholder="name@example.com" 
-                       autocomplete="email"
-                       class="w-full px-4 py-3.5 rounded-2xl bg-zinc-50 dark:bg-studio-900/60 border border-zinc-300 dark:border-white/10 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-rose-500">
-                <p class="text-[11px] text-zinc-500 dark:text-zinc-400 mt-1.5">
-                    We will search all database records associated with this email address.
-                </p>
+    <div class="azure-glass-shell p-8 sm:p-12 relative overflow-hidden space-y-8">
+        <div class="diamond-glint" style="top: 2rem; right: 2rem;"></div>
+
+        <!-- Header Badge -->
+        <div>
+            <div class="azure-pill inline-flex items-center gap-2 mb-3">
+                <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+                <span>Right to Erasure (GDPR & CCPA)</span>
             </div>
+            <h1 class="text-3xl sm:text-4xl font-heading font-black text-white uppercase tracking-tight mb-3">
+                Personal Data Deletion Request
+            </h1>
+            <p class="text-sm text-slate-300 leading-relaxed">
+                Submit your email address below to permanently remove all personal information (newsletter subscriptions, event RSVPs, contact notes, and prayer requests) from our databases.
+            </p>
+        </div>
 
-            <div>
-                <label class="block text-xs font-bold uppercase tracking-wider text-zinc-700 dark:text-zinc-300 mb-2">
-                    Scope of Deletion
-                </label>
-                <div class="space-y-2.5 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300">
-                    <label class="flex items-center gap-3 p-3 rounded-xl bg-zinc-50 dark:bg-studio-900/40 border border-zinc-200 dark:border-white/5 cursor-pointer">
-                        <input type="radio" name="scope" value="all" checked class="text-rose-600 focus:ring-rose-500">
-                        <div>
-                            <span class="font-bold text-zinc-900 dark:text-white">Delete All Personal Data (Recommended)</span>
-                            <p class="text-xs text-zinc-500">Permanently removes your email from newsletter, event registrations, and community logs.</p>
-                        </div>
+        <!-- Request Form Card -->
+        <div class="azure-inner-card p-6 sm:p-8 space-y-6">
+            <form id="data-deletion-form" onsubmit="submitDataDeletion(event)" class="space-y-6">
+                <input type="hidden" name="csrf_token" value="<%= typeof csrf_token !== 'undefined' ? csrf_token : '' %>">
+                
+                <div>
+                    <label for="delete-email" class="block text-xs font-mono font-bold uppercase tracking-wider text-slate-300 mb-2">
+                        Your Email Address <span class="text-cyan-400">*</span>
                     </label>
-                    <label class="flex items-center gap-3 p-3 rounded-xl bg-zinc-50 dark:bg-studio-900/40 border border-zinc-200 dark:border-white/5 cursor-pointer">
-                        <input type="radio" name="scope" value="newsletter_only" class="text-rose-600 focus:ring-rose-500">
-                        <div>
-                            <span class="font-bold text-zinc-900 dark:text-white">Newsletter Only</span>
-                            <p class="text-xs text-zinc-500">Unsubscribe from weekly emails while preserving existing event RSVPs.</p>
-                        </div>
+                    <input type="email" 
+                           id="delete-email" 
+                           required 
+                           placeholder="name@example.com" 
+                           autocomplete="email"
+                           class="w-full px-4 py-3.5 rounded-xl bg-slate-900/80 border border-white/15 text-sm text-white focus:outline-none focus:border-cyan-400 focus:shadow-[0_0_15px_rgba(0,229,255,0.3)] transition-all">
+                    <p class="text-[11px] text-slate-400 mt-1.5 font-mono">
+                        We will search all database records associated with this email address.
+                    </p>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-mono font-bold uppercase tracking-wider text-slate-300 mb-2">
+                        Scope of Deletion
+                    </label>
+                    <div class="space-y-2.5 text-xs sm:text-sm text-slate-300">
+                        <label class="flex items-center gap-3 p-3 rounded-xl bg-slate-900/60 border border-white/10 cursor-pointer hover:border-white/20 transition-colors">
+                            <input type="radio" name="scope" value="all" checked class="text-cyan-400 focus:ring-cyan-400">
+                            <div>
+                                <span class="font-bold text-white">Delete All Personal Data (Recommended)</span>
+                                <p class="text-xs text-slate-400">Permanently removes your email from newsletter, event registrations, and community logs.</p>
+                            </div>
+                        </label>
+                        <label class="flex items-center gap-3 p-3 rounded-xl bg-slate-900/60 border border-white/10 cursor-pointer hover:border-white/20 transition-colors">
+                            <input type="radio" name="scope" value="newsletter_only" class="text-cyan-400 focus:ring-cyan-400">
+                            <div>
+                                <span class="font-bold text-white">Newsletter Only</span>
+                                <p class="text-xs text-slate-400">Unsubscribe from weekly emails while preserving existing event RSVPs.</p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Confirmation Checkbox -->
+                <div class="pt-2">
+                    <label class="flex items-start gap-3 cursor-pointer text-left select-none">
+                        <input type="checkbox" id="delete-confirm" required class="mt-1 w-4 h-4 rounded border-white/20 text-cyan-400 focus:ring-cyan-400">
+                        <span class="text-xs text-slate-300 leading-normal">
+                            I confirm that I am the authorized owner of this email address and request the permanent erasure of my data under applicable data privacy regulations.
+                        </span>
                     </label>
                 </div>
-            </div>
 
-            <!-- Confirmation Checkbox -->
-            <div class="pt-2">
-                <label class="flex items-start gap-3 cursor-pointer text-left select-none">
-                    <input type="checkbox" id="delete-confirm" required class="mt-1 w-4 h-4 rounded border-zinc-300 text-rose-600 focus:ring-rose-500">
-                    <span class="text-xs text-zinc-600 dark:text-zinc-400 leading-normal">
-                        I confirm that I am the authorized owner of this email address and request the permanent erasure of my data under applicable data privacy regulations.
-                    </span>
-                </label>
-            </div>
+                <div id="deletion-error" class="hidden p-4 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs font-semibold"></div>
 
-            <div id="deletion-error" class="hidden p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-700 dark:text-rose-300 text-xs font-semibold"></div>
+                <button type="submit" 
+                        id="deletion-submit-btn" 
+                        class="azure-primary-btn w-full py-4 text-xs sm:text-sm uppercase tracking-wider font-bold">
+                    Submit Erasure Request
+                </button>
+            </form>
 
-            <button type="submit" 
-                    id="deletion-submit-btn" 
-                    class="w-full py-4 rounded-2xl bg-rose-600 hover:bg-rose-700 active:bg-rose-800 text-white font-bold text-sm shadow-md transition-all active:scale-[0.98]">
-                Submit Erasure Request
-            </button>
-        </form>
-
-        <!-- Success Confirmation State -->
-        <div id="deletion-success" class="hidden text-center space-y-4 p-4">
-            <div class="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 mx-auto flex items-center justify-center font-black text-2xl">
-                ✓
-            </div>
-            <h2 class="text-2xl font-bold text-zinc-900 dark:text-white">Data Erasure Confirmed</h2>
-            <p class="text-sm text-zinc-600 dark:text-zinc-300 max-w-md mx-auto leading-relaxed" id="deletion-success-msg">
-                Your request has been processed. All records linked to your email address have been permanently purged from our active databases.
-            </p>
-            <div class="p-4 rounded-xl bg-zinc-50 dark:bg-studio-900 border border-zinc-200 dark:border-white/10 text-xs text-zinc-500 font-mono">
-                Receipt Code: <span id="deletion-receipt-id" class="font-bold text-zinc-900 dark:text-white"></span>
-            </div>
-            <div class="pt-4">
-                <a href="/" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 font-bold text-xs">
-                    Return to Homepage
-                </a>
+            <!-- Success Confirmation State -->
+            <div id="deletion-success" class="hidden text-center space-y-4 p-4">
+                <div class="w-16 h-16 rounded-full bg-cyan-400/20 text-cyan-300 border border-cyan-400/40 mx-auto flex items-center justify-center font-black text-2xl">
+                    ✓
+                </div>
+                <h2 class="text-2xl font-heading font-bold text-white uppercase">Data Erasure Confirmed</h2>
+                <p class="text-sm text-slate-300 max-w-md mx-auto leading-relaxed" id="deletion-success-msg">
+                    Your request has been processed. All records linked to your email address have been permanently purged from our active databases.
+                </p>
+                <div class="p-4 rounded-xl bg-slate-900/80 border border-white/10 text-xs text-slate-400 font-mono">
+                    Receipt Code: <span id="deletion-receipt-id" class="font-bold text-cyan-300"></span>
+                </div>
+                <div class="pt-4">
+                    <a href="/" class="azure-primary-btn inline-flex items-center gap-2 px-6 py-2.5 text-xs uppercase tracking-wider">
+                        Return to Homepage &rarr;
+                    </a>
+                </div>
             </div>
         </div>
     </div>

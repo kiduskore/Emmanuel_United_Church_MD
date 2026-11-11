@@ -253,7 +253,7 @@ class InMemoryStore {
   events: CommunityEvent[] = [];
   eventRsvps: EventRsvp[] = [];
 
-  private nextIds = {
+  public nextIds = {
     users: 1,
     members: 1,
     pods: 1,
@@ -574,6 +574,18 @@ class InMemoryStore {
         capacity: 60,
         is_featured: true,
         created_at: '2026-09-01',
+      },
+      {
+        id: 6,
+        title: 'End Time Educational Conference (የመጨረሻው ዘመን ትምህርታዊ ኮንፈረንስ)',
+        description: 'Special 3-day prophetic & bible conference with Pastor Dr. Tesfa Workneh, Pastor Dr. Bezalem Fisseha, Brother Sisay, Pastor Abrham, Singer Nebiyat, and Singer Solomon. Entry Free!',
+        date: '2026-11-13',
+        time: 'Fri & Sat 7:00 PM · Sun 10:00 AM',
+        location: '914 Silver Spring Ave (Fri/Sat 7PM) & 12604 New Hampshire Ave (Sun 10AM)',
+        category: 'gathering',
+        capacity: 350,
+        is_featured: true,
+        created_at: '2026-11-11',
       },
     ];
 
@@ -1307,6 +1319,17 @@ class InMemoryStore {
     return newPrayer;
   }
 
+  addPrayerRequest(data: any): PrayerRequest {
+    const requesterName = data.requester_name || data.name || 'Anonymous';
+    const requestText = data.request_text || data.request || data.message || '';
+    const isUrgent = !!(data.is_urgent || data.urgency === 'urgent');
+    return this.addPrayer({
+      requester_name: requesterName,
+      request_text: requestText,
+      is_urgent: isUrgent,
+    });
+  }
+
   supportPrayer(reqId: number, memberId: number = 1): number {
     const prayer = this.prayerRequests.find((p) => p.id === reqId);
     if (prayer) {
@@ -1433,10 +1456,10 @@ class InMemoryStore {
 
     if (scope === 'all') {
       // 2. Remove from newcomers if present
-      if (Array.isArray(this.newcomers)) {
-        const initialNewcomers = this.newcomers.length;
-        this.newcomers = this.newcomers.filter(n => (n.email || '').toLowerCase() !== cleanEmail);
-        if (this.newcomers.length < initialNewcomers) deletedCount++;
+      if (Array.isArray((this as any).newcomers)) {
+        const initialNewcomers = (this as any).newcomers.length;
+        (this as any).newcomers = (this as any).newcomers.filter((n: any) => (n.email || '').toLowerCase() !== cleanEmail);
+        if ((this as any).newcomers.length < initialNewcomers) deletedCount++;
       }
 
       // 3. Remove from members list if present
@@ -1454,10 +1477,10 @@ class InMemoryStore {
       }
 
       // 5. Remove prayer requests
-      if (Array.isArray(this.prayers)) {
-        const initialPrayers = this.prayers.length;
-        this.prayers = this.prayers.filter(p => (p.email || '').toLowerCase() !== cleanEmail);
-        if (this.prayers.length < initialPrayers) deletedCount++;
+      if (Array.isArray((this as any).prayers)) {
+        const initialPrayers = (this as any).prayers.length;
+        (this as any).prayers = (this as any).prayers.filter((p: any) => (p.email || '').toLowerCase() !== cleanEmail);
+        if ((this as any).prayers.length < initialPrayers) deletedCount++;
       }
     }
 

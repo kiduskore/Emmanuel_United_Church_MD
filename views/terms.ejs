@@ -1,24 +1,34 @@
-<%- include('partials/header') %>
+<%- include('partials/header', { 
+    metaTitle: 'Terms of Service | Emmanuel United Church of Maryland',
+    metaDesc: 'Terms of Service, community standards, and ministerial guidelines for Emmanuel United Church of Maryland.',
+    currentPath: '/terms'
+}) %>
+<%- include('partials/navbar') %>
 
-<main id="main-content" class="flex-grow pt-28 pb-20 px-6 lg:px-12 max-w-5xl mx-auto text-left">
-    <!-- Header Badge -->
-    <div class="mb-8">
-        <a href="/" class="inline-flex items-center gap-2 text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline mb-4">
-            &larr; Back to Home
-        </a>
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 text-xs font-bold uppercase tracking-wider mb-3">
-            Legal Agreement
+<main id="main-content" class="min-h-screen text-white pt-28 pb-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto flex-1 w-full relative overflow-hidden">
+    <!-- Ambient Cosmic Spotlight Beams -->
+    <div class="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[550px] bg-gradient-to-b from-cyan-400/20 via-sky-500/10 to-transparent blur-3xl -z-10"></div>
+    <div class="pointer-events-none absolute top-1/3 -left-32 w-96 h-96 bg-sky-500/15 rounded-full blur-3xl -z-10"></div>
+
+    <div class="azure-glass-shell p-8 sm:p-12 relative overflow-hidden space-y-10">
+        <div class="diamond-glint" style="top: 2rem; right: 2rem;"></div>
+
+        <!-- Header Badge -->
+        <div>
+            <div class="azure-pill inline-flex items-center gap-2 mb-3">
+                <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+                <span>Legal Agreement</span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-heading font-black text-white uppercase tracking-tight mb-3">
+                Terms of Service
+            </h1>
+            <p class="text-xs font-mono text-cyan-300">
+                Last Updated: 2026 &bull; Effective Immediately
+            </p>
         </div>
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-studio-900 dark:text-white tracking-tight mb-3">
-            Terms of Service
-        </h1>
-        <p class="text-sm text-zinc-500 dark:text-zinc-400">
-            Last Updated: October 20, 2026 &bull; Effective Immediately
-        </p>
-    </div>
 
-    <!-- Terms Body -->
-    <div class="space-y-10 text-sm sm:text-base text-zinc-700 dark:text-zinc-300 leading-relaxed">
+        <!-- Terms Body -->
+        <div class="space-y-10 text-sm sm:text-base text-slate-300 leading-relaxed">
         
         <!-- 1. Agreement to Terms -->
         <section class="space-y-3">
@@ -26,7 +36,7 @@
                 1. Acceptance of Terms
             </h2>
             <p>
-                Welcome to the digital platform of <strong>Emmanuel United Church of Maryland Young Adults Ministry</strong> ("EUCMD", "we", "us", or "our"), accessible at <a href="https://ya.eucmaryland.org" class="text-blue-600 dark:text-blue-400 underline">ya.eucmaryland.org</a>. By accessing, browsing, registering for an event, submitting forms, or accessing our leader portal, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service and our <a href="/privacy" class="text-blue-600 dark:text-blue-400 underline">Privacy Policy</a>.
+                Welcome to the digital platform of <strong>Emmanuel United Church of Maryland Young Adults Ministry</strong> ("EUCMD", "we", "us", or "our"), accessible at <a href="https://ya.eucmaryland.org" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 underline">ya.eucmaryland.org</a>. By accessing, browsing, registering for an event, submitting forms, or accessing our leader portal, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service and our <a href="/privacy" class="text-blue-600 dark:text-blue-400 underline">Privacy Policy</a>.
             </p>
             <p>
                 If you do not agree to these Terms, please refrain from using this website.
@@ -143,10 +153,11 @@
                 <strong>Emmanuel United Church of Maryland</strong><br>
                 Legal Entity: Emmanuel United Church of Maryland, Inc. (501(c)(3))<br>
                 Address: 914 Silver Spring Ave, Silver Spring, MD 20910<br>
-                Email: <a href="mailto:info@eucmaryland.org" class="text-blue-600 dark:text-blue-400 underline font-semibold">info@eucmaryland.org</a><br>
+                Email: <a href="mailto:info@eucmaryland.org" class="text-cyan-300 underline font-semibold">info@eucmaryland.org</a><br>
                 Phone: (202) 760-1096
             </p>
         </section>
+    </div>
     </div>
 </main>
 

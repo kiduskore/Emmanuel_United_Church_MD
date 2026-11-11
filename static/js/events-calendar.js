@@ -791,6 +791,9 @@
         });
     }
 
+    // Expose openRsvpModal globally
+    window.openRsvpModal = openRsvpModal;
+
     // Initial render
     renderCalendar();
     renderEventCards();
