@@ -92,13 +92,67 @@
                 <!-- Inner Specular Flare -->
                 <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-36 bg-gradient-to-b from-sky-400/30 to-transparent rounded-full blur-2xl pointer-events-none"></div>
 
+                <%
+                    const serverNow = new Date();
+                    const serverDay = serverNow.getDay();
+                    const serverHours = serverNow.getHours();
+                    let daysToSun = (7 - serverDay) % 7;
+                    if (daysToSun === 0 && serverHours >= 14) {
+                        daysToSun = 7;
+                    }
+                    const targetSun = new Date(serverNow);
+                    targetSun.setDate(serverNow.getDate() + daysToSun);
+                    targetSun.setHours(10, 30, 0, 0);
+                    const msDiff = Math.max(0, targetSun.getTime() - serverNow.getTime());
+                    const initSecs = Math.floor(msDiff / 1000);
+                    const initD = Math.floor(initSecs / 86400);
+                    const initH = String(Math.floor((initSecs % 86400) / 3600)).padStart(2, '0');
+                    const initM = String(Math.floor((initSecs % 3600) / 60)).padStart(2, '0');
+                    const initS = String(initSecs % 60).padStart(2, '0');
+                    const isLiveNow = (serverDay === 0 && (serverHours > 10 || (serverHours === 10 && serverNow.getMinutes() >= 30)) && serverHours < 14);
+                    const initialCountdownText = isLiveNow ? '🔴 Live Worship Now in Session' : `in ${initD}d ${initH}h ${initM}m ${initS}s · 10:30 AM`;
+                %>
                 <!-- Next Sunday Countdown Badge (Linkable to Plan a Visit Form) -->
                 <a href="/plan-visit" onclick="if(window.openVisitModal){window.openVisitModal(); return false;}" class="inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-[#08152e]/90 backdrop-blur-xl border border-cyan-400/40 text-xs font-sans text-sky-200 mb-6 shadow-[0_0_25px_rgba(56,189,248,0.3)] hover:border-cyan-300 transition-all cursor-pointer group" title="Click to open the Plan a Visit form and reach out to us">
                     <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_10px_#00e5ff]"></span>
                     <span class="font-heading uppercase tracking-wider font-bold text-white text-[11px] sm:text-xs">Next Sunday Service:</span>
-                    <span id="hero-sunday-countdown" class="font-mono text-cyan-300 font-bold tabular-nums text-xs sm:text-sm">Calculating...</span>
+                    <span id="hero-sunday-countdown" class="font-mono text-cyan-300 font-bold tabular-nums text-xs sm:text-sm"><%= initialCountdownText %></span>
                     <span class="text-sky-300/60 group-hover:text-cyan-300 text-xs transition-colors hidden sm:inline">&rarr; Plan Visit</span>
                 </a>
+                <script>
+                (function() {
+                    function tickSunday() {
+                        var el = document.getElementById('hero-sunday-countdown');
+                        if (!el) return;
+                        var now = new Date();
+                        var day = now.getDay();
+                        var hrs = now.getHours();
+                        var mins = now.getMinutes();
+                        if (day === 0 && (hrs > 10 || (hrs === 10 && mins >= 30)) && hrs < 14) {
+                            el.innerHTML = '<span class="text-rose-400 animate-pulse font-bold">🔴 Live Worship Now in Session</span>';
+                            return;
+                        }
+                        var daysUntil = (7 - day) % 7;
+                        if (daysUntil === 0 && hrs >= 14) daysUntil = 7;
+                        var target = new Date(now);
+                        target.setDate(now.getDate() + daysUntil);
+                        target.setHours(10, 30, 0, 0);
+                        var diff = target.getTime() - now.getTime();
+                        if (diff < 0) {
+                            target.setDate(target.getDate() + 7);
+                            diff = target.getTime() - now.getTime();
+                        }
+                        var secs = Math.max(0, Math.floor(diff / 1000));
+                        var d = Math.floor(secs / 86400);
+                        var h = String(Math.floor((secs % 86400) / 3600)).padStart(2, '0');
+                        var m = String(Math.floor((secs % 3600) / 60)).padStart(2, '0');
+                        var s = String(secs % 60).padStart(2, '0');
+                        el.textContent = 'in ' + d + 'd ' + h + 'h ' + m + 'm ' + s + 's · 10:30 AM';
+                    }
+                    tickSunday();
+                    setInterval(tickSunday, 1000);
+                })();
+                </script>
 
                 <!-- Massive Headline -->
                 <h2 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-heading font-black tracking-tighter uppercase text-white leading-[0.95] text-balance mb-6 max-w-4xl mx-auto drop-shadow-2xl">
@@ -227,12 +281,12 @@
                             <div class="text-sky-300/80 text-[11px]">12604 New Hampshire Ave, Silver Spring</div>
                         </div>
                     </div>
-                    <button type="button" onclick="window.openVisitModal && window.openVisitModal()" class="w-full py-3 rounded-full azure-primary-btn text-white font-heading font-bold text-xs uppercase tracking-wider transition-all shadow-md active:scale-95 cursor-pointer">
-                        Plan a Visit &rarr;
-                    </button>
+                    <a href="/plan-visit" onclick="if(window.openVisitModal){window.openVisitModal(); return false;}" class="w-full py-3 rounded-full azure-primary-btn text-white font-heading font-bold text-xs uppercase tracking-wider transition-all shadow-md active:scale-95 flex items-center justify-center gap-2 cursor-pointer">
+                        <span>Plan a Visit &rarr;</span>
+                    </a>
                 </div>
 
-                <!-- Card 2: Live & On-Demand (EUC Online) -->
+                <!-- Card 2: Live & On-Demand (EUC Online EFAM with YouTube Link) -->
                 <div class="azure-glass-shell p-7 rounded-[2.2rem] flex flex-col justify-between shadow-xl relative overflow-hidden backdrop-blur-3xl hover:border-sky-400/50 transition-all group">
                     <div>
                         <div class="flex items-center justify-between mb-3">
@@ -243,19 +297,32 @@
                             <span class="azure-pill px-2.5 py-0.5 text-[10px] font-mono text-sky-200">♥ 180</span>
                         </div>
                         <h3 class="text-xl sm:text-2xl font-heading font-bold uppercase tracking-wide text-white mb-2">
-                            EUC Online (eFam)
+                            EUC ONLINE (EFAM)
                         </h3>
                         <p class="text-xs sm:text-sm text-sky-100/75 font-sans leading-relaxed mb-5">
                             Stream our complete worship service live every Sunday with interactive chat, real-time prayer partners, and message replays 24/7.
                         </p>
-                        <div class="azure-inner-card text-xs text-sky-200/90 space-y-1 mb-5 font-sans p-4 rounded-2xl">
+                        <div class="azure-inner-card text-xs text-sky-200/90 space-y-1.5 mb-5 font-sans p-4 rounded-2xl">
                             <div class="font-semibold text-white">Every Sunday 10:30 AM EST</div>
-                            <div class="text-sky-300/80 text-[11px]">YouTube, Facebook & EUC Portal</div>
+                            <div class="text-sky-300/80 text-[11px] flex items-center gap-1.5 flex-wrap">
+                                <a href="https://www.youtube.com/@emmanuelunitedchurchmd8566" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-red-400 hover:text-red-300 font-bold hover:underline">
+                                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                                    <span>YouTube</span>
+                                </a>
+                                <span>, Facebook & EUC Portal</span>
+                            </div>
                         </div>
                     </div>
-                    <button type="button" onclick="window.openWatchModal && window.openWatchModal()" class="w-full py-3 rounded-full azure-pill hover:border-cyan-400 text-white font-heading font-bold text-xs uppercase tracking-wider transition-all active:scale-95 cursor-pointer">
-                        Watch Online &rarr;
-                    </button>
+                    <div class="space-y-2">
+                        <a href="https://www.youtube.com/@emmanuelunitedchurchmd8566" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 rounded-full bg-gradient-to-r from-red-600 via-rose-600 to-red-500 hover:from-red-500 hover:to-rose-500 text-white font-heading font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-red-950/50 hover:shadow-red-600/40 active:scale-95 flex items-center justify-center gap-2 group">
+                            <svg class="w-4 h-4 text-white group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                            <span>Watch Online &rarr;</span>
+                        </a>
+                        <button type="button" onclick="window.openWatchModal && window.openWatchModal()" class="w-full py-2 rounded-full text-center text-xs text-sky-300 hover:text-white transition-colors cursor-pointer flex items-center justify-center gap-1">
+                            <span>Open Interactive Web Broadcast</span>
+                            <span aria-hidden="true">&rarr;</span>
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Card 3: Friday PRAYER and WORSHIP (Intercession & Praise) -->
@@ -646,9 +713,9 @@
                     </div>
 
                     <div class="pt-4 border-t border-sky-400/20 flex flex-wrap items-center gap-4">
-                        <button type="button" onclick="window.openVisitModal && window.openVisitModal()" class="px-7 py-3.5 rounded-full azure-primary-btn text-white font-heading font-bold text-xs uppercase tracking-wider transition-all shadow-lg active:scale-95">
-                            Plan Your Visit This Sunday
-                        </button>
+                        <a href="/plan-visit" onclick="if(window.openVisitModal){window.openVisitModal(); return false;}" class="px-7 py-3.5 rounded-full azure-primary-btn text-white font-heading font-bold text-xs uppercase tracking-wider transition-all shadow-lg active:scale-95 flex items-center gap-2 cursor-pointer">
+                            <span>Plan Your Visit This Sunday</span>
+                        </a>
                         <a href="/about" class="px-7 py-3.5 rounded-full azure-pill text-white font-heading font-bold text-xs uppercase tracking-wider transition-colors border border-sky-400/30">
                             Our Story & Beliefs &rarr;
                         </a>
@@ -1110,9 +1177,9 @@
                             <span>Get Directions</span>
                             <span aria-hidden="true">&rarr;</span>
                         </a>
-                        <button type="button" onclick="window.openVisitModal && window.openVisitModal()" class="px-6 py-3 rounded-full azure-primary-btn text-white font-heading font-bold text-xs uppercase tracking-wider transition-all shadow-md active:scale-95">
-                            Plan Your Visit
-                        </button>
+                        <a href="/plan-visit" onclick="if(window.openVisitModal){window.openVisitModal(); return false;}" class="px-6 py-3 rounded-full azure-primary-btn text-white font-heading font-bold text-xs uppercase tracking-wider transition-all shadow-md active:scale-95 inline-flex items-center gap-2 cursor-pointer">
+                            <span>Plan Your Visit</span>
+                        </a>
                     </div>
                 </div>
 
@@ -1276,10 +1343,10 @@
                     Life at EUCMD
                 </span>
                 <h2 class="text-3xl sm:text-5xl font-heading font-black uppercase tracking-tight text-white mt-1">
-                    Our Church Family in Photos
+                    Photo Gallery
                 </h2>
                 <div class="text-sm font-ethiopic text-sky-300/90 mt-1 font-semibold">
-                    የእግዚአብሔር ቤተሰብ በምስል · አምልኮ፣ ጸሎትና ህብረት በሲልቨር ስፕሪንግ ሜሪላንድ
+                    የቤተክርስቲያን ፎቶ ማህደር · አምልኮ፣ ጸሎትና ህብረት በሲልቨር ስፕሪንግ ሜሪላንድ
                 </div>
                 <p class="text-sky-200/80 text-sm sm:text-base mt-3 max-w-2xl mx-auto font-sans leading-relaxed">
                     Authentic moments of corporate worship, intercessory prayer, passionate preaching, next-generation discipleship, and joyful Ethiopian & Eritrean fellowship in Silver Spring, Maryland.
@@ -1289,10 +1356,10 @@
             <!-- Category Filter Tabs -->
             <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10" id="gallery-filters">
                 <button type="button" onclick="window.filterGallery && window.filterGallery('all', this)" class="gallery-filter-btn px-4 py-2 rounded-full text-xs font-heading font-bold uppercase tracking-wider transition-all bg-sky-500/25 border border-sky-400 text-white shadow-[0_0_15px_rgba(56,189,248,0.3)] cursor-pointer">
-                    All Photos (14)
+                    All Photos (19)
                 </button>
                 <button type="button" id="gallery-tab-outreach" onclick="window.filterGallery && window.filterGallery('outreach', this)" class="gallery-filter-btn px-4 py-2 rounded-full text-xs font-heading font-bold uppercase tracking-wider transition-all bg-white/[0.06] border border-white/15 text-sky-200 hover:text-white hover:bg-white/10 cursor-pointer">
-                    Outreach & Missions
+                    Outreach & Missions (11)
                 </button>
                 <button type="button" onclick="window.filterGallery && window.filterGallery('worship', this)" class="gallery-filter-btn px-4 py-2 rounded-full text-xs font-heading font-bold uppercase tracking-wider transition-all bg-white/[0.06] border border-white/15 text-sky-200 hover:text-white hover:bg-white/10 cursor-pointer">
                     Worship & Choir
@@ -1346,7 +1413,7 @@
                 <!-- Card 3: Kingdom Kids Children Ministry -->
                 <div class="gallery-card group relative rounded-[2rem] overflow-hidden azure-glass-shell border border-sky-400/25 hover:border-cyan-400/70 transition-all duration-300 shadow-xl flex flex-col justify-between cursor-pointer" data-category="nextgen" onclick="window.openGalleryLightbox && window.openGalleryLightbox(2)">
                     <div class="aspect-[4/3] overflow-hidden relative">
-                        <img src="/assets/aistudio/763018718_1483877877101347_7498119804531853220_n_f55caa68.jpg" alt="Kingdom Kids Children Ministry Presentation" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-95" loading="lazy">
+                        <img src="/assets/aistudio/670389331_1382859200536549_4145701206008260152_n_d154b428.jpg" alt="Kingdom Kids Children Ministry Presentation on Stage" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-95" loading="lazy">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#060d1d] via-transparent to-transparent opacity-80"></div>
                         <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full azure-pill text-[10px] font-heading font-bold uppercase tracking-wider text-emerald-300">Kingdom Kids</span>
                         <div class="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-black/60 border border-white/30 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
@@ -1355,7 +1422,7 @@
                     </div>
                     <div class="p-5 space-y-1">
                         <h4 class="text-sm font-heading font-bold uppercase text-white group-hover:text-cyan-200 transition-colors">Next Gen Discipleship</h4>
-                        <p class="text-xs text-sky-200/70 font-sans">Kingdom Kids celebrating Easter on stage with pastors.</p>
+                        <p class="text-xs text-sky-200/70 font-sans">Kingdom Kids celebrating Christ on stage with pastors and church family.</p>
                     </div>
                 </div>
 
@@ -1378,7 +1445,7 @@
                 <!-- Card 5: Traditional Begena/Krar Harp -->
                 <div class="gallery-card group relative rounded-[2rem] overflow-hidden azure-glass-shell border border-sky-400/25 hover:border-cyan-400/70 transition-all duration-300 shadow-xl flex flex-col justify-between cursor-pointer" data-category="worship" onclick="window.openGalleryLightbox && window.openGalleryLightbox(4)">
                     <div class="aspect-[4/3] overflow-hidden relative">
-                        <img src="/assets/aistudio/670389331_1382859200536549_4145701206008260152_n_d154b428.jpg" alt="Traditional Begena Krar Harp Worship" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-95" loading="lazy">
+                        <img src="/assets/aistudio/486056033_1067548748734264_7322107188669003734_n_184e0a0b.jpg" alt="Traditional Begena Krar Harp Worship" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-95" loading="lazy">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#060d1d] via-transparent to-transparent opacity-80"></div>
                         <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full azure-pill text-[10px] font-heading font-bold uppercase tracking-wider text-cyan-300">Sacred Harp</span>
                         <div class="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-black/60 border border-white/30 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
@@ -1535,12 +1602,96 @@
                     </div>
                 </div>
 
+                <!-- Card 15: Outreach & Missions - United for the Harvest -->
+                <div class="gallery-card group relative rounded-[2rem] overflow-hidden azure-glass-shell border border-sky-400/25 hover:border-cyan-400/70 transition-all duration-300 shadow-xl flex flex-col justify-between cursor-pointer" data-category="outreach" onclick="window.openGalleryLightbox && window.openGalleryLightbox(14)">
+                    <div class="aspect-[4/3] overflow-hidden relative">
+                        <img src="/assets/aistudio/08ba735a-ebbb-4d83-94df-15d6c56a89ec.JPG" alt="United for the Harvest" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-95" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#060d1d] via-transparent to-transparent opacity-80"></div>
+                        <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full azure-pill text-[10px] font-heading font-bold uppercase tracking-wider text-cyan-300">Great Commission</span>
+                        <div class="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-black/60 border border-white/30 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                        </div>
+                    </div>
+                    <div class="p-5 space-y-1">
+                        <h4 class="text-sm font-heading font-bold uppercase text-white group-hover:text-cyan-200 transition-colors">United for the Harvest</h4>
+                        <p class="text-xs text-sky-200/70 font-sans">All generations united in downtown Silver Spring street mission.</p>
+                    </div>
+                </div>
+
+                <!-- Card 16: Outreach & Missions - Civic Plaza Witness -->
+                <div class="gallery-card group relative rounded-[2rem] overflow-hidden azure-glass-shell border border-sky-400/25 hover:border-cyan-400/70 transition-all duration-300 shadow-xl flex flex-col justify-between cursor-pointer" data-category="outreach" onclick="window.openGalleryLightbox && window.openGalleryLightbox(15)">
+                    <div class="aspect-[4/3] overflow-hidden relative">
+                        <img src="/assets/aistudio/96b4fdba-fc17-4b33-9f71-060eecbab731.JPG" alt="Civic Plaza Witness" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-95" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#060d1d] via-transparent to-transparent opacity-80"></div>
+                        <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full azure-pill text-[10px] font-heading font-bold uppercase tracking-wider text-amber-300">Plaza Witness</span>
+                        <div class="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-black/60 border border-white/30 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                        </div>
+                    </div>
+                    <div class="p-5 space-y-1">
+                        <h4 class="text-sm font-heading font-bold uppercase text-white group-hover:text-cyan-200 transition-colors">Civic Plaza Witness</h4>
+                        <p class="text-xs text-sky-200/70 font-sans">Unashamed gospel declaration with Amharic sign in the city.</p>
+                    </div>
+                </div>
+
+                <!-- Card 17: Outreach & Missions - Autumn City Outreach -->
+                <div class="gallery-card group relative rounded-[2rem] overflow-hidden azure-glass-shell border border-sky-400/25 hover:border-cyan-400/70 transition-all duration-300 shadow-xl flex flex-col justify-between cursor-pointer" data-category="outreach" onclick="window.openGalleryLightbox && window.openGalleryLightbox(16)">
+                    <div class="aspect-[4/3] overflow-hidden relative">
+                        <img src="/assets/aistudio/dc60e8a7-7d76-49c9-8e10-2010272877dd.JPG" alt="Autumn Outreach on Fenton St" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-95" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#060d1d] via-transparent to-transparent opacity-80"></div>
+                        <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full azure-pill text-[10px] font-heading font-bold uppercase tracking-wider text-sky-200">Fenton St</span>
+                        <div class="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-black/60 border border-white/30 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                        </div>
+                    </div>
+                    <div class="p-5 space-y-1">
+                        <h4 class="text-sm font-heading font-bold uppercase text-white group-hover:text-cyan-200 transition-colors">Autumn City Witness</h4>
+                        <p class="text-xs text-sky-200/70 font-sans">Spreading the light of Christ to residents and shoppers.</p>
+                    </div>
+                </div>
+
+                <!-- Card 18: Outreach & Missions - Joy of the Harvest -->
+                <div class="gallery-card group relative rounded-[2rem] overflow-hidden azure-glass-shell border border-sky-400/25 hover:border-cyan-400/70 transition-all duration-300 shadow-xl flex flex-col justify-between cursor-pointer" data-category="outreach" onclick="window.openGalleryLightbox && window.openGalleryLightbox(17)">
+                    <div class="aspect-[4/3] overflow-hidden relative">
+                        <img src="/assets/aistudio/0361da65-97a4-4a1f-ab9a-789c7fd366d8.JPG" alt="Joy of the Harvest in Silver Spring" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-95" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#060d1d] via-transparent to-transparent opacity-80"></div>
+                        <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full azure-pill text-[10px] font-heading font-bold uppercase tracking-wider text-emerald-300">Joyful Witness</span>
+                        <div class="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-black/60 border border-white/30 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                        </div>
+                    </div>
+                    <div class="p-5 space-y-1">
+                        <h4 class="text-sm font-heading font-bold uppercase text-white group-hover:text-cyan-200 transition-colors">Joy of the Harvest</h4>
+                        <p class="text-xs text-sky-200/70 font-sans">Warmth and love of Christ in street witnessing.</p>
+                    </div>
+                </div>
+
+                <!-- Card 19: Outreach & Missions - Unashamed Fellowship -->
+                <div class="gallery-card group relative rounded-[2rem] overflow-hidden azure-glass-shell border border-sky-400/25 hover:border-cyan-400/70 transition-all duration-300 shadow-xl flex flex-col justify-between cursor-pointer" data-category="outreach" onclick="window.openGalleryLightbox && window.openGalleryLightbox(18)">
+                    <div class="aspect-[4/3] overflow-hidden relative">
+                        <img src="/assets/aistudio/28093540-9470-441a-a106-765642bcd165.JPG" alt="Outreach Team Fellowship and Commissioning" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-95" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#060d1d] via-transparent to-transparent opacity-80"></div>
+                        <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full azure-pill text-[10px] font-heading font-bold uppercase tracking-wider text-purple-300">Commissioned</span>
+                        <div class="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-black/60 border border-white/30 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                        </div>
+                    </div>
+                    <div class="p-5 space-y-1">
+                        <h4 class="text-sm font-heading font-bold uppercase text-white group-hover:text-cyan-200 transition-colors">Unashamed Fellowship</h4>
+                        <p class="text-xs text-sky-200/70 font-sans">Giving God the glory for street ministry.</p>
+                    </div>
+                </div>
+
             </div>
 
             <!-- View More Authentic Photos Callout -->
-            <div class="mt-12 text-center">
-                <a href="/about#leadership" class="inline-flex items-center gap-2 px-8 py-4 rounded-full azure-primary-btn text-white font-heading font-bold text-xs uppercase tracking-wider transition-all shadow-lg active:scale-95">
-                    <span>Learn More About Our Church Leadership & Pastors</span>
+            <div class="mt-12 flex flex-wrap items-center justify-center gap-4">
+                <a href="/gallery" class="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-600 text-slate-950 font-heading font-black text-xs uppercase tracking-wider transition-all shadow-[0_0_25px_rgba(0,229,255,0.5)] hover:shadow-[0_0_35px_rgba(0,229,255,0.8)] active:scale-95">
+                    <span>View Full Picture Gallery (42 Photos)</span>
+                    <span aria-hidden="true">&rarr;</span>
+                </a>
+                <a href="/about#leadership" class="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white/[0.08] border border-sky-400/30 text-sky-200 hover:text-white font-heading font-bold text-xs uppercase tracking-wider transition-all shadow-lg active:scale-95">
+                    <span>Church Leadership & Pastors</span>
                     <span aria-hidden="true">&rarr;</span>
                 </a>
             </div>
@@ -1562,9 +1713,9 @@
         </a>
 
         <!-- Center Floating Action Button (Hexagonal Glowing Button) -->
-        <button type="button" onclick="window.openVisitModal && window.openVisitModal()" class="nft-hex-btn flex items-center justify-center text-white cursor-pointer active:scale-95" title="Plan a Visit">
+        <a href="/plan-visit" onclick="if(window.openVisitModal){window.openVisitModal(); return false;}" class="nft-hex-btn flex items-center justify-center text-white cursor-pointer active:scale-95" title="Plan a Visit & Reach Out">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
-        </button>
+        </a>
 
         <!-- Events -->
         <a href="/events" class="p-2 text-sky-200/80 hover:text-cyan-300 transition-colors" title="Events">
@@ -1731,10 +1882,10 @@
                 desc: "Senior Pastor Dr. Bezalem Fisseha expounding on biblical discipleship and wholistic kingdom mission."
             },
             {
-                src: "/assets/aistudio/763018718_1483877877101347_7498119804531853220_n_f55caa68.jpg",
+                src: "/assets/aistudio/670389331_1382859200536549_4145701206008260152_n_d154b428.jpg",
                 title: "Next Gen Discipleship",
                 category: "Kingdom Kids",
-                desc: "Kingdom Kids children ministry presenting their Ethiopian Easter (መልካም ትንሣኤ) praise celebration."
+                desc: "Kingdom Kids children ministry celebrating corporate worship with pastors, teachers, and church family."
             },
             {
                 src: "/assets/aistudio/765872202_1483869273768874_1603845395429614540_n_909c79cb.jpg",
@@ -1743,7 +1894,7 @@
                 desc: "Exuberant Ethiopian thanksgiving praise with traditional Kebero drums and rejoicing in the sanctuary."
             },
             {
-                src: "/assets/aistudio/670389331_1382859200536549_4145701206008260152_n_d154b428.jpg",
+                src: "/assets/aistudio/486056033_1067548748734264_7322107188669003734_n_184e0a0b.jpg",
                 title: "Traditional Begena Worship",
                 category: "Sacred Harp",
                 desc: "Acoustic ten-string Ethiopian Begena/Krar harp worship offering deep, meditative spiritual praise."
@@ -1801,6 +1952,36 @@
                 title: "Crosswalk Proclamation",
                 category: "Gospel Witness",
                 desc: "Displaying the wide Christ banner with the red cross across the Silver Spring intersection while offering prayer and gospel tracts."
+            },
+            {
+                src: "/assets/aistudio/08ba735a-ebbb-4d83-94df-15d6c56a89ec.JPG",
+                title: "United for the Great Commission",
+                category: "Team Fellowship",
+                desc: "Multi-generational outreach team of EUC Maryland standing together under golden autumn trees in downtown Silver Spring."
+            },
+            {
+                src: "/assets/aistudio/96b4fdba-fc17-4b33-9f71-060eecbab731.JPG",
+                title: "Civic Plaza Unashamed Witness",
+                category: "Plaza Witness",
+                desc: "Standing boldly for the Lord with 'ኢየሱስ ጌታ ነው!' (Jesus is Lord) banner in front of downtown shops and restaurants."
+            },
+            {
+                src: "/assets/aistudio/dc60e8a7-7d76-49c9-8e10-2010272877dd.JPG",
+                title: "Autumn Gospel Outreach",
+                category: "Downtown Mission",
+                desc: "Spreading the message of Christ to shoppers, commuters, and families across Silver Spring."
+            },
+            {
+                src: "/assets/aistudio/0361da65-97a4-4a1f-ab9a-789c7fd366d8.JPG",
+                title: "Joy of the Harvest in the DMV",
+                category: "Joyful Witness",
+                desc: "Spreading the warmth and love of Christ with joyful smiles, prayer, and one-on-one witnessing."
+            },
+            {
+                src: "/assets/aistudio/28093540-9470-441a-a106-765642bcd165.JPG",
+                title: "Romans 1:16 Commissioning & Fellowship",
+                category: "Commissioned",
+                desc: "Outreach team giving God the glory following a powerful afternoon of seed-planting and prayer in the community."
             }
         ];
 
@@ -1835,6 +2016,8 @@
                 modal.classList.add('flex');
                 document.body.style.overflow = 'hidden';
             }
+        };
+
         window.openPosterLightbox = function(src, title) {
             const modal = document.getElementById('gallery-lightbox-modal');
             const img = document.getElementById('lightbox-img');
@@ -1887,6 +2070,11 @@
             const fullLink = document.getElementById('lightbox-full-link');
 
             if (img) {
+                img.onerror = function() {
+                    if (item.fallbackSrc && img.src !== item.fallbackSrc) {
+                        img.src = item.fallbackSrc;
+                    }
+                };
                 img.src = item.src;
                 img.alt = item.title;
             }

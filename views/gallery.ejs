@@ -1,413 +1,940 @@
 <%- include('partials/header', { 
     metaTitle: 'Photo Gallery | Emmanuel United Church of Maryland',
-    metaDesc: 'Explore moments of street evangelism, worship, prayer, fellowship, and community outreach at Emmanuel United Church in Silver Spring, Maryland.',
+    metaDesc: 'Authentic photographs of street evangelism, worship, discipleship, and fellowship at Emmanuel United Church in Silver Spring, Maryland.',
     currentPath: '/gallery'
 }) %>
 
 <%- include('partials/navbar') %>
 
-<main id="main-content" class="min-h-screen text-white selection:bg-cyan-500 selection:text-slate-950 pt-24 pb-20 relative overflow-hidden">
+<main id="main-content" class="min-h-screen bg-[#030712] text-white selection:bg-cyan-500 selection:text-slate-950 pt-24 sm:pt-28 pb-24 relative overflow-hidden">
 
-    <!-- Ambient Celestial Azure Aurora Spotlight Flares -->
+    <!-- Ambient Celestial Azure Spotlight Flares -->
     <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[600px] bg-sky-500/18 rounded-full filter blur-[150px]"></div>
-        <div class="absolute top-1/3 -right-40 w-[600px] h-[600px] bg-cyan-400/14 rounded-full filter blur-[160px]"></div>
-        <div class="absolute bottom-10 left-1/4 w-[550px] h-[550px] bg-blue-700/16 rounded-full filter blur-[150px]"></div>
+        <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[600px] bg-sky-500/12 rounded-full filter blur-[150px]"></div>
+        <div class="absolute top-1/3 -right-40 w-[650px] h-[650px] bg-cyan-400/10 rounded-full filter blur-[160px]"></div>
+        <div class="absolute bottom-10 left-1/4 w-[600px] h-[600px] bg-blue-700/12 rounded-full filter blur-[150px]"></div>
     </div>
 
-    <!-- Hero Header -->
-    <section class="py-16 sm:py-20 text-center relative overflow-hidden z-10">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/[0.08] border border-sky-400/30 text-xs font-heading font-bold uppercase tracking-widest text-cyan-300 mb-6 backdrop-blur-xl shadow-lg">
-                <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_10px_#00e5ff]"></span>
-                <span class="text-white">Church Life & Kingdom Action · የቤተክርስቲያን ፎቶ ማህደር</span>
-            </div>
-            <h1 class="text-4xl sm:text-6xl md:text-7xl font-heading font-black tracking-tight uppercase text-white mb-6">
-                Picture Gallery
-            </h1>
-            <p class="text-base sm:text-xl text-sky-100/90 max-w-3xl mx-auto font-sans leading-relaxed text-balance">
-                Witness God's work across Silver Spring and the greater Maryland DMV area: bold street evangelism, passionate worship, biblical discipleship, and warm fellowship.
-            </p>
+    <!-- Professional Gallery Header -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-10 relative z-10 text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.06] border border-sky-400/30 text-xs font-heading font-bold uppercase tracking-widest text-cyan-300 mb-4 backdrop-blur-xl shadow-lg">
+            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_10px_#00e5ff]"></span>
+            <span>Visual Archive · የቤተክርስቲያን ፎቶ ማህደር</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl md:text-6xl font-heading font-black tracking-tight uppercase text-white mb-3">
+            Photo <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-blue-400">Gallery</span>
+        </h1>
+        <p class="text-sm sm:text-base text-sky-200/80 max-w-2xl mx-auto font-sans leading-relaxed">
+            Authentic moments of street evangelism, worship, discipleship, and community life at Emmanuel United Church of Maryland.
+        </p>
 
-            <!-- Quick Action Links -->
-            <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
-                <a href="/plan-visit" class="px-6 py-3 rounded-full bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-600 text-slate-950 font-heading font-bold text-xs uppercase tracking-wider hover:shadow-[0_0_25px_rgba(0,229,255,0.6)] transition-all transform hover:-translate-y-0.5">
-                    Plan Your Visit &rarr;
-                </a>
-                <a href="https://www.youtube.com/@emmanuelunitedchurchmd8566" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-full bg-red-600/30 border border-red-500/40 text-red-200 hover:text-white hover:bg-red-600/50 font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-                    <span>Watch Live (YouTube)</span>
-                </a>
+        <!-- Professional Filter Tabs -->
+        <div class="flex items-center justify-center gap-2 sm:gap-3 flex-wrap mt-8">
+            <button type="button" onclick="filterGalleryCategory('all', this)" class="gallery-filter-btn px-5 py-2.5 rounded-full text-xs font-heading font-bold uppercase tracking-wider transition-all bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-600 text-slate-950 font-black shadow-[0_0_20px_rgba(0,229,255,0.4)] cursor-pointer">
+                All Photos (42)
+            </button>
+            <button type="button" onclick="filterGalleryCategory('outreach', this)" class="gallery-filter-btn px-5 py-2.5 rounded-full text-xs font-heading font-bold uppercase tracking-wider transition-all bg-white/[0.06] border border-sky-400/25 text-sky-200 hover:text-white hover:bg-white/[0.12] hover:border-cyan-400/50 cursor-pointer">
+                Street Evangelism (11)
+            </button>
+            <button type="button" onclick="filterGalleryCategory('worship', this)" class="gallery-filter-btn px-5 py-2.5 rounded-full text-xs font-heading font-bold uppercase tracking-wider transition-all bg-white/[0.06] border border-sky-400/25 text-sky-200 hover:text-white hover:bg-white/[0.12] hover:border-cyan-400/50 cursor-pointer">
+                Worship & Praise (12)
+            </button>
+            <button type="button" onclick="filterGalleryCategory('nextgen', this)" class="gallery-filter-btn px-5 py-2.5 rounded-full text-xs font-heading font-bold uppercase tracking-wider transition-all bg-white/[0.06] border border-sky-400/25 text-sky-200 hover:text-white hover:bg-white/[0.12] hover:border-cyan-400/50 cursor-pointer">
+                Kingdom Kids (8)
+            </button>
+            <button type="button" onclick="filterGalleryCategory('fellowship', this)" class="gallery-filter-btn px-5 py-2.5 rounded-full text-xs font-heading font-bold uppercase tracking-wider transition-all bg-white/[0.06] border border-sky-400/25 text-sky-200 hover:text-white hover:bg-white/[0.12] hover:border-cyan-400/50 cursor-pointer">
+                Church Fellowship (11)
+            </button>
+        </div>
+    </section>
+
+    <!-- Professional Masonry Layout (Uncropped, Natural Aspect Ratios) -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pb-20">
+        <div id="full-gallery-grid" class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-5 sm:gap-6 space-y-5 sm:space-y-6">
+            <!-- Photo 1 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="outreach" onclick="openPageLightbox(0)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/1e774192-81c3-431d-ae6f-342df0c5227e.JPG" alt="Emmanuel United Church Photo 1" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Outreach & Missions
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 2 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="outreach" onclick="openPageLightbox(1)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/7c245220-c7aa-4c8e-b51e-59798eb9def6.JPG" alt="Emmanuel United Church Photo 2" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Outreach & Missions
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 3 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="outreach" onclick="openPageLightbox(2)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/7bf8c88b-0eda-42cc-9c9f-917d28b880c6.JPG" alt="Emmanuel United Church Photo 3" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Outreach & Missions
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 4 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="outreach" onclick="openPageLightbox(3)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/08ba735a-ebbb-4d83-94df-15d6c56a89ec.JPG" alt="Emmanuel United Church Photo 4" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Outreach & Missions
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 5 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="outreach" onclick="openPageLightbox(4)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/dc60e8a7-7d76-49c9-8e10-2010272877dd.JPG" alt="Emmanuel United Church Photo 5" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Outreach & Missions
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 6 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="outreach" onclick="openPageLightbox(5)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/c316c200-7d7d-489c-86df-097aedfeeac6.JPG" alt="Emmanuel United Church Photo 6" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Outreach & Missions
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 7 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="outreach" onclick="openPageLightbox(6)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/0361da65-97a4-4a1f-ab9a-789c7fd366d8.JPG" alt="Emmanuel United Church Photo 7" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Outreach & Missions
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 8 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="outreach" onclick="openPageLightbox(7)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/da33096c-b6cb-4bce-b8d3-e3d70924b049.JPG" alt="Emmanuel United Church Photo 8" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Outreach & Missions
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 9 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="outreach" onclick="openPageLightbox(8)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/28093540-9470-441a-a106-765642bcd165.JPG" alt="Emmanuel United Church Photo 9" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Outreach & Missions
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 10 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="outreach" onclick="openPageLightbox(9)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/593d3e63-d81c-435d-abe4-2d5f5df311ac.JPG" alt="Emmanuel United Church Photo 10" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Outreach & Missions
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 11 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="outreach" onclick="openPageLightbox(10)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/96b4fdba-fc17-4b33-9f71-060eecbab731.JPG" alt="Emmanuel United Church Photo 11" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Outreach & Missions
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 12 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="worship" onclick="openPageLightbox(11)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/484072894_1063741372448335_893225315921763014_n_f89cea15.jpg" alt="Emmanuel United Church Photo 12" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Worship & Sanctuary
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 13 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="nextgen" onclick="openPageLightbox(12)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/485151948_1067548775400928_6282613185091891205_n_db5e663e.jpg" alt="Emmanuel United Church Photo 13" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                NextGen Discipleship
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 14 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="nextgen" onclick="openPageLightbox(13)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/485175511_1067548795400926_5214353136447022255_n_e978cc17.jpg" alt="Emmanuel United Church Photo 14" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                NextGen Discipleship
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 15 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="nextgen" onclick="openPageLightbox(14)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/485177008_1067548918734247_7033400783672244298_n_2b77b8e1.jpg" alt="Emmanuel United Church Photo 15" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                NextGen Discipleship
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 16 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="nextgen" onclick="openPageLightbox(15)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/485767173_1067548955400910_3771887861713995988_n_c26b5db1.jpg" alt="Emmanuel United Church Photo 16" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                NextGen Discipleship
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 17 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="worship" onclick="openPageLightbox(16)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/486056033_1067548748734264_7322107188669003734_n_184e0a0b.jpg" alt="Emmanuel United Church Photo 17" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Worship & Sanctuary
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 18 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="fellowship" onclick="openPageLightbox(17)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/668522396_1382859160536553_2419448380390787819_n_c696cc18.jpg" alt="Emmanuel United Church Photo 18" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Church Fellowship
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 19 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="fellowship" onclick="openPageLightbox(18)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/669027030_1382859270536542_1333211100713107624_n_2c9d8b1c.jpg" alt="Emmanuel United Church Photo 19" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Church Fellowship
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 20 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="fellowship" onclick="openPageLightbox(19)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/669645443_1382859247203211_2944136757014384639_n_920e7c81.jpg" alt="Emmanuel United Church Photo 20" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Church Fellowship
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 21 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="fellowship" onclick="openPageLightbox(20)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/669727217_1382859173869885_7702698326695477048_n_6bc2552a.jpg" alt="Emmanuel United Church Photo 21" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Church Fellowship
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 22 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="fellowship" onclick="openPageLightbox(21)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/669860043_1382859293869873_1530693644227228988_n_7e9afde1.jpg" alt="Emmanuel United Church Photo 22" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Church Fellowship
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 23 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="fellowship" onclick="openPageLightbox(22)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/669868912_1382859203869882_8484858259367645374_n_9432e3ae.jpg" alt="Emmanuel United Church Photo 23" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Church Fellowship
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 24 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="nextgen" onclick="openPageLightbox(23)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/670389331_1382859200536549_4145701206008260152_n_d154b428.jpg" alt="Emmanuel United Church Photo 24" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Kingdom Kids
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 25 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="worship" onclick="openPageLightbox(24)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/671615242_1382859233869879_6517316448121868293_n_c029ca77.jpg" alt="Emmanuel United Church Photo 25" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Worship & Sanctuary
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 26 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="fellowship" onclick="openPageLightbox(25)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/682146220_1396062422549560_2683500564046775909_n_814ff38f.jpg" alt="Emmanuel United Church Photo 26" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Church Fellowship
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 27 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="fellowship" onclick="openPageLightbox(26)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/682459397_1396063642549438_2005809581441341341_n_4254ae04.jpg" alt="Emmanuel United Church Photo 27" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Church Fellowship
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 28 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="worship" onclick="openPageLightbox(27)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/762404831_1483870023768799_3899210239599042886_n_a7253694.jpg" alt="Emmanuel United Church Photo 28" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Worship & Sanctuary
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 29 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="worship" onclick="openPageLightbox(28)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/762803111_1483877013768100_2174790290477226869_n_ac024226.jpg" alt="Emmanuel United Church Photo 29" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Worship & Sanctuary
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 30 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="worship" onclick="openPageLightbox(29)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/762868473_1483868947102240_2914173873595455190_n_eb792f44.jpg" alt="Emmanuel United Church Photo 30" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Worship & Sanctuary
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 31 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="nextgen" onclick="openPageLightbox(30)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/763018718_1483877877101347_7498119804531853220_n_f55caa68.jpg" alt="Emmanuel United Church Photo 31" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                NextGen Discipleship
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 32 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="nextgen" onclick="openPageLightbox(31)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/763025163_1483877600434708_4653831895923724700_n_5f5569fb.jpg" alt="Emmanuel United Church Photo 32" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                NextGen Discipleship
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 33 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="nextgen" onclick="openPageLightbox(32)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/763050688_1483877753768026_1696635940124798262_n_02e24617.jpg" alt="Emmanuel United Church Photo 33" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                NextGen Discipleship
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 34 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="nextgen" onclick="openPageLightbox(33)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/763089388_1483877457101389_269380306283216803_n_d7f7a9db.jpg" alt="Emmanuel United Church Photo 34" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                NextGen Discipleship
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 35 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="worship" onclick="openPageLightbox(34)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/763137408_1483876657101469_8197533176879321480_n_d4824dda.jpg" alt="Emmanuel United Church Photo 35" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Worship & Sanctuary
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 36 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="worship" onclick="openPageLightbox(35)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/763263008_1483876917101443_779965131664278638_n_f501b9b1.jpg" alt="Emmanuel United Church Photo 36" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Worship & Sanctuary
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 37 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="worship" onclick="openPageLightbox(36)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/763263225_1483868643768937_7681300306145765278_n_fe8fb5b6.jpg" alt="Emmanuel United Church Photo 37" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Worship & Sanctuary
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 38 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="worship" onclick="openPageLightbox(37)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/763671440_1483870393768762_3595453503869269108_n_0b36c041.jpg" alt="Emmanuel United Church Photo 38" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Worship & Sanctuary
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 39 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="worship" onclick="openPageLightbox(38)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/763944358_1483877297101405_6200749189507956876_n_017bef5a.jpg" alt="Emmanuel United Church Photo 39" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Worship & Sanctuary
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 40 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="worship" onclick="openPageLightbox(39)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/764907043_1483870080435460_8898126455633256962_n_fa7c8f93.jpg" alt="Emmanuel United Church Photo 40" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Worship & Sanctuary
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 41 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="fellowship" onclick="openPageLightbox(40)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/765769875_1483877837101351_6189498150755444938_n_0359dc98.jpg" alt="Emmanuel United Church Photo 41" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Church Fellowship
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 42 -->
+            <div class="gallery-item-card break-inside-avoid group cursor-pointer" data-category="fellowship" onclick="openPageLightbox(41)">
+                <div class="overflow-hidden rounded-2xl bg-[#061026] border border-sky-400/20 hover:border-cyan-400/70 shadow-lg hover:shadow-[0_12px_35px_rgba(0,229,255,0.25)] transition-all duration-500 hover:-translate-y-1 relative">
+                    <img src="/assets/aistudio/765872202_1483869273768874_1603845395429614540_n_909c79cb.jpg" alt="Emmanuel United Church Photo 42" class="w-full h-auto block object-cover group-hover:scale-[1.025] transition-transform duration-500" loading="lazy">
+                    
+                    <!-- Hover Vignette Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020713]/85 via-transparent to-[#020713]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-between p-4">
+                        <div class="self-start">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-heading font-bold uppercase tracking-wider bg-black/60 text-cyan-300 border border-cyan-400/40 backdrop-blur-md">
+                                Church Fellowship
+                            </span>
+                        </div>
+                        <div class="self-end">
+                            <div class="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.7)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Filter Tabs & Gallery Grid -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pb-16">
-        
-        <!-- Filter Tabs -->
-        <div class="flex items-center justify-center gap-2 sm:gap-3 flex-wrap mb-12">
-            <button type="button" onclick="filterGalleryCategory('all', this)" class="gallery-filter-btn px-5 py-2.5 rounded-full text-xs font-heading font-bold uppercase tracking-wider transition-all bg-cyan-400 text-slate-950 shadow-[0_0_15px_rgba(0,229,255,0.5)] cursor-pointer">
-                All Photos (20)
-            </button>
-            <button type="button" onclick="filterGalleryCategory('outreach', this)" class="gallery-filter-btn px-5 py-2.5 rounded-full text-xs font-heading font-bold uppercase tracking-wider transition-all bg-white/[0.06] border border-sky-400/20 text-sky-200 hover:bg-white/[0.12] hover:text-white cursor-pointer">
-                Outreach & Missions (11)
-            </button>
-            <button type="button" onclick="filterGalleryCategory('worship', this)" class="gallery-filter-btn px-5 py-2.5 rounded-full text-xs font-heading font-bold uppercase tracking-wider transition-all bg-white/[0.06] border border-sky-400/20 text-sky-200 hover:bg-white/[0.12] hover:text-white cursor-pointer">
-                Worship (3)
-            </button>
-            <button type="button" onclick="filterGalleryCategory('preaching', this)" class="gallery-filter-btn px-5 py-2.5 rounded-full text-xs font-heading font-bold uppercase tracking-wider transition-all bg-white/[0.06] border border-sky-400/20 text-sky-200 hover:bg-white/[0.12] hover:text-white cursor-pointer">
-                Preaching (2)
-            </button>
-            <button type="button" onclick="filterGalleryCategory('nextgen', this)" class="gallery-filter-btn px-5 py-2.5 rounded-full text-xs font-heading font-bold uppercase tracking-wider transition-all bg-white/[0.06] border border-sky-400/20 text-sky-200 hover:bg-white/[0.12] hover:text-white cursor-pointer">
-                NextGen (2)
-            </button>
-            <button type="button" onclick="filterGalleryCategory('fellowship', this)" class="gallery-filter-btn px-5 py-2.5 rounded-full text-xs font-heading font-bold uppercase tracking-wider transition-all bg-white/[0.06] border border-sky-400/20 text-sky-200 hover:bg-white/[0.12] hover:text-white cursor-pointer">
-                Fellowship (2)
-            </button>
-        </div>
-
-        <!-- Photos Grid -->
-        <div id="full-gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <!-- Professional Fullscreen Lightbox Modal -->
+    <div id="page-lightbox-modal" class="fixed inset-0 z-50 bg-[#020714]/95 backdrop-blur-2xl flex items-center justify-center p-3 sm:p-6 opacity-0 pointer-events-none transition-opacity duration-300" onclick="closePageLightboxOnBackdrop(event)">
+        <div class="relative max-w-6xl w-full flex flex-col items-center max-h-[96vh] justify-between">
             
-            <!-- Photo 1: Street Evangelism Banner Team -->
-            <div class="gallery-item-card group cursor-pointer azure-glass-shell rounded-2xl overflow-hidden border border-sky-400/20 hover:border-cyan-400/50 shadow-xl transition-all duration-300 hover:-translate-y-1" data-category="outreach" onclick="openPageLightbox(0)">
-                <div class="aspect-[4/3] overflow-hidden relative">
-                    <img src="/assets/aistudio/1e774192-81c3-431d-ae6f-342df0c5227e.JPG" alt="Street Evangelism Team with Jesus Banner in Silver Spring" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#020b1c] via-transparent to-transparent opacity-80"></div>
-                    <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-cyan-500/90 text-[10px] font-heading font-bold uppercase tracking-wider text-slate-950 backdrop-blur-md">
+            <!-- Top Lightbox Bar -->
+            <div class="w-full flex items-center justify-between pb-3 px-2 border-b border-sky-400/20 mb-3">
+                <div class="flex items-center gap-3">
+                    <span id="page-lightbox-badge" class="px-3 py-1 rounded-full bg-cyan-400/20 text-cyan-300 border border-cyan-400/30 text-xs font-heading font-bold uppercase tracking-wider">
                         Outreach
                     </span>
-                    <div class="absolute bottom-3 left-3 right-3">
-                        <p class="text-xs font-heading font-bold uppercase text-white truncate">The Great Commission in Silver Spring</p>
-                        <p class="text-[11px] text-cyan-200/80 font-sans">Full outreach team with Jesus banner</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Photo 2: "ኢየሱስ ጌታ ነው!" Evangelism Sign -->
-            <div class="gallery-item-card group cursor-pointer azure-glass-shell rounded-2xl overflow-hidden border border-sky-400/20 hover:border-cyan-400/50 shadow-xl transition-all duration-300 hover:-translate-y-1" data-category="outreach" onclick="openPageLightbox(1)">
-                <div class="aspect-[4/3] overflow-hidden relative">
-                    <img src="/assets/aistudio/7c245220-c7aa-4c8e-b51e-59798eb9def6.JPG" alt="Jesus is Lord Amharic Sign in Downtown Silver Spring" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#020b1c] via-transparent to-transparent opacity-80"></div>
-                    <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-cyan-500/90 text-[10px] font-heading font-bold uppercase tracking-wider text-slate-950 backdrop-blur-md">
-                        Outreach
+                    <span id="page-lightbox-counter" class="text-xs text-sky-200/70 font-heading font-semibold tracking-wider">
+                        Photo 1 of 42
                     </span>
-                    <div class="absolute bottom-3 left-3 right-3">
-                        <p class="text-xs font-heading font-bold uppercase text-white truncate">ኢየሱስ ጌታ ነው! (Jesus is Lord)</p>
-                        <p class="text-[11px] text-cyan-200/80 font-sans">Bold Amharic witness in Silver Spring</p>
-                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <a id="page-lightbox-download" href="#" target="_blank" download class="p-2 rounded-full bg-white/10 hover:bg-white/20 text-sky-200 hover:text-white transition-colors cursor-pointer" title="Open full resolution">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                    <button type="button" onclick="closePageLightbox()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-red-500/80 text-white flex items-center justify-center transition-colors cursor-pointer border border-white/20" aria-label="Close">
+                        ✕
+                    </button>
                 </div>
             </div>
 
-            <!-- Photo 3: Romans 3:23 & Romans 1:16 -->
-            <div class="gallery-item-card group cursor-pointer azure-glass-shell rounded-2xl overflow-hidden border border-sky-400/20 hover:border-cyan-400/50 shadow-xl transition-all duration-300 hover:-translate-y-1" data-category="outreach" onclick="openPageLightbox(2)">
-                <div class="aspect-[4/3] overflow-hidden relative">
-                    <img src="/assets/aistudio/7bf8c88b-0eda-42cc-9c9f-917d28b880c6.JPG" alt="Pastor Dr. Bezalem and Team Witnessing at Traffic Intersection" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#020b1c] via-transparent to-transparent opacity-80"></div>
-                    <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-cyan-500/90 text-[10px] font-heading font-bold uppercase tracking-wider text-slate-950 backdrop-blur-md">
-                        Outreach
-                    </span>
-                    <div class="absolute bottom-3 left-3 right-3">
-                        <p class="text-xs font-heading font-bold uppercase text-white truncate">Pastor Dr. Bezalem at Intersection</p>
-                        <p class="text-[11px] text-cyan-200/80 font-sans">Romans 3:23 scripture board on Wayne Ave</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Photo 4: Plaza Multilingual Witness -->
-            <div class="gallery-item-card group cursor-pointer azure-glass-shell rounded-2xl overflow-hidden border border-sky-400/20 hover:border-cyan-400/50 shadow-xl transition-all duration-300 hover:-translate-y-1" data-category="outreach" onclick="openPageLightbox(3)">
-                <div class="aspect-[4/3] overflow-hidden relative">
-                    <img src="/assets/aistudio/08ba735a-ebbb-4d83-94df-15d6c56a89ec.JPG" alt="Multilingual Flags Jesus The Way The Truth The Life" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#020b1c] via-transparent to-transparent opacity-80"></div>
-                    <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-cyan-500/90 text-[10px] font-heading font-bold uppercase tracking-wider text-slate-950 backdrop-blur-md">
-                        Outreach
-                    </span>
-                    <div class="absolute bottom-3 left-3 right-3">
-                        <p class="text-xs font-heading font-bold uppercase text-white truncate">Multilingual Kingdom Flags</p>
-                        <p class="text-[11px] text-cyan-200/80 font-sans">Arabic, Chinese, English & Amharic</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Photo 5: Two Brothers Preaching with Signs -->
-            <div class="gallery-item-card group cursor-pointer azure-glass-shell rounded-2xl overflow-hidden border border-sky-400/20 hover:border-cyan-400/50 shadow-xl transition-all duration-300 hover:-translate-y-1" data-category="outreach" onclick="openPageLightbox(4)">
-                <div class="aspect-[4/3] overflow-hidden relative">
-                    <img src="/assets/aistudio/dc60e8a7-7d76-49c9-8e10-2010272877dd.JPG" alt="Two Brothers Preaching with Signs at Silver Spring Walkway" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#020b1c] via-transparent to-transparent opacity-80"></div>
-                    <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-cyan-500/90 text-[10px] font-heading font-bold uppercase tracking-wider text-slate-950 backdrop-blur-md">
-                        Outreach
-                    </span>
-                    <div class="absolute bottom-3 left-3 right-3">
-                        <p class="text-xs font-heading font-bold uppercase text-white truncate">Walking in Faith on Fenton St</p>
-                        <p class="text-[11px] text-cyan-200/80 font-sans">Holding Gospel signs for commuters</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Photo 6: Gospel Tract Ministry -->
-            <div class="gallery-item-card group cursor-pointer azure-glass-shell rounded-2xl overflow-hidden border border-sky-400/20 hover:border-cyan-400/50 shadow-xl transition-all duration-300 hover:-translate-y-1" data-category="outreach" onclick="openPageLightbox(5)">
-                <div class="aspect-[4/3] overflow-hidden relative">
-                    <img src="/assets/aistudio/c316c200-7d7d-489c-86df-097aedfeeac6.JPG" alt="Distributing Gospel Tracts in Silver Spring" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#020b1c] via-transparent to-transparent opacity-80"></div>
-                    <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-cyan-500/90 text-[10px] font-heading font-bold uppercase tracking-wider text-slate-950 backdrop-blur-md">
-                        Outreach
-                    </span>
-                    <div class="absolute bottom-3 left-3 right-3">
-                        <p class="text-xs font-heading font-bold uppercase text-white truncate">One-on-One Gospel Sharing</p>
-                        <p class="text-[11px] text-cyan-200/80 font-sans">Connecting with residents personally</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Photo 7: Jesus Saves Youth & Family Witness -->
-            <div class="gallery-item-card group cursor-pointer azure-glass-shell rounded-2xl overflow-hidden border border-sky-400/20 hover:border-cyan-400/50 shadow-xl transition-all duration-300 hover:-translate-y-1" data-category="outreach" onclick="openPageLightbox(6)">
-                <div class="aspect-[4/3] overflow-hidden relative">
-                    <img src="/assets/aistudio/0361da65-97a4-4a1f-ab9a-789c7fd366d8.JPG" alt="Youth and Children with Jesus Saves Sign" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#020b1c] via-transparent to-transparent opacity-80"></div>
-                    <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-cyan-500/90 text-[10px] font-heading font-bold uppercase tracking-wider text-slate-950 backdrop-blur-md">
-                        Outreach
-                    </span>
-                    <div class="absolute bottom-3 left-3 right-3">
-                        <p class="text-xs font-heading font-bold uppercase text-white truncate">NextGen Evangelism</p>
-                        <p class="text-[11px] text-cyan-200/80 font-sans">Youth carrying Jesus Saves sign</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Photo 8: Street Corner Prayer & Conversation -->
-            <div class="gallery-item-card group cursor-pointer azure-glass-shell rounded-2xl overflow-hidden border border-sky-400/20 hover:border-cyan-400/50 shadow-xl transition-all duration-300 hover:-translate-y-1" data-category="outreach" onclick="openPageLightbox(7)">
-                <div class="aspect-[4/3] overflow-hidden relative">
-                    <img src="/assets/aistudio/da33096c-b6cb-4bce-b8d3-e3d70924b049.JPG" alt="Street Corner Prayer and Conversation" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#020b1c] via-transparent to-transparent opacity-80"></div>
-                    <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-cyan-500/90 text-[10px] font-heading font-bold uppercase tracking-wider text-slate-950 backdrop-blur-md">
-                        Outreach
-                    </span>
-                    <div class="absolute bottom-3 left-3 right-3">
-                        <p class="text-xs font-heading font-bold uppercase text-white truncate">Corner Prayer Ministry</p>
-                        <p class="text-[11px] text-cyan-200/80 font-sans">Praying with individuals on the street</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Photo 9: Romans 1:16 Not Ashamed of the Gospel -->
-            <div class="gallery-item-card group cursor-pointer azure-glass-shell rounded-2xl overflow-hidden border border-sky-400/20 hover:border-cyan-400/50 shadow-xl transition-all duration-300 hover:-translate-y-1" data-category="outreach" onclick="openPageLightbox(8)">
-                <div class="aspect-[4/3] overflow-hidden relative">
-                    <img src="/assets/aistudio/28093540-9470-441a-a106-765642bcd165.JPG" alt="Romans 1:16 Not Ashamed Banner" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#020b1c] via-transparent to-transparent opacity-80"></div>
-                    <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-cyan-500/90 text-[10px] font-heading font-bold uppercase tracking-wider text-slate-950 backdrop-blur-md">
-                        Outreach
-                    </span>
-                    <div class="absolute bottom-3 left-3 right-3">
-                        <p class="text-xs font-heading font-bold uppercase text-white truncate">Romans 1:16 — Not Ashamed</p>
-                        <p class="text-[11px] text-cyan-200/80 font-sans">For it is the power of God for salvation</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Photo 10: Community Plaza Gathering -->
-            <div class="gallery-item-card group cursor-pointer azure-glass-shell rounded-2xl overflow-hidden border border-sky-400/20 hover:border-cyan-400/50 shadow-xl transition-all duration-300 hover:-translate-y-1" data-category="outreach" onclick="openPageLightbox(9)">
-                <div class="aspect-[4/3] overflow-hidden relative">
-                    <img src="/assets/aistudio/593d3e63-d81c-435d-abe4-2d5f5df311ac.JPG" alt="Evangelism Team Assembled in Downtown Plaza" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#020b1c] via-transparent to-transparent opacity-80"></div>
-                    <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-cyan-500/90 text-[10px] font-heading font-bold uppercase tracking-wider text-slate-950 backdrop-blur-md">
-                        Outreach
-                    </span>
-                    <div class="absolute bottom-3 left-3 right-3">
-                        <p class="text-xs font-heading font-bold uppercase text-white truncate">Downtown Plaza Mobilization</p>
-                        <p class="text-[11px] text-cyan-200/80 font-sans">Commissioning prayer before street witness</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Photo 11: Team Sending and Fellowship -->
-            <div class="gallery-item-card group cursor-pointer azure-glass-shell rounded-2xl overflow-hidden border border-sky-400/20 hover:border-cyan-400/50 shadow-xl transition-all duration-300 hover:-translate-y-1" data-category="outreach" onclick="openPageLightbox(10)">
-                <div class="aspect-[4/3] overflow-hidden relative">
-                    <img src="/assets/aistudio/96b4fdba-fc17-4b33-9f71-060eecbab731.JPG" alt="Team Commissioning and Joy in the Lord" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#020b1c] via-transparent to-transparent opacity-80"></div>
-                    <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-cyan-500/90 text-[10px] font-heading font-bold uppercase tracking-wider text-slate-950 backdrop-blur-md">
-                        Outreach
-                    </span>
-                    <div class="absolute bottom-3 left-3 right-3">
-                        <p class="text-xs font-heading font-bold uppercase text-white truncate">Joy in the Harvest</p>
-                        <p class="text-[11px] text-cyan-200/80 font-sans">Celebrating souls and testimonies</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Photo 12: Sunday Morning Worship Sanctuary -->
-            <div class="gallery-item-card group cursor-pointer azure-glass-shell rounded-2xl overflow-hidden border border-sky-400/20 hover:border-cyan-400/50 shadow-xl transition-all duration-300 hover:-translate-y-1" data-category="worship" onclick="openPageLightbox(11)">
-                <div class="aspect-[4/3] overflow-hidden relative">
-                    <img src="/assets/aistudio/image_6838d1c7.png" alt="Passionate Sunday Worship at Emmanuel United Church" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#020b1c] via-transparent to-transparent opacity-80"></div>
-                    <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-amber-400/90 text-[10px] font-heading font-bold uppercase tracking-wider text-slate-950 backdrop-blur-md">
-                        Worship
-                    </span>
-                    <div class="absolute bottom-3 left-3 right-3">
-                        <p class="text-xs font-heading font-bold uppercase text-white truncate">Sunday Worship Service</p>
-                        <p class="text-[11px] text-cyan-200/80 font-sans">10:30 AM · 12604 New Hampshire Ave</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Photo 13: Live Sanctuary Worship Band -->
-            <div class="gallery-item-card group cursor-pointer azure-glass-shell rounded-2xl overflow-hidden border border-sky-400/20 hover:border-cyan-400/50 shadow-xl transition-all duration-300 hover:-translate-y-1" data-category="worship" onclick="openPageLightbox(12)">
-                <div class="aspect-[4/3] overflow-hidden relative">
-                    <img src="/assets/aistudio/484072894_1063741372448335_893225315921763014_n_f89cea15.jpg" alt="Show us Your Glory EUCMD Worship Team" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#020b1c] via-transparent to-transparent opacity-80"></div>
-                    <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-amber-400/90 text-[10px] font-heading font-bold uppercase tracking-wider text-slate-950 backdrop-blur-md">
-                        Worship
-                    </span>
-                    <div class="absolute bottom-3 left-3 right-3">
-                        <p class="text-xs font-heading font-bold uppercase text-white truncate">Live Praise & Worship Band</p>
-                        <p class="text-[11px] text-cyan-200/80 font-sans">Exalting King Jesus in Praise</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Photo 14: Traditional Begena Harp Worship -->
-            <div class="gallery-item-card group cursor-pointer azure-glass-shell rounded-2xl overflow-hidden border border-sky-400/20 hover:border-cyan-400/50 shadow-xl transition-all duration-300 hover:-translate-y-1" data-category="worship" onclick="openPageLightbox(13)">
-                <div class="aspect-[4/3] overflow-hidden relative">
-                    <img src="/assets/aistudio/670389331_1382859200536549_4145701206008260152_n_d154b428.jpg" alt="Traditional Begena Krar Harp Worship" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#020b1c] via-transparent to-transparent opacity-80"></div>
-                    <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-amber-400/90 text-[10px] font-heading font-bold uppercase tracking-wider text-slate-950 backdrop-blur-md">
-                        Worship
-                    </span>
-                    <div class="absolute bottom-3 left-3 right-3">
-                        <p class="text-xs font-heading font-bold uppercase text-white truncate">Traditional Begena & Harp</p>
-                        <p class="text-[11px] text-cyan-200/80 font-sans">Rich Ethiopian Christian heritage</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Photo 15: Pastoral Preaching & Biblical Exposition -->
-            <div class="gallery-item-card group cursor-pointer azure-glass-shell rounded-2xl overflow-hidden border border-sky-400/20 hover:border-cyan-400/50 shadow-xl transition-all duration-300 hover:-translate-y-1" data-category="preaching" onclick="openPageLightbox(14)">
-                <div class="aspect-[4/3] overflow-hidden relative">
-                    <img src="/assets/aistudio/image_3c66ecfa.png" alt="Pastor Dr. Bezalem Preaching God's Word" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#020b1c] via-transparent to-transparent opacity-80"></div>
-                    <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-blue-500/90 text-[10px] font-heading font-bold uppercase tracking-wider text-white backdrop-blur-md">
-                        Preaching
-                    </span>
-                    <div class="absolute bottom-3 left-3 right-3">
-                        <p class="text-xs font-heading font-bold uppercase text-white truncate">Word of Truth & Life</p>
-                        <p class="text-[11px] text-cyan-200/80 font-sans">Biblical exposition and pastoral encouragement</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Photo 16: Pastoral Ministry from Pulpit -->
-            <div class="gallery-item-card group cursor-pointer azure-glass-shell rounded-2xl overflow-hidden border border-sky-400/20 hover:border-cyan-400/50 shadow-xl transition-all duration-300 hover:-translate-y-1" data-category="preaching" onclick="openPageLightbox(15)">
-                <div class="aspect-[4/3] overflow-hidden relative">
-                    <img src="/assets/aistudio/485767173_1067548955400910_3771887861713995988_n_c26b5db1.jpg" alt="Pastor Dr. Bezalem Fisseha Preaching in Sanctuary" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#020b1c] via-transparent to-transparent opacity-80"></div>
-                    <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-blue-500/90 text-[10px] font-heading font-bold uppercase tracking-wider text-white backdrop-blur-md">
-                        Preaching
-                    </span>
-                    <div class="absolute bottom-3 left-3 right-3">
-                        <p class="text-xs font-heading font-bold uppercase text-white truncate">Senior Pastor Dr. Bezalem</p>
-                        <p class="text-[11px] text-cyan-200/80 font-sans">Proclaiming the transformational Gospel</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Photo 17: Kingdom Kids Stage Presentation -->
-            <div class="gallery-item-card group cursor-pointer azure-glass-shell rounded-2xl overflow-hidden border border-sky-400/20 hover:border-cyan-400/50 shadow-xl transition-all duration-300 hover:-translate-y-1" data-category="nextgen" onclick="openPageLightbox(16)">
-                <div class="aspect-[4/3] overflow-hidden relative">
-                    <img src="/assets/aistudio/763018718_1483877877101347_7498119804531853220_n_f55caa68.jpg" alt="Kingdom Kids Children Ministry Presentation" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#020b1c] via-transparent to-transparent opacity-80"></div>
-                    <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-cyan-400/90 text-[10px] font-heading font-bold uppercase tracking-wider text-slate-950 backdrop-blur-md">
-                        NextGen
-                    </span>
-                    <div class="absolute bottom-3 left-3 right-3">
-                        <p class="text-xs font-heading font-bold uppercase text-white truncate">Kingdom Kids Ministry</p>
-                        <p class="text-[11px] text-cyan-200/80 font-sans">Equipping children ages 4–11 with faith</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Photo 18: Ignite Youth Ministry -->
-            <div class="gallery-item-card group cursor-pointer azure-glass-shell rounded-2xl overflow-hidden border border-sky-400/20 hover:border-cyan-400/50 shadow-xl transition-all duration-300 hover:-translate-y-1" data-category="nextgen" onclick="openPageLightbox(17)">
-                <div class="aspect-[4/3] overflow-hidden relative">
-                    <img src="/assets/aistudio/485177008_1067548918734247_7033400783672244298_n_2b77b8e1.jpg" alt="Ignite Youth Ministry Gathering" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#020b1c] via-transparent to-transparent opacity-80"></div>
-                    <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-cyan-400/90 text-[10px] font-heading font-bold uppercase tracking-wider text-slate-950 backdrop-blur-md">
-                        NextGen
-                    </span>
-                    <div class="absolute bottom-3 left-3 right-3">
-                        <p class="text-xs font-heading font-bold uppercase text-white truncate">Ignite Youth (Ages 12–18)</p>
-                        <p class="text-[11px] text-cyan-200/80 font-sans">Empowering young believers to lead</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Photo 19: Ethiopian Kebero Praise Celebration -->
-            <div class="gallery-item-card group cursor-pointer azure-glass-shell rounded-2xl overflow-hidden border border-sky-400/20 hover:border-cyan-400/50 shadow-xl transition-all duration-300 hover:-translate-y-1" data-category="fellowship" onclick="openPageLightbox(18)">
-                <div class="aspect-[4/3] overflow-hidden relative">
-                    <img src="/assets/aistudio/765872202_1483869273768874_1603845395429614540_n_909c79cb.jpg" alt="Ethiopian Drum Celebration in Church Aisle" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#020b1c] via-transparent to-transparent opacity-80"></div>
-                    <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-emerald-500/90 text-[10px] font-heading font-bold uppercase tracking-wider text-slate-950 backdrop-blur-md">
-                        Fellowship
-                    </span>
-                    <div class="absolute bottom-3 left-3 right-3">
-                        <p class="text-xs font-heading font-bold uppercase text-white truncate">Kebero Thanksgiving Praise</p>
-                        <p class="text-[11px] text-cyan-200/80 font-sans">Joyful celebration in the church family</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Photo 20: Discipleship School Graduation Celebration -->
-            <div class="gallery-item-card group cursor-pointer azure-glass-shell rounded-2xl overflow-hidden border border-sky-400/20 hover:border-cyan-400/50 shadow-xl transition-all duration-300 hover:-translate-y-1" data-category="fellowship" onclick="openPageLightbox(19)">
-                <div class="aspect-[4/3] overflow-hidden relative">
-                    <img src="/assets/aistudio/765769875_1483877837101351_6189498150755444938_n_0359dc98.jpg" alt="Discipleship School Graduation in Blue Gowns" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#020b1c] via-transparent to-transparent opacity-80"></div>
-                    <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-emerald-500/90 text-[10px] font-heading font-bold uppercase tracking-wider text-slate-950 backdrop-blur-md">
-                        Fellowship
-                    </span>
-                    <div class="absolute bottom-3 left-3 right-3">
-                        <p class="text-xs font-heading font-bold uppercase text-white truncate">Discipleship Graduation</p>
-                        <p class="text-[11px] text-cyan-200/80 font-sans">Commissioned to serve and lead</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- Lightbox Modal -->
-    <div id="page-lightbox-modal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300" onclick="closePageLightboxOnBackdrop(event)">
-        <div class="relative max-w-5xl w-full bg-[#08152e] border border-sky-400/30 rounded-3xl p-4 sm:p-6 shadow-2xl flex flex-col items-center max-h-[92vh] overflow-hidden">
-            <!-- Close Button -->
-            <button type="button" onclick="closePageLightbox()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-xl transition-colors cursor-pointer border border-white/20">
-                ✕
-            </button>
-            
-            <!-- Category Tag -->
-            <div class="self-start mb-3 flex items-center gap-2">
-                <span id="page-lightbox-category" class="px-3 py-1 rounded-full bg-cyan-400/20 text-cyan-300 border border-cyan-400/30 text-xs font-heading font-bold uppercase tracking-wider">
-                    Outreach
-                </span>
-                <span id="page-lightbox-counter" class="text-xs text-sky-200/60 font-sans">1 / 20</span>
-            </div>
-
-            <!-- Main Image & Arrows Container -->
-            <div class="relative w-full flex-1 flex items-center justify-center overflow-hidden min-h-[300px] max-h-[65vh]">
-                <img id="page-lightbox-img" src="" alt="" class="max-w-full max-h-[62vh] object-contain rounded-xl shadow-2xl transition-all duration-300">
+            <!-- Central Viewport & Navigation -->
+            <div class="relative w-full flex-1 flex items-center justify-center overflow-hidden min-h-[350px] max-h-[82vh]">
+                <img id="page-lightbox-img" src="" alt="Emmanuel United Church Full Photo" class="max-w-full max-h-[80vh] object-contain rounded-xl shadow-2xl transition-all duration-300 select-none">
                 
-                <!-- Prev Arrow -->
-                <button type="button" onclick="prevPageLightboxPhoto(event)" class="absolute left-2 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-slate-950/80 hover:bg-cyan-500 hover:text-slate-950 text-white border border-sky-400/40 flex items-center justify-center text-xl font-bold transition-all shadow-lg cursor-pointer">
+                <!-- Prev Button -->
+                <button type="button" onclick="prevPageLightboxPhoto(event)" class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-slate-950/80 hover:bg-cyan-500 hover:text-slate-950 text-white border border-sky-400/40 flex items-center justify-center text-xl font-bold transition-all shadow-xl cursor-pointer" aria-label="Previous">
                     ‹
                 </button>
-                <!-- Next Arrow -->
-                <button type="button" onclick="nextPageLightboxPhoto(event)" class="absolute right-2 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-slate-950/80 hover:bg-cyan-500 hover:text-slate-950 text-white border border-sky-400/40 flex items-center justify-center text-xl font-bold transition-all shadow-lg cursor-pointer">
+                <!-- Next Button -->
+                <button type="button" onclick="nextPageLightboxPhoto(event)" class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-slate-950/80 hover:bg-cyan-500 hover:text-slate-950 text-white border border-sky-400/40 flex items-center justify-center text-xl font-bold transition-all shadow-xl cursor-pointer" aria-label="Next">
                     ›
                 </button>
             </div>
 
-            <!-- Captions -->
-            <div class="w-full mt-4 text-center">
-                <h3 id="page-lightbox-title" class="text-lg sm:text-xl font-heading font-bold uppercase text-white"></h3>
-                <p id="page-lightbox-desc" class="text-xs sm:text-sm text-sky-200/80 font-sans mt-1 max-w-2xl mx-auto"></p>
+            <!-- Bottom Navigation Keyboard Hint -->
+            <div class="w-full pt-3 text-center text-[11px] text-sky-200/50 font-sans">
+                Use <kbd class="px-1.5 py-0.5 rounded bg-white/10 text-sky-200">←</kbd> and <kbd class="px-1.5 py-0.5 rounded bg-white/10 text-sky-200">→</kbd> to navigate · <kbd class="px-1.5 py-0.5 rounded bg-white/10 text-sky-200">Esc</kbd> to close
             </div>
         </div>
     </div>
@@ -417,195 +944,298 @@
 <script>
 const pageGalleryPhotos = [
     {
-        src: "/assets/aistudio/1e774192-81c3-431d-ae6f-342df0c5227e.JPG",
-        title: "The Great Commission in Silver Spring",
-        desc: "Emmanuel United Church street outreach team holding 'JESUS — THE WAY, THE TRUTH, THE LIFE' banner and Scripture signs in downtown Silver Spring.",
-        category: "Outreach & Missions"
+        "src": "/assets/aistudio/1e774192-81c3-431d-ae6f-342df0c5227e.JPG",
+        "category": "outreach",
+        "badge": "Outreach & Missions"
     },
     {
-        src: "/assets/aistudio/7c245220-c7aa-4c8e-b51e-59798eb9def6.JPG",
-        title: "ኢየሱስ ጌታ ነው! (Jesus is Lord)",
-        desc: "Brother boldly proclaiming 'ኢየሱስ ጌታ ነው!' (Jesus is Lord in Amharic) with Gospel tracts ready to share with passing residents.",
-        category: "Outreach & Missions"
+        "src": "/assets/aistudio/7c245220-c7aa-4c8e-b51e-59798eb9def6.JPG",
+        "category": "outreach",
+        "badge": "Outreach & Missions"
     },
     {
-        src: "/assets/aistudio/7bf8c88b-0eda-42cc-9c9f-917d28b880c6.JPG",
-        title: "Pastor Dr. Bezalem & Team at Intersection",
-        desc: "Senior Pastor Dr. Bezalem Fisseha and ministry sister with Romans 1:16 'NOT ASHAMED OF THE GOSPEL' cape proclaiming Romans 3:23 at busy Silver Spring crosswalk.",
-        category: "Outreach & Missions"
+        "src": "/assets/aistudio/7bf8c88b-0eda-42cc-9c9f-917d28b880c6.JPG",
+        "category": "outreach",
+        "badge": "Outreach & Missions"
     },
     {
-        src: "/assets/aistudio/08ba735a-ebbb-4d83-94df-15d6c56a89ec.JPG",
-        title: "Multilingual Kingdom Flags",
-        desc: "Declaring Christ's lordship in English, Arabic, Amharic, and Chinese at the central Silver Spring amphitheater plaza.",
-        category: "Outreach & Missions"
+        "src": "/assets/aistudio/08ba735a-ebbb-4d83-94df-15d6c56a89ec.JPG",
+        "category": "outreach",
+        "badge": "Outreach & Missions"
     },
     {
-        src: "/assets/aistudio/dc60e8a7-7d76-49c9-8e10-2010272877dd.JPG",
-        title: "Faithful Witnesses on Fenton Street",
-        desc: "Two brothers standing with bold biblical signs along the bustling shopping and pedestrian district in Silver Spring.",
-        category: "Outreach & Missions"
+        "src": "/assets/aistudio/dc60e8a7-7d76-49c9-8e10-2010272877dd.JPG",
+        "category": "outreach",
+        "badge": "Outreach & Missions"
     },
     {
-        src: "/assets/aistudio/c316c200-7d7d-489c-86df-097aedfeeac6.JPG",
-        title: "One-on-One Gospel Sharing",
-        desc: "Personal conversations and sharing the good news of eternal salvation through Jesus Christ with downtown pedestrians.",
-        category: "Outreach & Missions"
+        "src": "/assets/aistudio/c316c200-7d7d-489c-86df-097aedfeeac6.JPG",
+        "category": "outreach",
+        "badge": "Outreach & Missions"
     },
     {
-        src: "/assets/aistudio/0361da65-97a4-4a1f-ab9a-789c7fd366d8.JPG",
-        title: "NextGen & Children Evangelism",
-        desc: "Empowering children and youth to stand unashamed for Jesus with the iconic 'JESUS SAVES' sign.",
-        category: "Outreach & Missions"
+        "src": "/assets/aistudio/0361da65-97a4-4a1f-ab9a-789c7fd366d8.JPG",
+        "category": "outreach",
+        "badge": "Outreach & Missions"
     },
     {
-        src: "/assets/aistudio/da33096c-b6cb-4bce-b8d3-e3d70924b049.JPG",
-        title: "Street Corner Prayer Ministry",
-        desc: "Stopping to pray with commuters, listening to burdens, and ministering Christ's peace in the heart of Maryland.",
-        category: "Outreach & Missions"
+        "src": "/assets/aistudio/da33096c-b6cb-4bce-b8d3-e3d70924b049.JPG",
+        "category": "outreach",
+        "badge": "Outreach & Missions"
     },
     {
-        src: "/assets/aistudio/28093540-9470-441a-a106-765642bcd165.JPG",
-        title: "Romans 1:16 — Not Ashamed",
-        desc: "'For I am not ashamed of the gospel of Christ, for it is the power of God to salvation for everyone who believes.'",
-        category: "Outreach & Missions"
+        "src": "/assets/aistudio/28093540-9470-441a-a106-765642bcd165.JPG",
+        "category": "outreach",
+        "badge": "Outreach & Missions"
     },
     {
-        src: "/assets/aistudio/593d3e63-d81c-435d-abe4-2d5f5df311ac.JPG",
-        title: "Downtown Plaza Commissioning",
-        desc: "The outreach team gathered under the golden autumn trees for united prayer before dispersing into the community.",
-        category: "Outreach & Missions"
+        "src": "/assets/aistudio/593d3e63-d81c-435d-abe4-2d5f5df311ac.JPG",
+        "category": "outreach",
+        "badge": "Outreach & Missions"
     },
     {
-        src: "/assets/aistudio/96b4fdba-fc17-4b33-9f71-060eecbab731.JPG",
-        title: "Joy in the Harvest",
-        desc: "Smiling faces rejoicing after an impactful afternoon of evangelism, seeds sown, and souls prayed for across Silver Spring.",
-        category: "Outreach & Missions"
+        "src": "/assets/aistudio/96b4fdba-fc17-4b33-9f71-060eecbab731.JPG",
+        "category": "outreach",
+        "badge": "Outreach & Missions"
     },
     {
-        src: "/assets/aistudio/image_6838d1c7.png",
-        title: "Sunday Morning Worship",
-        desc: "Uplifting praise and worship gathering every Sunday at 10:30 AM at 12604 New Hampshire Ave, Silver Spring, MD.",
-        category: "Worship"
+        "src": "/assets/aistudio/484072894_1063741372448335_893225315921763014_n_f89cea15.jpg",
+        "category": "worship",
+        "badge": "Worship & Sanctuary"
     },
     {
-        src: "/assets/aistudio/484072894_1063741372448335_893225315921763014_n_f89cea15.jpg",
-        title: "Live Sanctuary Praise Band",
-        desc: "Talented musicians and vocalists leading the church family in heartfelt adoration and worship.",
-        category: "Worship"
+        "src": "/assets/aistudio/485151948_1067548775400928_6282613185091891205_n_db5e663e.jpg",
+        "category": "nextgen",
+        "badge": "NextGen Discipleship"
     },
     {
-        src: "/assets/aistudio/670389331_1382859200536549_4145701206008260152_n_d154b428.jpg",
-        title: "Begena & Harp Praise",
-        desc: "Preserving rich Christian heritage with traditional Ethiopian stringed instruments in reverence to God.",
-        category: "Worship"
+        "src": "/assets/aistudio/485175511_1067548795400926_5214353136447022255_n_e978cc17.jpg",
+        "category": "nextgen",
+        "badge": "NextGen Discipleship"
     },
     {
-        src: "/assets/aistudio/image_3c66ecfa.png",
-        title: "Word of Truth & Biblical Exposition",
-        desc: "Senior Pastor Dr. Bezalem Fisseha preaching the Gospel with theological depth and practical pastoral guidance.",
-        category: "Preaching"
+        "src": "/assets/aistudio/485177008_1067548918734247_7033400783672244298_n_2b77b8e1.jpg",
+        "category": "nextgen",
+        "badge": "NextGen Discipleship"
     },
     {
-        src: "/assets/aistudio/485767173_1067548955400910_3771887861713995988_n_c26b5db1.jpg",
-        title: "Senior Pastor Dr. Bezalem Fisseha",
-        desc: "Over 20 years of ministerial leadership, pastoral care, and biblical discipleship.",
-        category: "Preaching"
+        "src": "/assets/aistudio/485767173_1067548955400910_3771887861713995988_n_c26b5db1.jpg",
+        "category": "nextgen",
+        "badge": "NextGen Discipleship"
     },
     {
-        src: "/assets/aistudio/763018718_1483877877101347_7498119804531853220_n_f55caa68.jpg",
-        title: "Kingdom Kids Ministry Presentation",
-        desc: "Children sharing Scripture verses and praise songs on stage during Sunday worship.",
-        category: "NextGen"
+        "src": "/assets/aistudio/486056033_1067548748734264_7322107188669003734_n_184e0a0b.jpg",
+        "category": "worship",
+        "badge": "Worship & Sanctuary"
     },
     {
-        src: "/assets/aistudio/485177008_1067548918734247_7033400783672244298_n_2b77b8e1.jpg",
-        title: "Ignite Youth Ministry",
-        desc: "Discipleship, fellowship, and mentorship for middle and high school students.",
-        category: "NextGen"
+        "src": "/assets/aistudio/668522396_1382859160536553_2419448380390787819_n_c696cc18.jpg",
+        "category": "fellowship",
+        "badge": "Church Fellowship"
     },
     {
-        src: "/assets/aistudio/765872202_1483869273768874_1603845395429614540_n_909c79cb.jpg",
-        title: "Kebero Drum Celebration",
-        desc: "Thanksgiving and joyful celebration through sacred music and generational fellowship.",
-        category: "Fellowship"
+        "src": "/assets/aistudio/669027030_1382859270536542_1333211100713107624_n_2c9d8b1c.jpg",
+        "category": "fellowship",
+        "badge": "Church Fellowship"
     },
     {
-        src: "/assets/aistudio/765769875_1483877837101351_6189498150755444938_n_0359dc98.jpg",
-        title: "Discipleship School Graduation",
-        desc: "Equipping believers to walk with Christ, discover their calling, and serve their community.",
-        category: "Fellowship"
+        "src": "/assets/aistudio/669645443_1382859247203211_2944136757014384639_n_920e7c81.jpg",
+        "category": "fellowship",
+        "badge": "Church Fellowship"
+    },
+    {
+        "src": "/assets/aistudio/669727217_1382859173869885_7702698326695477048_n_6bc2552a.jpg",
+        "category": "fellowship",
+        "badge": "Church Fellowship"
+    },
+    {
+        "src": "/assets/aistudio/669860043_1382859293869873_1530693644227228988_n_7e9afde1.jpg",
+        "category": "fellowship",
+        "badge": "Church Fellowship"
+    },
+    {
+        "src": "/assets/aistudio/669868912_1382859203869882_8484858259367645374_n_9432e3ae.jpg",
+        "category": "fellowship",
+        "badge": "Church Fellowship"
+    },
+    {
+        "src": "/assets/aistudio/670389331_1382859200536549_4145701206008260152_n_d154b428.jpg",
+        "category": "nextgen",
+        "badge": "Kingdom Kids"
+    },
+    {
+        "src": "/assets/aistudio/671615242_1382859233869879_6517316448121868293_n_c029ca77.jpg",
+        "category": "worship",
+        "badge": "Worship & Sanctuary"
+    },
+    {
+        "src": "/assets/aistudio/682146220_1396062422549560_2683500564046775909_n_814ff38f.jpg",
+        "category": "fellowship",
+        "badge": "Church Fellowship"
+    },
+    {
+        "src": "/assets/aistudio/682459397_1396063642549438_2005809581441341341_n_4254ae04.jpg",
+        "category": "fellowship",
+        "badge": "Church Fellowship"
+    },
+    {
+        "src": "/assets/aistudio/762404831_1483870023768799_3899210239599042886_n_a7253694.jpg",
+        "category": "worship",
+        "badge": "Worship & Sanctuary"
+    },
+    {
+        "src": "/assets/aistudio/762803111_1483877013768100_2174790290477226869_n_ac024226.jpg",
+        "category": "worship",
+        "badge": "Worship & Sanctuary"
+    },
+    {
+        "src": "/assets/aistudio/762868473_1483868947102240_2914173873595455190_n_eb792f44.jpg",
+        "category": "worship",
+        "badge": "Worship & Sanctuary"
+    },
+    {
+        "src": "/assets/aistudio/763018718_1483877877101347_7498119804531853220_n_f55caa68.jpg",
+        "category": "nextgen",
+        "badge": "NextGen Discipleship"
+    },
+    {
+        "src": "/assets/aistudio/763025163_1483877600434708_4653831895923724700_n_5f5569fb.jpg",
+        "category": "nextgen",
+        "badge": "NextGen Discipleship"
+    },
+    {
+        "src": "/assets/aistudio/763050688_1483877753768026_1696635940124798262_n_02e24617.jpg",
+        "category": "nextgen",
+        "badge": "NextGen Discipleship"
+    },
+    {
+        "src": "/assets/aistudio/763089388_1483877457101389_269380306283216803_n_d7f7a9db.jpg",
+        "category": "nextgen",
+        "badge": "NextGen Discipleship"
+    },
+    {
+        "src": "/assets/aistudio/763137408_1483876657101469_8197533176879321480_n_d4824dda.jpg",
+        "category": "worship",
+        "badge": "Worship & Sanctuary"
+    },
+    {
+        "src": "/assets/aistudio/763263008_1483876917101443_779965131664278638_n_f501b9b1.jpg",
+        "category": "worship",
+        "badge": "Worship & Sanctuary"
+    },
+    {
+        "src": "/assets/aistudio/763263225_1483868643768937_7681300306145765278_n_fe8fb5b6.jpg",
+        "category": "worship",
+        "badge": "Worship & Sanctuary"
+    },
+    {
+        "src": "/assets/aistudio/763671440_1483870393768762_3595453503869269108_n_0b36c041.jpg",
+        "category": "worship",
+        "badge": "Worship & Sanctuary"
+    },
+    {
+        "src": "/assets/aistudio/763944358_1483877297101405_6200749189507956876_n_017bef5a.jpg",
+        "category": "worship",
+        "badge": "Worship & Sanctuary"
+    },
+    {
+        "src": "/assets/aistudio/764907043_1483870080435460_8898126455633256962_n_fa7c8f93.jpg",
+        "category": "worship",
+        "badge": "Worship & Sanctuary"
+    },
+    {
+        "src": "/assets/aistudio/765769875_1483877837101351_6189498150755444938_n_0359dc98.jpg",
+        "category": "fellowship",
+        "badge": "Church Fellowship"
+    },
+    {
+        "src": "/assets/aistudio/765872202_1483869273768874_1603845395429614540_n_909c79cb.jpg",
+        "category": "fellowship",
+        "badge": "Church Fellowship"
     }
 ];
 
-let currentPageLightboxIndex = 0;
+let currentPhotoIndex = 0;
+
+function filterGalleryCategory(category, buttonEl) {
+    const cards = document.querySelectorAll(".gallery-item-card");
+    const buttons = document.querySelectorAll(".gallery-filter-btn");
+
+    buttons.forEach(btn => {
+        btn.classList.remove("bg-gradient-to-r", "from-cyan-400", "via-sky-500", "to-blue-600", "text-slate-950", "font-black", "shadow-[0_0_20px_rgba(0,229,255,0.4)]");
+        btn.classList.add("bg-white/[0.06]", "border", "border-sky-400/25", "text-sky-200");
+    });
+
+    if (buttonEl) {
+        buttonEl.classList.remove("bg-white/[0.06]", "border", "border-sky-400/25", "text-sky-200");
+        buttonEl.classList.add("bg-gradient-to-r", "from-cyan-400", "via-sky-500", "to-blue-600", "text-slate-950", "font-black", "shadow-[0_0_20px_rgba(0,229,255,0.4)]");
+    }
+
+    cards.forEach(card => {
+        if (category === "all" || card.getAttribute("data-category") === category) {
+            card.style.display = "";
+        } else {
+            card.style.display = "none";
+        }
+    });
+}
 
 function openPageLightbox(index) {
-    currentPageLightboxIndex = index;
-    updatePageLightboxContent();
-    const modal = document.getElementById('page-lightbox-modal');
-    modal.classList.remove('opacity-0', 'pointer-events-none');
-    document.body.style.overflow = 'hidden';
+    if (index < 0 || index >= pageGalleryPhotos.length) return;
+    currentPhotoIndex = index;
+    const photo = pageGalleryPhotos[index];
+
+    const modal = document.getElementById("page-lightbox-modal");
+    const img = document.getElementById("page-lightbox-img");
+    const counter = document.getElementById("page-lightbox-counter");
+    const badge = document.getElementById("page-lightbox-badge");
+    const download = document.getElementById("page-lightbox-download");
+
+    if (modal && img) {
+        img.src = photo.src;
+        if (counter) counter.textContent = "Photo " + (index + 1) + " of " + pageGalleryPhotos.length;
+        if (badge) badge.textContent = photo.badge;
+        if (download) download.href = photo.src;
+        modal.classList.remove("opacity-0", "pointer-events-none");
+        modal.classList.add("opacity-100");
+        document.body.style.overflow = "hidden";
+    }
 }
 
 function closePageLightbox() {
-    const modal = document.getElementById('page-lightbox-modal');
-    modal.classList.add('opacity-0', 'pointer-events-none');
-    document.body.style.overflow = '';
+    const modal = document.getElementById("page-lightbox-modal");
+    if (modal) {
+        modal.classList.add("opacity-0", "pointer-events-none");
+        modal.classList.remove("opacity-100");
+        document.body.style.overflow = "";
+    }
 }
 
 function closePageLightboxOnBackdrop(e) {
-    if (e.target.id === 'page-lightbox-modal') {
+    if (e.target.id === "page-lightbox-modal") {
         closePageLightbox();
     }
 }
 
-function updatePageLightboxContent() {
-    const item = pageGalleryPhotos[currentPageLightboxIndex];
-    if (!item) return;
-    document.getElementById('page-lightbox-img').src = item.src;
-    document.getElementById('page-lightbox-img').alt = item.title;
-    document.getElementById('page-lightbox-title').textContent = item.title;
-    document.getElementById('page-lightbox-desc').textContent = item.desc;
-    document.getElementById('page-lightbox-category').textContent = item.category;
-    document.getElementById('page-lightbox-counter').textContent = (currentPageLightboxIndex + 1) + ' / ' + pageGalleryPhotos.length;
+function prevPageLightboxPhoto(e) {
+    if (e) e.stopPropagation();
+    currentPhotoIndex = (currentPhotoIndex - 1 + pageGalleryPhotos.length) % pageGalleryPhotos.length;
+    openPageLightbox(currentPhotoIndex);
 }
 
 function nextPageLightboxPhoto(e) {
     if (e) e.stopPropagation();
-    currentPageLightboxIndex = (currentPageLightboxIndex + 1) % pageGalleryPhotos.length;
-    updatePageLightboxContent();
+    currentPhotoIndex = (currentPhotoIndex + 1) % pageGalleryPhotos.length;
+    openPageLightbox(currentPhotoIndex);
 }
 
-function prevPageLightboxPhoto(e) {
-    if (e) e.stopPropagation();
-    currentPageLightboxIndex = (currentPageLightboxIndex - 1 + pageGalleryPhotos.length) % pageGalleryPhotos.length;
-    updatePageLightboxContent();
-}
-
-document.addEventListener('keydown', (e) => {
-    const modal = document.getElementById('page-lightbox-modal');
-    if (!modal || modal.classList.contains('pointer-events-none')) return;
-    if (e.key === 'Escape') closePageLightbox();
-    if (e.key === 'ArrowRight') nextPageLightboxPhoto();
-    if (e.key === 'ArrowLeft') prevPageLightboxPhoto();
+document.addEventListener("keydown", (e) => {
+    const modal = document.getElementById("page-lightbox-modal");
+    if (!modal || modal.classList.contains("pointer-events-none")) return;
+    if (e.key === "Escape") closePageLightbox();
+    if (e.key === "ArrowLeft") prevPageLightboxPhoto();
+    if (e.key === "ArrowRight") nextPageLightboxPhoto();
 });
-
-function filterGalleryCategory(cat, btn) {
-    document.querySelectorAll('.gallery-filter-btn').forEach(b => {
-        b.className = 'gallery-filter-btn px-5 py-2.5 rounded-full text-xs font-heading font-bold uppercase tracking-wider transition-all bg-white/[0.06] border border-sky-400/20 text-sky-200 hover:bg-white/[0.12] hover:text-white cursor-pointer';
-    });
-    btn.className = 'gallery-filter-btn px-5 py-2.5 rounded-full text-xs font-heading font-bold uppercase tracking-wider transition-all bg-cyan-400 text-slate-950 shadow-[0_0_15px_rgba(0,229,255,0.5)] cursor-pointer';
-
-    const cards = document.querySelectorAll('.gallery-item-card');
-    cards.forEach(card => {
-        if (cat === 'all' || card.getAttribute('data-category') === cat) {
-            card.style.display = 'block';
-        } else {
-            card.style.display = 'none';
-        }
-    });
-}
 </script>
 
 <%- include('partials/footer') %>

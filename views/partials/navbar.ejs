@@ -127,11 +127,11 @@
                 <svg class="w-3.5 h-3.5 text-red-400 group-hover:text-red-300 transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
             </a>
 
-            <!-- PLAN A VISIT Primary Button (Celestial Azure Pill) -->
-            <button type="button" onclick="window.openVisitModal && window.openVisitModal()" class="px-5 py-2.5 rounded-full azure-primary-btn font-bold text-xs sm:text-sm tracking-wide shadow-lg transition-all active:scale-95 whitespace-nowrap shrink-0 flex items-center gap-2 cursor-pointer">
+            <!-- PLAN A VISIT Primary Button (Linkable to /plan-visit with Modal Trigger) -->
+            <a href="/plan-visit<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" onclick="if(window.openVisitModal){window.openVisitModal(); return false;}" class="px-5 py-2.5 rounded-full azure-primary-btn font-bold text-xs sm:text-sm tracking-wide shadow-lg transition-all active:scale-95 whitespace-nowrap shrink-0 flex items-center gap-2 cursor-pointer">
                 <span><%= typeof t !== 'undefined' ? t('nav.planVisit') : 'Plan a Visit' %></span>
                 <span aria-hidden="true">&rarr;</span>
-            </button>
+            </a>
 
             <!-- Language Switcher: EN / አማ in Frosted Capsule -->
             <div class="inline-flex items-center rounded-full bg-white/10 p-1 border border-white/15 text-xs font-bold backdrop-blur-md">
@@ -223,11 +223,12 @@
                 </a>
             </div>
 
-            <!-- Drawer Bottom CTA: Plan a Visit -->
+            <!-- Drawer Bottom CTA: Plan a Visit (Linkable to /plan-visit) -->
             <div class="pt-4 border-t border-sky-400/20">
-                <button type="button" onclick="window.closeMobileMenu && window.closeMobileMenu(); window.openVisitModal && window.openVisitModal();" class="w-full py-4 rounded-full azure-primary-btn font-bold text-center text-sm uppercase tracking-wider shadow-lg transition-all active:scale-[0.98]">
-                    Plan Your Visit This Sunday
-                </button>
+                <a href="/plan-visit<%= typeof langQuery !== 'undefined' ? langQuery : '' %>" onclick="if(window.closeMobileMenu){window.closeMobileMenu();} if(window.openVisitModal){window.openVisitModal(); return false;}" class="w-full py-4 rounded-full azure-primary-btn font-bold text-center text-sm uppercase tracking-wider shadow-lg transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+                    <span>Plan Your Visit This Sunday</span>
+                    <span aria-hidden="true">&rarr;</span>
+                </a>
             </div>
         </div>
     </div>

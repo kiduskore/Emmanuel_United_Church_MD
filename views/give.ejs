@@ -186,10 +186,10 @@
                     </p>
                 </div>
                 <div class="pt-6 mt-6 border-t border-sky-400/20">
-                    <button type="button" onclick="window.openVisitModal && window.openVisitModal()" class="text-xs font-heading font-bold uppercase tracking-wider text-cyan-300 hover:text-white transition-colors flex items-center gap-1">
+                    <a href="/plan-visit" onclick="if(window.openVisitModal){window.openVisitModal(); return false;}" class="text-xs font-heading font-bold uppercase tracking-wider text-cyan-300 hover:text-white transition-colors inline-flex items-center gap-1 cursor-pointer">
                         <span>Plan Sunday Visit</span>
                         <span>&rarr;</span>
-                    </button>
+                    </a>
                 </div>
             </div>
 

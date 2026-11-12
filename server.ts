@@ -26,17 +26,29 @@ const app = express();
 app.disable('x-powered-by');
 app.set('trust proxy', true);
 
-// Configure Nodemailer transporter
+// Configure Nodemailer transporter supporting IONOS, Gmail, Outlook, or custom SMTP
 const getTransporter = () => {
-  return nodemailer.createTransport({
-    host: process.env.SMTP_HOST || process.env.SMTP_SERVER || 'smtp.ionos.com',
-    port: parseInt(process.env.SMTP_PORT || '587', 10),
-    secure: process.env.SMTP_PORT === '465' || process.env.SMTP_SECURE === 'true',
-    auth: {
+  const host = process.env.SMTP_HOST || process.env.SMTP_SERVER || 'smtp.ionos.com';
+  const port = parseInt(process.env.SMTP_PORT || '587', 10);
+  const secure = port === 465 || process.env.SMTP_SECURE === 'true';
+
+  const transportConfig: any = {
+    host,
+    port,
+    secure,
+    tls: {
+      rejectUnauthorized: false
+    }
+  };
+
+  if (process.env.SMTP_USER && process.env.SMTP_PASS) {
+    transportConfig.auth = {
       user: process.env.SMTP_USER,
       pass: process.env.SMTP_PASS,
-    },
-  });
+    };
+  }
+
+  return nodemailer.createTransport(transportConfig);
 };
 
 
@@ -57,6 +69,7 @@ app.use(helmet({
       // Note: 'unsafe-inline' and 'unsafe-eval' are required because the app uses Vue 3 via CDN 
       // (which compiles templates in-browser) and Tailwind Play CDN (which generates CSS on the fly).
       scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://cdnjs.cloudflare.com", "https://cdn.tailwindcss.com", "https://cdn.jsdelivr.net"],
+      scriptSrcAttr: ["'unsafe-inline'"],
       styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
       fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],
       imgSrc: ["'self'", "data:", "https:", "blob:"],
