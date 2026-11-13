@@ -164,7 +164,7 @@ export const enPartials: Record<string, string> = {
   'mobileCta.planVisit': 'Plan Visit',
 
   // Join Section Partial
-  'joinSection.title': 'Join a Weekly Gathering & Life Pod',
+  'joinSection.title': 'Join a Weekly Gathering & Small Group',
   'joinSection.subtitle': 'Connect with Emmanuel United Church of Maryland Young Adults and experience real worship, Word, and lifelong brotherhood and sisterhood.',
   'joinSection.locationLabel': 'Where We Meet',
   'joinSection.tuesdayTitle': 'Tuesday Night Young Adults',
@@ -198,7 +198,7 @@ export const enPartials: Record<string, string> = {
   'searchModal.popularHeader': 'Popular Topics & Fast Links',
   'searchModal.browseAll': 'Browse All Resources',
   'searchModal.tagSalvation': 'Salvation & Gospel',
-  'searchModal.tagGroups': 'Small Groups & Pods',
+  'searchModal.tagGroups': 'Small Groups',
   'searchModal.tagPrayer': 'Prayer & Intercession',
   'searchModal.tagGrowth': 'Spiritual Growth',
   'searchModal.tagBaptism': 'Water Baptism',

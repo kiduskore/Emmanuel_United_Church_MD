@@ -2,17 +2,33 @@ import type { Request, Response, NextFunction } from 'express';
 import { SUPPORTED_LANGUAGES } from './types.ts';
 import type { SupportedLanguage, LanguageInfo } from './types.ts';
 import { en } from './locales/en.ts';
+import { enPartials } from './locales/en-partials.ts';
+import { enPagesHome } from './locales/en-pages-home.ts';
+import { enPagesSub } from './locales/en-pages-sub.ts';
+import { enExtra } from './locales/en-extra.ts';
 import { am } from './locales/am.ts';
+import { amPartials } from './locales/am-partials.ts';
+import { amPagesHome } from './locales/am-pages-home.ts';
+import { amPagesSub } from './locales/am-pages-sub.ts';
+import { amExtra } from './locales/am-extra.ts';
 import { ti } from './locales/ti.ts';
+import { tiPartials } from './locales/ti-partials.ts';
+import { tiPagesHome } from './locales/ti-pages-home.ts';
+import { tiPagesSub } from './locales/ti-pages-sub.ts';
+import { tiExtra } from './locales/ti-extra.ts';
 import { om } from './locales/om.ts';
+import { omPartials } from './locales/om-partials.ts';
+import { omPagesHome } from './locales/om-pages-home.ts';
+import { omPagesSub } from './locales/om-pages-sub.ts';
+import { omExtra } from './locales/om-extra.ts';
 
 export * from './types.ts';
 
 export const translations: Record<SupportedLanguage, Record<string, string>> = {
-  en,
-  am,
-  ti,
-  om
+  en: { ...en, ...enPartials, ...enPagesHome, ...enPagesSub, ...enExtra },
+  am: { ...am, ...amPartials, ...amPagesHome, ...amPagesSub, ...amExtra },
+  ti: { ...ti, ...tiPartials, ...tiPagesHome, ...tiPagesSub, ...tiExtra },
+  om: { ...om, ...omPartials, ...omPagesHome, ...omPagesSub, ...omExtra }
 };
 
 export const DEFAULT_LANGUAGE: SupportedLanguage = 'en';
@@ -53,7 +69,7 @@ export function i18nMiddleware(req: Request, res: Response, next: NextFunction) 
   const hasExplicitQueryLang = !!(queryLang && isSupportedLanguage(queryLang));
   if (hasExplicitQueryLang) {
     lang = queryLang.toLowerCase() as SupportedLanguage;
-    res.cookie('lang', lang, { maxAge: 365 * 24 * 60 * 60 * 1000, path: '/', sameSite: cookieSameSite, secure: cookieSecure, httpOnly: true });
+    res.cookie('lang', lang, { maxAge: 365 * 24 * 60 * 60 * 1000, path: '/', sameSite: cookieSameSite, secure: cookieSecure, httpOnly: false });
     if (req.session) {
       (req.session as any).lang = lang;
     }
@@ -68,7 +84,7 @@ export function i18nMiddleware(req: Request, res: Response, next: NextFunction) 
   // 3. Session
   else if ((req.session as any)?.lang && isSupportedLanguage((req.session as any).lang)) {
     lang = (req.session as any).lang.toLowerCase() as SupportedLanguage;
-    res.cookie('lang', lang, { maxAge: 365 * 24 * 60 * 60 * 1000, path: '/', sameSite: cookieSameSite, secure: cookieSecure, httpOnly: true });
+    res.cookie('lang', lang, { maxAge: 365 * 24 * 60 * 60 * 1000, path: '/', sameSite: cookieSameSite, secure: cookieSecure, httpOnly: false });
   }
   // 4. Accept-Language header matching
   else if (req.headers['accept-language']) {

@@ -164,7 +164,7 @@ export const omPartials: Record<string, string> = {
   'mobileCta.planVisit': 'Daawwannaa',
 
   // Join Section Partial
-  'joinSection.title': 'Walga\'ii Torbanii fi DNA Poditti Makamaa',
+  'joinSection.title': 'Walga\'ii Torbanii fi Garee Xiqqaatti Makamaa',
   'joinSection.subtitle': 'Dargaggoota Emmanuel United Church of Maryland wajjin wal qunnamaa, waqeffannaa jiraataa, Sagalee fi obbolummaa dhugaa argadhaa.',
   'joinSection.locationLabel': 'Bakka Wal Argannu',
   'joinSection.tuesdayTitle': 'Walga\'ii Halkan Kibxataa Dargaggootaa',
@@ -198,7 +198,7 @@ export const omPartials: Record<string, string> = {
   'searchModal.popularHeader': 'Mata-dureewwan Beekamoo fi Geessituuwwan',
   'searchModal.browseAll': 'Qabeenya Hunda Ilaali',
   'searchModal.tagSalvation': 'Fayyinaa fi Wangeela',
-  'searchModal.tagGroups': 'Garee Xixiqqoo & Pods',
+  'searchModal.tagGroups': 'Garee Xixiqqoo',
   'searchModal.tagPrayer': 'Kadhannaa fi Araarsummaa',
   'searchModal.tagGrowth': 'Guddina Hafuuraa',
   'searchModal.tagBaptism': 'Cuuphaa Bishanii',

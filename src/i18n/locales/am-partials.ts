@@ -164,7 +164,7 @@ export const amPartials: Record<string, string> = {
   'mobileCta.planVisit': 'ጉብኝት ያቅዱ',
 
   // Join Section Partial
-  'joinSection.title': 'ሳምንታዊ ጉባኤን እና DNA Pod ይቀላቀሉ',
+  'joinSection.title': 'ሳምንታዊ ጉባኤን እና ትንሽ ቡድን ይቀላቀሉ',
   'joinSection.subtitle': 'ከሜሪላንድ አማኑኤል ኅብረት ቤተክርስቲያን ወጣቶች ጋር በመገናኘት ሕያው አምልኮን፣ ቃሉን እና እውነተኛ ወንድማማችነትን ይካፈሉ።',
   'joinSection.locationLabel': 'የምንገናኝበት ቦታ',
   'joinSection.tuesdayTitle': 'የማክሰኞ ምሽት ወጣቶች ጉባኤ',
@@ -198,7 +198,7 @@ export const amPartials: Record<string, string> = {
   'searchModal.popularHeader': 'ታዋቂ ርዕሶች እና ፈጣን አገናኞች',
   'searchModal.browseAll': 'ሁሉንም መርጃዎች ይመልከቱ',
   'searchModal.tagSalvation': 'ድነት እና ወንጌል',
-  'searchModal.tagGroups': 'ንዑስ ቡድኖች እና Pods',
+  'searchModal.tagGroups': 'ንዑስ ቡድኖች',
   'searchModal.tagPrayer': 'ጸሎት እና ምልጃ',
   'searchModal.tagGrowth': 'መንፈሳዊ ዕድገት',
   'searchModal.tagBaptism': 'የውሃ ጥምቀት',

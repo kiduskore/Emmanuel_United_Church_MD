@@ -164,7 +164,7 @@ export const tiPartials: Record<string, string> = {
   'mobileCta.planVisit': 'ምብጻሕ መድብ',
 
   // Join Section Partial
-  'joinSection.title': 'ኣብ ሰሙናዊ ጉባኤን DNA Podን ተጸንበሩ',
+  'joinSection.title': 'ኣብ ሰሙናዊ ጉባኤን ንእሽቶ ጉጅለን ተጸንበሩ',
   'joinSection.subtitle': 'ምስ መንእሰያት ኢማኑኤል ዩናይትድ ቸርች ኦፍ ሜሪላንድ ተራኺብኩም ሓቀኛ ኣምልኾ፣ ቃል ኣምላኽን ዘለዓለማዊ ሕውነትን ተኻፈሉ።',
   'joinSection.locationLabel': 'ንራኸበሉ ቦታ',
   'joinSection.tuesdayTitle': 'ምሸት ሰሉስ ናይ መንእሰያት ጉባኤ',
@@ -198,7 +198,7 @@ export const tiPartials: Record<string, string> = {
   'searchModal.popularHeader': 'ፍሉጣት ኣርእስትታትን ቀልጢፎም ዝኽፈቱን',
   'searchModal.browseAll': 'ኩሉ መዛግብቲ ርኣዩ',
   'searchModal.tagSalvation': 'ድሕነትን ወንጌልን',
-  'searchModal.tagGroups': 'ንኣሽቱ ጉጅለታትን Podsን',
+  'searchModal.tagGroups': 'ንኣሽቱ ጉጅለታት',
   'searchModal.tagPrayer': 'ጸሎትን ምልጃን',
   'searchModal.tagGrowth': 'መንፈሳዊ ዕብየት',
   'searchModal.tagBaptism': 'ጥምቀት ማይ',
