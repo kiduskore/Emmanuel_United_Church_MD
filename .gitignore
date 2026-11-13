@@ -17,3 +17,10 @@ Thumbs.db
 
 # Env
 .env
+
+# Dependencies
+node_modules/
+
+# Scratch files
+cookies.txt
+

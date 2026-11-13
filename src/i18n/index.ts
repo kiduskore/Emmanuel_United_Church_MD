@@ -43,15 +43,21 @@ export function getLanguageInfo(lang: string = DEFAULT_LANGUAGE): LanguageInfo {
 export function i18nMiddleware(req: Request, res: Response, next: NextFunction) {
   let lang: SupportedLanguage = DEFAULT_LANGUAGE;
 
-  // 1. Query parameter (?lang=am)
-  const queryLang = req.query.lang as string;
-  if (queryLang && isSupportedLanguage(queryLang)) {
+  const isIframe = !!process.env.APPLET_ID;
+  const isHttps = req.secure || req.headers['x-forwarded-proto'] === 'https';
+  const cookieSameSite: 'none' | 'lax' = (isIframe && isHttps) ? 'none' : 'lax';
+  const cookieSecure = Boolean(isHttps);
+
+  // 1. Query parameter (?lang=am|ti|om|en)
+  const queryLang = typeof req.query.lang === 'string' ? req.query.lang.trim() : '';
+  const hasExplicitQueryLang = !!(queryLang && isSupportedLanguage(queryLang));
+  if (hasExplicitQueryLang) {
     lang = queryLang.toLowerCase() as SupportedLanguage;
-    res.cookie('lang', lang, { maxAge: 365 * 24 * 60 * 60 * 1000, path: '/', sameSite: 'lax', secure: process.env.NODE_ENV === 'production' || !!process.env.APPLET_ID || !!process.env.RAILWAY_ENVIRONMENT, httpOnly: true });
+    res.cookie('lang', lang, { maxAge: 365 * 24 * 60 * 60 * 1000, path: '/', sameSite: cookieSameSite, secure: cookieSecure, httpOnly: true });
     if (req.session) {
       (req.session as any).lang = lang;
     }
-  } 
+  }
   // 2. Cookie
   else if (req.cookies?.lang && isSupportedLanguage(req.cookies.lang)) {
     lang = req.cookies.lang.toLowerCase() as SupportedLanguage;
@@ -62,7 +68,7 @@ export function i18nMiddleware(req: Request, res: Response, next: NextFunction) 
   // 3. Session
   else if ((req.session as any)?.lang && isSupportedLanguage((req.session as any).lang)) {
     lang = (req.session as any).lang.toLowerCase() as SupportedLanguage;
-    res.cookie('lang', lang, { maxAge: 365 * 24 * 60 * 60 * 1000, path: '/', sameSite: 'lax', secure: process.env.NODE_ENV === 'production' || !!process.env.APPLET_ID || !!process.env.RAILWAY_ENVIRONMENT, httpOnly: true });
+    res.cookie('lang', lang, { maxAge: 365 * 24 * 60 * 60 * 1000, path: '/', sameSite: cookieSameSite, secure: cookieSecure, httpOnly: true });
   }
   // 4. Accept-Language header matching
   else if (req.headers['accept-language']) {
@@ -77,19 +83,46 @@ export function i18nMiddleware(req: Request, res: Response, next: NextFunction) 
   const langQuery = (lang && lang !== 'en') ? `?lang=${lang}` : '';
   const langParam = (lang && lang !== 'en') ? `&lang=${lang}` : '';
 
+  const ogLocaleMap: Record<SupportedLanguage, string> = {
+    en: 'en_US',
+    am: 'am_ET',
+    ti: 'ti_ET',
+    om: 'om_ET'
+  };
+
   const linkWithLang = (urlPath: string) => {
-    if (!lang || lang === 'en') return urlPath;
     if (!urlPath) return urlPath;
-    if (urlPath.startsWith('http://') || urlPath.startsWith('https://') || urlPath.startsWith('mailto:') || urlPath.startsWith('tel:') || urlPath.startsWith('#')) {
+    if (!lang || lang === 'en') return urlPath;
+    if (
+      urlPath.startsWith('http://') ||
+      urlPath.startsWith('https://') ||
+      urlPath.startsWith('mailto:') ||
+      urlPath.startsWith('tel:') ||
+      urlPath.startsWith('#') ||
+      urlPath.startsWith('javascript:') ||
+      urlPath.startsWith('/set-language/') ||
+      urlPath.startsWith('/static/') ||
+      urlPath.startsWith('/assets/')
+    ) {
       return urlPath;
     }
-    const separator = urlPath.includes('?') ? '&' : '?';
-    return `${urlPath}${separator}lang=${lang}`;
+    const hashIdx = urlPath.indexOf('#');
+    const baseAndQuery = hashIdx >= 0 ? urlPath.slice(0, hashIdx) : urlPath;
+    const hashPart = hashIdx >= 0 ? urlPath.slice(hashIdx) : '';
+    const qIdx = baseAndQuery.indexOf('?');
+    const pathname = qIdx >= 0 ? baseAndQuery.slice(0, qIdx) : baseAndQuery;
+    const queryPart = qIdx >= 0 ? baseAndQuery.slice(qIdx + 1) : '';
+    const params = new URLSearchParams(queryPart);
+    params.set('lang', lang);
+    const qs = params.toString();
+    return `${pathname}${qs ? `?${qs}` : ''}${hashPart}`;
   };
 
   // Bind to res.locals for EJS templates
   res.locals.lang = lang;
   res.locals.currentLang = langInfo;
+  res.locals.ogLocale = ogLocaleMap[lang] || 'en_US';
+  res.locals.hasExplicitQueryLang = hasExplicitQueryLang;
   res.locals.languages = Object.values(SUPPORTED_LANGUAGES);
   res.locals.isEthiopic = langInfo.script === 'ethiopic';
   res.locals.t = (key: string, params?: Record<string, string>) => translate(key, lang, params);
